@@ -18,6 +18,9 @@
 #define FORMULA_H
 
 #include <QString>
+#include <Box2D-master/Box2D/Box2D/Box2D.h>
+#include <Box2D-master/Box2D/Box2D/Dynamics/b2World.h>
+
 
 class formula
 {
@@ -25,7 +28,7 @@ class formula
 
 public:
     formula();
-    void append(String);
+    void append(QString);
 
 
 };
