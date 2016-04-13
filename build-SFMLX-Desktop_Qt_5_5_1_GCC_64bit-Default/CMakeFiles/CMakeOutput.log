@@ -28,30 +28,30 @@ The CXX compiler identification is GNU, found in "/home/trung/CountUp/build-SFML
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec3904005901/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec3904005901.dir/build.make CMakeFiles/cmTryCompileExec3904005901.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3304506241/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3304506241.dir/build.make CMakeFiles/cmTryCompileExec3304506241.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec3904005901.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3904005901.dir/testCCompiler.c.o   -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTryCompileExec3904005901
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3904005901.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTryCompileExec3904005901.dir/testCCompiler.c.o  -o cmTryCompileExec3904005901 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec3304506241.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3304506241.dir/testCCompiler.c.o   -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec3304506241
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3304506241.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec3304506241.dir/testCCompiler.c.o  -o cmTryCompileExec3304506241 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec3929133462/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec3929133462.dir/build.make CMakeFiles/cmTryCompileExec3929133462.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec575962240/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec575962240.dir/build.make CMakeFiles/cmTryCompileExec575962240.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.2/Modules/CMakeCCompilerABI.c
-Linking C executable cmTryCompileExec3929133462
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3929133462.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3929133462 -rdynamic  
+Building C object CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.2/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec575962240
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec575962240.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec575962240 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -61,8 +61,8 @@ Thread model: posix
 gcc version 5.2.1 20151010 (Ubuntu 5.2.1-22ubuntu2) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec3929133462' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQ31Zot.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec3929133462 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec575962240' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccFbKxlZ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec575962240 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
@@ -70,15 +70,15 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec3929133462/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec3929133462.dir/build.make CMakeFiles/cmTryCompileExec3929133462.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec575962240/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec575962240.dir/build.make CMakeFiles/cmTryCompileExec575962240.dir/build]
   ignore line: [make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp']
   ignore line: [/usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1]
-  ignore line: [Building C object CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.2/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTryCompileExec3929133462]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3929133462.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3929133462 -rdynamic  ]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.2/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec575962240]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec575962240.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec575962240 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -88,13 +88,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 5.2.1 20151010 (Ubuntu 5.2.1-22ubuntu2) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec3929133462' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQ31Zot.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec3929133462 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec575962240' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccFbKxlZ.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec575962240 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccQ31Zot.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccFbKxlZ.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -112,7 +112,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTryCompileExec3929133462] ==> ignore
+    arg [cmTryCompileExec575962240] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -124,7 +124,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTryCompileExec3929133462.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec575962240.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -158,15 +158,15 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec563932977/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec563932977.dir/build.make CMakeFiles/cmTryCompileExec563932977.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec549901223/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec549901223.dir/build.make CMakeFiles/cmTryCompileExec549901223.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec563932977.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTryCompileExec563932977.dir/feature_tests.c.o   -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.c
-Linking C executable cmTryCompileExec563932977
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec563932977.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTryCompileExec563932977.dir/feature_tests.c.o  -o cmTryCompileExec563932977 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec549901223.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTryCompileExec549901223.dir/feature_tests.c.o   -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec549901223
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec549901223.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec549901223.dir/feature_tests.c.o  -o cmTryCompileExec549901223 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
@@ -179,15 +179,15 @@ make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec2175560644/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec2175560644.dir/build.make CMakeFiles/cmTryCompileExec2175560644.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1448015141/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1448015141.dir/build.make CMakeFiles/cmTryCompileExec1448015141.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec2175560644.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTryCompileExec2175560644.dir/feature_tests.c.o   -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.c
-Linking C executable cmTryCompileExec2175560644
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2175560644.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTryCompileExec2175560644.dir/feature_tests.c.o  -o cmTryCompileExec2175560644 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec1448015141.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTryCompileExec1448015141.dir/feature_tests.c.o   -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec1448015141
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1448015141.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1448015141.dir/feature_tests.c.o  -o cmTryCompileExec1448015141 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
@@ -200,15 +200,15 @@ make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1640379032/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec1640379032.dir/build.make CMakeFiles/cmTryCompileExec1640379032.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2614395390/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2614395390.dir/build.make CMakeFiles/cmTryCompileExec2614395390.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec1640379032.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTryCompileExec1640379032.dir/feature_tests.c.o   -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.c
-Linking C executable cmTryCompileExec1640379032
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1640379032.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTryCompileExec1640379032.dir/feature_tests.c.o  -o cmTryCompileExec1640379032 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec2614395390.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTryCompileExec2614395390.dir/feature_tests.c.o   -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec2614395390
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2614395390.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec2614395390.dir/feature_tests.c.o  -o cmTryCompileExec2614395390 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
@@ -219,30 +219,30 @@ make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec662025679/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec662025679.dir/build.make CMakeFiles/cmTryCompileExec662025679.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2312745210/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2312745210.dir/build.make CMakeFiles/cmTryCompileExec2312745210.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec662025679.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTryCompileExec662025679.dir/testCXXCompiler.cxx.o -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTryCompileExec662025679
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec662025679.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTryCompileExec662025679.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec662025679 -rdynamic 
+Building CXX object CMakeFiles/cmTryCompileExec2312745210.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec2312745210.dir/testCXXCompiler.cxx.o -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec2312745210
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2312745210.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTryCompileExec2312745210.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec2312745210 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec2449177845/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec2449177845.dir/build.make CMakeFiles/cmTryCompileExec2449177845.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1357824890/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1357824890.dir/build.make CMakeFiles/cmTryCompileExec1357824890.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTryCompileExec2449177845
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2449177845.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec2449177845 -rdynamic  
+Building CXX object CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec1357824890
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1357824890.dir/link.txt --verbose=1
+/usr/bin/c++       -v CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1357824890 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -252,8 +252,8 @@ Thread model: posix
 gcc version 5.2.1 20151010 (Ubuntu 5.2.1-22ubuntu2) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2449177845' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cce55mxV.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec2449177845 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1357824890' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccNvhBFv.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec1357824890 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
@@ -261,15 +261,15 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec2449177845/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec2449177845.dir/build.make CMakeFiles/cmTryCompileExec2449177845.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec1357824890/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec1357824890.dir/build.make CMakeFiles/cmTryCompileExec1357824890.dir/build]
   ignore line: [make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp']
   ignore line: [/usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1]
-  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTryCompileExec2449177845]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2449177845.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec2449177845 -rdynamic  ]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec1357824890]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1357824890.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1357824890 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -279,13 +279,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 5.2.1 20151010 (Ubuntu 5.2.1-22ubuntu2) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2449177845' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cce55mxV.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec2449177845 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1357824890' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccNvhBFv.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec1357824890 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cce55mxV.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccNvhBFv.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -303,7 +303,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTryCompileExec2449177845] ==> ignore
+    arg [cmTryCompileExec1357824890] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -315,7 +315,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTryCompileExec2449177845.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec1357824890.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -347,15 +347,15 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1386780654/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec1386780654.dir/build.make CMakeFiles/cmTryCompileExec1386780654.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1230617521/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1230617521.dir/build.make CMakeFiles/cmTryCompileExec1230617521.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec1386780654.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTryCompileExec1386780654.dir/feature_tests.cxx.o -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTryCompileExec1386780654
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1386780654.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTryCompileExec1386780654.dir/feature_tests.cxx.o  -o cmTryCompileExec1386780654 -rdynamic 
+Building CXX object CMakeFiles/cmTryCompileExec1230617521.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTryCompileExec1230617521.dir/feature_tests.cxx.o -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec1230617521
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1230617521.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTryCompileExec1230617521.dir/feature_tests.cxx.o  -o cmTryCompileExec1230617521 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
@@ -421,15 +421,15 @@ make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec2541867243/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec2541867243.dir/build.make CMakeFiles/cmTryCompileExec2541867243.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec584485097/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec584485097.dir/build.make CMakeFiles/cmTryCompileExec584485097.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec2541867243.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTryCompileExec2541867243.dir/feature_tests.cxx.o -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTryCompileExec2541867243
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2541867243.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTryCompileExec2541867243.dir/feature_tests.cxx.o  -o cmTryCompileExec2541867243 -rdynamic 
+Building CXX object CMakeFiles/cmTryCompileExec584485097.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTryCompileExec584485097.dir/feature_tests.cxx.o -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec584485097
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec584485097.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTryCompileExec584485097.dir/feature_tests.cxx.o  -o cmTryCompileExec584485097 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
@@ -495,15 +495,15 @@ make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec3390094825/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec3390094825.dir/build.make CMakeFiles/cmTryCompileExec3390094825.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec233163153/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec233163153.dir/build.make CMakeFiles/cmTryCompileExec233163153.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec3390094825.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTryCompileExec3390094825.dir/feature_tests.cxx.o -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTryCompileExec3390094825
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3390094825.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTryCompileExec3390094825.dir/feature_tests.cxx.o  -o cmTryCompileExec3390094825 -rdynamic 
+Building CXX object CMakeFiles/cmTryCompileExec233163153.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTryCompileExec233163153.dir/feature_tests.cxx.o -c /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec233163153
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec233163153.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTryCompileExec233163153.dir/feature_tests.cxx.o  -o cmTryCompileExec233163153 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
@@ -567,75 +567,75 @@ make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC
 Determining if the function XOpenDisplay exists in the /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so passed with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec174890642/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec174890642.dir/build.make CMakeFiles/cmTryCompileExec174890642.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3565497368/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3565497368.dir/build.make CMakeFiles/cmTryCompileExec3565497368.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec174890642.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec174890642.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
-Linking C executable cmTryCompileExec174890642
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec174890642.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTryCompileExec174890642.dir/CheckFunctionExists.c.o  -o cmTryCompileExec174890642 -rdynamic -lX11 -lXext 
+Building C object CMakeFiles/cmTryCompileExec3565497368.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec3565497368.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3565497368
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3565497368.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTryCompileExec3565497368.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3565497368 -rdynamic -lX11 -lXext 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
 Determining if the function gethostbyname exists passed with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec2527533354/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec2527533354.dir/build.make CMakeFiles/cmTryCompileExec2527533354.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1086985807/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1086985807.dir/build.make CMakeFiles/cmTryCompileExec1086985807.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec2527533354.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec2527533354.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
-Linking C executable cmTryCompileExec2527533354
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2527533354.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTryCompileExec2527533354.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2527533354 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec1086985807.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec1086985807.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1086985807
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1086985807.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTryCompileExec1086985807.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1086985807 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
 Determining if the function connect exists passed with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec4122911589/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec4122911589.dir/build.make CMakeFiles/cmTryCompileExec4122911589.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2421469831/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2421469831.dir/build.make CMakeFiles/cmTryCompileExec2421469831.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec4122911589.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec4122911589.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
-Linking C executable cmTryCompileExec4122911589
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4122911589.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTryCompileExec4122911589.dir/CheckFunctionExists.c.o  -o cmTryCompileExec4122911589 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec2421469831.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec2421469831.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2421469831
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2421469831.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTryCompileExec2421469831.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2421469831 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
 Determining if the function remove exists passed with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec67642202/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec67642202.dir/build.make CMakeFiles/cmTryCompileExec67642202.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1858068436/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1858068436.dir/build.make CMakeFiles/cmTryCompileExec1858068436.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec67642202.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec67642202.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
-Linking C executable cmTryCompileExec67642202
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec67642202.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTryCompileExec67642202.dir/CheckFunctionExists.c.o  -o cmTryCompileExec67642202 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec1858068436.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec1858068436.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1858068436
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1858068436.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTryCompileExec1858068436.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1858068436 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 
 Determining if the function shmat exists passed with the following output:
 Change Dir: /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec634480431/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec634480431.dir/build.make CMakeFiles/cmTryCompileExec634480431.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec412882731/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec412882731.dir/build.make CMakeFiles/cmTryCompileExec412882731.dir/build
 make[1]: Entering directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec634480431.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec634480431.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
-Linking C executable cmTryCompileExec634480431
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec634480431.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTryCompileExec634480431.dir/CheckFunctionExists.c.o  -o cmTryCompileExec634480431 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec412882731.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec412882731.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec412882731
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec412882731.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTryCompileExec412882731.dir/CheckFunctionExists.c.o  -o cmTryCompileExec412882731 -rdynamic 
 make[1]: Leaving directory '/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/CMakeFiles/CMakeTmp'
 
 

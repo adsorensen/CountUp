@@ -23,9 +23,11 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-LIBS += -L"./../CountUp/SFMLX/lib"
+LIBS += -L"/home/trung/CountUp/SFMLX/lib"
 
 LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
 
-INCLUDEPATH += "./../CountUp/SFMLX/include"
-DEPENDPATH += "./../CountUp/SFMLX/include"
+INCLUDEPATH += "/home/trung/CountUp/SFMLX/include"
+DEPENDPATH += "/home/trung/CountUp/SFMLX/include"
+
+
