@@ -23,10 +23,10 @@
 #include <Box2D/Box2D.h>
 #include <Box2D/Dynamics/b2World.h>
 
-#include <Box2D/Common/b2Draw.h>
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/Audio.hpp>
+//#include <Box2D/Common/b2Draw.h>
+//#include <SFML/Graphics.hpp>
+//#include <SFML/Network.hpp>
+//#include <SFML/Audio.hpp>
 
 class formula
 {

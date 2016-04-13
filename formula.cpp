@@ -15,14 +15,15 @@
 */
 
 #include "formula.h"
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/Audio.hpp>
+//#include <SFML/Graphics.hpp>
+//#include <SFML/Network.hpp>
+//#include <SFML/Audio.hpp>
+//#include <SFML/
 
 formula::formula()
 {
     //test
-    sf::TcpListener listener;
-    sf::TcpSocket socket;
-    sf::RenderWindow main;
+//    sf::TcpListener listener;
+//    sf::TcpSocket socket;
+//    sf::RenderWindow main;
 }

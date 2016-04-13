@@ -11,23 +11,22 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = CountUp
 TEMPLATE = app
 
+CONFIG += c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    formula.cpp \
-    temp.cpp
+    formula.cpp
 
 HEADERS  += mainwindow.h \
-    formula.h \
-    temp.h
+    formula.h
 
 FORMS    += mainwindow.ui
 
-LIBS += -L"./../CountUp/SFMLX/lib"
+#LIBS += -L"./../CountUp/SFMLX/lib"
 
-LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+#LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
 
-INCLUDEPATH += "./../CountUp/SFMLX/include"
-DEPENDPATH += "./../CountUp/SFMLX/include"
+#INCLUDEPATH += "./../CountUp/SFMLX/include"
+#DEPENDPATH += "./../CountUp/SFMLX/include"
 
 
