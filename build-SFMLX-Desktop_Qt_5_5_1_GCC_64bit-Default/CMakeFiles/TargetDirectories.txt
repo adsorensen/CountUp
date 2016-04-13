@@ -1,0 +1,5 @@
+/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/src/SFML/Audio/CMakeFiles/sfml-audio.dir
+/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/src/SFML/Network/CMakeFiles/sfml-network.dir
+/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/src/SFML/Window/CMakeFiles/sfml-window.dir
+/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/src/SFML/System/CMakeFiles/sfml-system.dir
+/home/trung/CountUp/build-SFMLX-Desktop_Qt_5_5_1_GCC_64bit-Default/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir

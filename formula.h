@@ -24,6 +24,9 @@
 #include <Box2D/Dynamics/b2World.h>
 
 #include <Box2D/Common/b2Draw.h>
+#include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
+#include <SFML/Audio.hpp>
 
 class formula
 {
@@ -32,7 +35,6 @@ class formula
 public:
     formula();
     void append(QString);
-
 
 };
 

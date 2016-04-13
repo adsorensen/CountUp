@@ -14,9 +14,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    formula.cpp
+    formula.cpp \
+    temp.cpp
 
 HEADERS  += mainwindow.h \
-    formula.h
+    formula.h \
+    temp.h
 
 FORMS    += mainwindow.ui
+
+LIBS += -L"/home/trung/CountUp/SFMLX/lib"
+
+LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+
+INCLUDEPATH += "/home/trung/CountUp/SFMLX/include"
+DEPENDPATH += "/home/trung/CountUp/SFMLX/include"
