@@ -15,14 +15,14 @@ CONFIG += c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    formula.cpp \
     gamemodel.cpp \
-    mathnode.cpp
+    mathnode.cpp \
+    formula.cpp
 
 HEADERS  += mainwindow.h \
-    formula.h \
     gamemodel.h \
-    mathnode.h
+    mathnode.h \
+    formula.h
 
 FORMS    += mainwindow.ui
 
