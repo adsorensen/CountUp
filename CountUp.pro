@@ -17,14 +17,17 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     gamemodel.cpp \
     mathnode.cpp \
-    formula.cpp
+    formula.cpp \
+    login.cpp
 
 HEADERS  += mainwindow.h \
     gamemodel.h \
     mathnode.h \
-    formula.h
+    formula.h \
+    login.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    login.ui
 
 #LIBS += -L"./../CountUp/SFMLX/lib"
 

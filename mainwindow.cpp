@@ -37,6 +37,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->verticalHeader()->hide();
     ui->tableWidget->horizontalHeader()->hide();
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setMouseTracking(true);
+    ui->tableWidget->viewport()->setMouseTracking(true);
+
+    ui->tableWidget->installEventFilter(this);
+    ui->tableWidget->viewport()->installEventFilter(this);
 
 }
 
@@ -68,15 +73,32 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
     //retrieve value from math node
     //append to formula string
+    qDebug() << "Start expression";
 
 }
 
-//Same thing here but for drags
+//Same thing here but for drag
+//Do not register diagonal nodes?
 void MainWindow::on_tableWidget_cellEntered(int row, int column)
 {
+
 }
 
-//TODO: End string on mouse release
+
+//End string on mouse release
+//Send current formula to game model to evaluate
+//If valid expression, replace math nodes with new nodes from game model
+//else return nodes to grid
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (obj == ui->tableWidget->viewport())
+    {
+        if (event->type() == QEvent::MouseButtonRelease)
+            qDebug() << "End expression";
+    }
+    return QMainWindow::eventFilter(obj, event);
+}
+
 
 
 

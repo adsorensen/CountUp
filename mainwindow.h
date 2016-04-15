@@ -42,6 +42,8 @@ private slots:
 
     void on_tableWidget_cellEntered(int row, int column);
 
+    bool eventFilter(QObject *obj, QEvent *event);
+
 private:
     Ui::MainWindow *ui;
 };
