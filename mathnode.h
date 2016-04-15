@@ -7,7 +7,7 @@ class MathNode
 {
 public:
     MathNode();
-    MathNode(const MathNode);
+    MathNode(const MathNode &obj);
     bool isSelected;
     bool isOperator;
     QString value;

@@ -106,7 +106,7 @@ void GameModel::PopulateGrid()
                         //Create a operand MathNode
                         grid[x][y].value = GenerateMathNode(false);
                         grid[x][y].isOperator = false;
-                    } else if (yCound < 0.5) {
+                    } else if (yCount < 0.5) {
                         //Create a operator MathNode
                         grid[x][y].value = GenerateMathNode(true);
                         grid[x][y].isOperator = true;
@@ -140,11 +140,11 @@ QString GameModel::GenerateMathNode(bool isOperator)
 {
     //Generates MathNode based on difficulty
     QString ret = "";
-
+    int num;
     if (!isOperator) {
         switch (difficulty) {
         case 1: //Easy
-            int num = qrand() % 5 + 1;
+            num = qrand() % 5 + 1;
             if ((qrand() % 2) == 0) {
                 ret = "-" + num;
             } else {
@@ -153,7 +153,7 @@ QString GameModel::GenerateMathNode(bool isOperator)
             return ret;
             break;
         case 2: //Medium
-            int num = qrand() % 10 + 1;
+            num = qrand() % 10 + 1;
             if ((qrand() % 2) == 0) {
                 ret = "-" + num;
             } else {
@@ -162,7 +162,7 @@ QString GameModel::GenerateMathNode(bool isOperator)
             return ret;
             break;
         case 3: //Hard
-            int num = qrand() % 20 + 1;
+            num = qrand() % 20 + 1;
             if ((qrand() % 2) == 0) {
                 ret = "-" + num;
             } else {
@@ -171,7 +171,7 @@ QString GameModel::GenerateMathNode(bool isOperator)
             return ret;
             break;
         case 4: //Very Hard
-            int num = qrand() % 50 + 1;
+            num = qrand() % 50 + 1;
             if ((qrand() % 2) == 0) {
                 ret = "-" + num;
             } else {
@@ -180,7 +180,7 @@ QString GameModel::GenerateMathNode(bool isOperator)
             return ret;
             break;
         case 5: //Extreme
-            int num = qrand() % 100 + 1;
+            num = qrand() % 100 + 1;
             if ((qrand() % 2) == 0) {
                 ret = "-" + num;
             } else {
