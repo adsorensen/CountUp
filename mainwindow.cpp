@@ -39,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->move(x, y);
     this->show();
 
+    // Sets the background image
+    this->setStyleSheet("MainWindow {border-image: url(:/background/Resources/bg.png); };");
+
     // Initializes the game "grid"
     ui->tableWidget->horizontalHeader()->sectionResizeMode(QHeaderView::Fixed);
     ui->tableWidget->verticalHeader()->sectionResizeMode(QHeaderView::Fixed);
@@ -54,6 +57,14 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::paintEvent(QPaintEvent *)
+ {
+     QStyleOption opt;
+     opt.init(this);
+     QPainter p(this);
+     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+ }
 
 //Sets value of the cell according to model
 void MainWindow::fillGrid(MathNode model[][10])
