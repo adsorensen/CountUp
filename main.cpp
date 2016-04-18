@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     Login login;
-    login.show();
+    //login.show();
     if (login.exec() == QDialog::Accepted) {
         login.hide();
         w.show();

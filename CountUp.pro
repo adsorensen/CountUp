@@ -36,4 +36,7 @@ FORMS    += mainwindow.ui \
 #INCLUDEPATH += "./../CountUp/SFMLX/include"
 #DEPENDPATH += "./../CountUp/SFMLX/include"
 
+RESOURCES += \
+    resources.qrc
+
 

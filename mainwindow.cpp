@@ -18,6 +18,9 @@
 #include "ui_mainwindow.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QDesktopWidget>
+#include <QRect>
+#include <QApplication>
 #include <QDebug>
 #include <QMouseEvent>
 #include <QtGui>
@@ -28,21 +31,22 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    // Centers application on start up
+    QRect screenGeometry = QApplication::desktop()->screenGeometry();
     ui->setupUi(this);
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    this->move(x, y);
+    this->show();
 
-    ui->tableWidget->horizontalHeader()->setDefaultSectionSize(40);
-    ui->tableWidget->verticalHeader()->setDefaultSectionSize(40);
+    // Initializes the game "grid"
     ui->tableWidget->horizontalHeader()->sectionResizeMode(QHeaderView::Fixed);
     ui->tableWidget->verticalHeader()->sectionResizeMode(QHeaderView::Fixed);
-    ui->tableWidget->verticalHeader()->hide();
-    ui->tableWidget->horizontalHeader()->hide();
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setMouseTracking(true);
     ui->tableWidget->viewport()->setMouseTracking(true);
-
     ui->tableWidget->installEventFilter(this);
     ui->tableWidget->viewport()->installEventFilter(this);
-
 }
 
 // Destructor
