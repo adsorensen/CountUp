@@ -31,6 +31,7 @@ signals:
 
 private:
     Ui::Login *ui;
+    bool newUser;
 };
 
 #endif // LOGIN_H
