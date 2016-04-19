@@ -14,20 +14,27 @@ TEMPLATE = app
 CONFIG += c++11
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     gamemodel.cpp \
     mathnode.cpp \
     formula.cpp \
-    login.cpp
+    network.cpp \
+    login.cpp \
+    levelscreen.cpp \
+    mainwindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     gamemodel.h \
     mathnode.h \
     formula.h \
-    login.h
+    network.h \
+    login.h \
+    levelscreen.h \
+    mainwindow.h
 
-FORMS    += mainwindow.ui \
-    login.ui
+FORMS    += \
+    login.ui \
+    levelscreen.ui \
+    mainwindow.ui
 
 #LIBS += -L"./../CountUp/SFMLX/lib"
 
