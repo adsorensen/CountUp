@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     formula.cpp \
     login.cpp \
     levelscreen.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    level.cpp
 
 HEADERS  += \
     gamemodel.h \
@@ -32,7 +33,8 @@ HEADERS  += \
     formula.h \
     login.h \
     levelscreen.h \
-    mainwindow.h
+    mainwindow.h \
+    level.h
 
 FORMS    += \
     login.ui \

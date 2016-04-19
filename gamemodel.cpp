@@ -1,14 +1,31 @@
 #include "gamemodel.h"
+#include <QDebug>
 
 GameModel::GameModel()
 {
     //Constructor
+    for (int u = 0; u < 8; u++) {
+        grid.push_back( QVector<MathNode>());
+    }
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            MathNode mn;
+            grid[i].push_back(mn);
+        }
+    }
+
+    for (int i = 0; i < 25; i++) {
+        levelMap[i] = new Level(i,i,i,i,i,i,i,i);
+    }
+
+    PopulateGrid();
 }
 
-GameModel::~GameModel()
-{
-    //Destructor
-}
+//GameModel::~GameModel()
+//{
+//    //Destructor
+//}
 
 bool GameModel::FormulaCheck(QString formula)
 {
@@ -40,100 +57,100 @@ void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
         grid[removedNodes[i].first][removedNodes[i].second].value = "0";
     }
 
-//    for (int x = 0; x < grid.size(); x++) {
-//        int emptyCount = 0;
-//        for (int y = 0; y < grid[x].size(); y++) {
-//            if (grid[x][y].value == "0") {
-//                emptyCount++;
-//            }
-//        }
-//        if (emptyCount > 0) {
-//            for (int y = grid[x].size; y > 0; y--) {
-//                //Going through y column bottom up
-//                if (grid[x][y].value == "0") {
-//                    int curNode = y;
-//                    while (curNode >= 0) {
-//                        //Find non-empty MathNode to swap with
-//                        if (grid[x][curNode].value == "0") {
-//                            curNode--;
-//                        } else {
-//                            //Swap the MathNode with the empty one
-//                            MathNode temp = grid[x][y];
-//                            grid[x][y] = grid[x][curNode];
-//                            grid[x][curNode] = temp;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+    for (int x = 0; x < grid.size(); x++) {
+        int emptyCount = 0;
+        for (int y = 0; y < grid[x].size(); y++) {
+            if (grid[x][y].value == "0") {
+                emptyCount++;
+            }
+        }
+        if (emptyCount > 0) {
+            for (int y = grid[x].size()-1; y >= 0; y--) {
+                //Going through y column bottom up
+                if (grid[x][y].value == "0") {
+                    int curNode = y;
+                    while (curNode >= 0) {
+                        //Find non-empty MathNode to swap with
+                        if (grid[x][curNode].value == "0") {
+                            curNode--;
+                        } else {
+                            //Swap the MathNode with the empty one
+                            MathNode temp = grid[x][y];
+                            grid[x][y] = grid[x][curNode];
+                            grid[x][curNode] = temp;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 void GameModel::PopulateGrid()
 {
     //Goes through grid and smartly populates it with MathNodes
-//    for (int x = 0; x < grid.size(); x++) {
-//        for (int y = 0; y < grid[y].size(); y++) {
-//            if (grid[x][y].value == "0") {
-//                //Node is empty
-//                QVector<bool> operatorSpread;
-//                if (x != 0) {
-//                    if (grid[x-1][y].value != "0") {
-//                        operatorSpread.push_back(grid[x-1][y].isOperator);
-//                    }
-//                }
-//                if (y != 0) {
-//                    if (grid[x][y-1].value != "0") {
-//                        operatorSpread.push_back(grid[x][y-1].isOperator);
-//                    }
-//                }
-//                if (x != grid.size()-1) {
-//                    if (grid[x+1][y].value != "0") {
-//                        operatorSpread.push_back(grid[x+1][y].isOperator);
-//                    }
-//                }
-//                if (y != grid[x].size()-1) {
-//                    if (grid[x][y+1].value != "0") {
-//                        operatorSpread.push_back(grid[x][y+1].isOperator);
-//                    }
-//                }
-//                //operatorSpread is now full of the surrounding isOperator bools
+    for (int x = 0; x < grid.size(); x++) {
+        for (int y = 0; y < grid[x].size(); y++) {
+            if (grid[x][y].value == "0") {
+                //Node is empty
+                QVector<bool> operatorSpread;
+                if (x != 0) {
+                    if (grid[x-1][y].value != "0") {
+                        operatorSpread.push_back(grid[x-1][y].isOperator);
+                    }
+                }
+                if (y != 0) {
+                    if (grid[x][y-1].value != "0") {
+                        operatorSpread.push_back(grid[x][y-1].isOperator);
+                    }
+                }
+                if (x != grid.size()-1) {
+                    if (grid[x+1][y].value != "0") {
+                        operatorSpread.push_back(grid[x+1][y].isOperator);
+                    }
+                }
+                if (y != grid[x].size()-1) {
+                    if (grid[x][y+1].value != "0") {
+                        operatorSpread.push_back(grid[x][y+1].isOperator);
+                    }
+                }
+                //operatorSpread is now full of the surrounding isOperator bools
 
-//                double yCount = operatorSpread.count(true);
-//                if (yCount != 0) {
-//                    yCount = yCount/operatorSpread.length();
-//                    if (yCount > 0.5) {
-//                        //Create a operand MathNode
-//                        grid[x][y].value = GenerateMathNode(false);
-//                        grid[x][y].isOperator = false;
-//                    } else if (yCount < 0.5) {
-//                        //Create a operator MathNode
-//                        grid[x][y].value = GenerateMathNode(true);
-//                        grid[x][y].isOperator = true;
-//                    } else {
-//                        //Create a random MathNode
-//                        if (qrand() % 2 == 0) {
-//                            grid[x][y].value = GenerateMathNode(false);
-//                            grid[x][y].isOperator = false;
-//                        } else {
-//                            grid[x][y].value = GenerateMathNode(true);
-//                            grid[x][y].isOperator = true;
-//                        }
-//                    }
-//                } else {
-//                    //Create a random MathNode
-//                    if (qrand() % 2 == 0) {
-//                        grid[x][y].value = GenerateMathNode(false);
-//                        grid[x][y].isOperator = false;
-//                    } else {
-//                        grid[x][y].value = GenerateMathNode(true);
-//                        grid[x][y].isOperator = true;
-//                    }
-//                }
+                double yCount = operatorSpread.count(true);
+                if (yCount != 0) {
+                    yCount = yCount/operatorSpread.length();
+                    if (yCount > 0.5) {
+                        //Create a operand MathNode
+                        grid[x][y].value = GenerateMathNode(false);
+                        grid[x][y].isOperator = false;
+                    } else if (yCount < 0.5) {
+                        //Create a operator MathNode
+                        grid[x][y].value = GenerateMathNode(true);
+                        grid[x][y].isOperator = true;
+                    } else {
+                        //Create a random MathNode
+                        if (qrand() % 2 == 0) {
+                            grid[x][y].value = GenerateMathNode(false);
+                            grid[x][y].isOperator = false;
+                        } else {
+                            grid[x][y].value = GenerateMathNode(true);
+                            grid[x][y].isOperator = true;
+                        }
+                    }
+                } else {
+                    //Create a random MathNode
+                    if (qrand() % 2 == 0) {
+                        grid[x][y].value = GenerateMathNode(false);
+                        grid[x][y].isOperator = false;
+                    } else {
+                        grid[x][y].value = GenerateMathNode(true);
+                        grid[x][y].isOperator = true;
+                    }
+                }
 
-//            }
-//        }
-//    }
+            }
+        }
+    }
 }
 
 QString GameModel::GenerateMathNode(bool isOperator)
@@ -222,5 +239,37 @@ QString GameModel::GenerateMathNode(bool isOperator)
             ret = "/";
             break;
         }
+    }
+}
+
+void GameModel::LevelStart(int lNum)
+{
+    levelNum = lNum;
+    difficulty = lNum % 5 + 1;
+    targetNum = levelMap[levelNum]->targetNum;
+    currentNum = 0;
+    mBombCounter = levelMap[levelNum]->moduloBomb;
+    mul2BombCounter = levelMap[levelNum]->multiplyTwoBomb;
+    mul4BombCounter = levelMap[levelNum]->multiplyFourBomb;
+    div2BombCounter = levelMap[levelNum]->divideTwoBomb;
+    movesRemaining = levelMap[levelNum]->movesNum;
+
+    PopulateGrid();
+}
+
+void GameModel::OnMove(QVector<QPair<int, int> > cellList)
+{
+    QString formula = "";
+    for (int i = 0; i < cellList.length(); i++) {
+        formula = formula + grid[cellList[i].first][cellList[i].second].value;
+    }
+    if (FormulaCheck(formula)) {
+        //valid formula
+        int result = FormulaReader(formula);
+        currentNum += result;
+        //TODO: Check win-state and proceed appropriately
+    } else {
+        //invalid formula
+        emit InvalidFormulaSig();
     }
 }
