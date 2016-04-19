@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/trungl/CountUp/Box2D
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/trungl/CountUp/Box2D/Build
+CMAKE_BINARY_DIR = /home/trungl/CountUp/Box2D/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,14 +124,14 @@ install/strip/fast: install/strip
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/trungl/CountUp/Box2D/Build && $(CMAKE_COMMAND) -E cmake_progress_start /home/trungl/CountUp/Box2D/Build/CMakeFiles /home/trungl/CountUp/Box2D/Build/HelloWorld/CMakeFiles/progress.marks
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/trungl/CountUp/Box2D/Build/CMakeFiles 0
+	cd /home/trungl/CountUp/Box2D/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/trungl/CountUp/Box2D/build/CMakeFiles /home/trungl/CountUp/Box2D/build/HelloWorld/CMakeFiles/progress.marks
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trungl/CountUp/Box2D/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/clean
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,22 +141,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/preinstall
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/preinstall
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/trungl/CountUp/Box2D/Build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/trungl/CountUp/Box2D/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 HelloWorld/CMakeFiles/HelloWorld.dir/rule:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/CMakeFiles/HelloWorld.dir/rule
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 HelloWorld/CMakeFiles/HelloWorld.dir/rule
 .PHONY : HelloWorld/CMakeFiles/HelloWorld.dir/rule
 
 # Convenience name for target.
@@ -166,7 +166,7 @@ HelloWorld: HelloWorld/CMakeFiles/HelloWorld.dir/rule
 
 # fast build rule for target.
 HelloWorld/fast:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f HelloWorld/CMakeFiles/HelloWorld.dir/build.make HelloWorld/CMakeFiles/HelloWorld.dir/build
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f HelloWorld/CMakeFiles/HelloWorld.dir/build.make HelloWorld/CMakeFiles/HelloWorld.dir/build
 .PHONY : HelloWorld/fast
 
 HelloWorld.o: HelloWorld.cpp.o
@@ -175,7 +175,7 @@ HelloWorld.o: HelloWorld.cpp.o
 
 # target to build an object file
 HelloWorld.cpp.o:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f HelloWorld/CMakeFiles/HelloWorld.dir/build.make HelloWorld/CMakeFiles/HelloWorld.dir/HelloWorld.cpp.o
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f HelloWorld/CMakeFiles/HelloWorld.dir/build.make HelloWorld/CMakeFiles/HelloWorld.dir/HelloWorld.cpp.o
 .PHONY : HelloWorld.cpp.o
 
 HelloWorld.i: HelloWorld.cpp.i
@@ -184,7 +184,7 @@ HelloWorld.i: HelloWorld.cpp.i
 
 # target to preprocess a source file
 HelloWorld.cpp.i:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f HelloWorld/CMakeFiles/HelloWorld.dir/build.make HelloWorld/CMakeFiles/HelloWorld.dir/HelloWorld.cpp.i
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f HelloWorld/CMakeFiles/HelloWorld.dir/build.make HelloWorld/CMakeFiles/HelloWorld.dir/HelloWorld.cpp.i
 .PHONY : HelloWorld.cpp.i
 
 HelloWorld.s: HelloWorld.cpp.s
@@ -193,7 +193,7 @@ HelloWorld.s: HelloWorld.cpp.s
 
 # target to generate assembly for a file
 HelloWorld.cpp.s:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f HelloWorld/CMakeFiles/HelloWorld.dir/build.make HelloWorld/CMakeFiles/HelloWorld.dir/HelloWorld.cpp.s
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f HelloWorld/CMakeFiles/HelloWorld.dir/build.make HelloWorld/CMakeFiles/HelloWorld.dir/HelloWorld.cpp.s
 .PHONY : HelloWorld.cpp.s
 
 # Help Target
@@ -223,6 +223,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/trungl/CountUp/Box2D/Build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/trungl/CountUp/Box2D/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

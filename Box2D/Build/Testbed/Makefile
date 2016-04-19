@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/trungl/CountUp/Box2D
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/trungl/CountUp/Box2D/Build
+CMAKE_BINARY_DIR = /home/trungl/CountUp/Box2D/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,14 +124,14 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/trungl/CountUp/Box2D/Build && $(CMAKE_COMMAND) -E cmake_progress_start /home/trungl/CountUp/Box2D/Build/CMakeFiles /home/trungl/CountUp/Box2D/Build/Testbed/CMakeFiles/progress.marks
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/trungl/CountUp/Box2D/Build/CMakeFiles 0
+	cd /home/trungl/CountUp/Box2D/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/trungl/CountUp/Box2D/build/CMakeFiles /home/trungl/CountUp/Box2D/build/Testbed/CMakeFiles/progress.marks
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trungl/CountUp/Box2D/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/clean
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,22 +141,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/preinstall
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/preinstall
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/trungl/CountUp/Box2D/Build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/trungl/CountUp/Box2D/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 Testbed/CMakeFiles/Testbed.dir/rule:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/CMakeFiles/Testbed.dir/rule
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f CMakeFiles/Makefile2 Testbed/CMakeFiles/Testbed.dir/rule
 .PHONY : Testbed/CMakeFiles/Testbed.dir/rule
 
 # Convenience name for target.
@@ -166,7 +166,7 @@ Testbed: Testbed/CMakeFiles/Testbed.dir/rule
 
 # fast build rule for target.
 Testbed/fast:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/build
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/build
 .PHONY : Testbed/fast
 
 Framework/DebugDraw.o: Framework/DebugDraw.cpp.o
@@ -175,7 +175,7 @@ Framework/DebugDraw.o: Framework/DebugDraw.cpp.o
 
 # target to build an object file
 Framework/DebugDraw.cpp.o:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/DebugDraw.cpp.o
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/DebugDraw.cpp.o
 .PHONY : Framework/DebugDraw.cpp.o
 
 Framework/DebugDraw.i: Framework/DebugDraw.cpp.i
@@ -184,7 +184,7 @@ Framework/DebugDraw.i: Framework/DebugDraw.cpp.i
 
 # target to preprocess a source file
 Framework/DebugDraw.cpp.i:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/DebugDraw.cpp.i
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/DebugDraw.cpp.i
 .PHONY : Framework/DebugDraw.cpp.i
 
 Framework/DebugDraw.s: Framework/DebugDraw.cpp.s
@@ -193,7 +193,7 @@ Framework/DebugDraw.s: Framework/DebugDraw.cpp.s
 
 # target to generate assembly for a file
 Framework/DebugDraw.cpp.s:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/DebugDraw.cpp.s
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/DebugDraw.cpp.s
 .PHONY : Framework/DebugDraw.cpp.s
 
 Framework/Main.o: Framework/Main.cpp.o
@@ -202,7 +202,7 @@ Framework/Main.o: Framework/Main.cpp.o
 
 # target to build an object file
 Framework/Main.cpp.o:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Main.cpp.o
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Main.cpp.o
 .PHONY : Framework/Main.cpp.o
 
 Framework/Main.i: Framework/Main.cpp.i
@@ -211,7 +211,7 @@ Framework/Main.i: Framework/Main.cpp.i
 
 # target to preprocess a source file
 Framework/Main.cpp.i:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Main.cpp.i
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Main.cpp.i
 .PHONY : Framework/Main.cpp.i
 
 Framework/Main.s: Framework/Main.cpp.s
@@ -220,7 +220,7 @@ Framework/Main.s: Framework/Main.cpp.s
 
 # target to generate assembly for a file
 Framework/Main.cpp.s:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Main.cpp.s
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Main.cpp.s
 .PHONY : Framework/Main.cpp.s
 
 Framework/RenderGL3.o: Framework/RenderGL3.cpp.o
@@ -229,7 +229,7 @@ Framework/RenderGL3.o: Framework/RenderGL3.cpp.o
 
 # target to build an object file
 Framework/RenderGL3.cpp.o:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/RenderGL3.cpp.o
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/RenderGL3.cpp.o
 .PHONY : Framework/RenderGL3.cpp.o
 
 Framework/RenderGL3.i: Framework/RenderGL3.cpp.i
@@ -238,7 +238,7 @@ Framework/RenderGL3.i: Framework/RenderGL3.cpp.i
 
 # target to preprocess a source file
 Framework/RenderGL3.cpp.i:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/RenderGL3.cpp.i
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/RenderGL3.cpp.i
 .PHONY : Framework/RenderGL3.cpp.i
 
 Framework/RenderGL3.s: Framework/RenderGL3.cpp.s
@@ -247,7 +247,7 @@ Framework/RenderGL3.s: Framework/RenderGL3.cpp.s
 
 # target to generate assembly for a file
 Framework/RenderGL3.cpp.s:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/RenderGL3.cpp.s
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/RenderGL3.cpp.s
 .PHONY : Framework/RenderGL3.cpp.s
 
 Framework/Test.o: Framework/Test.cpp.o
@@ -256,7 +256,7 @@ Framework/Test.o: Framework/Test.cpp.o
 
 # target to build an object file
 Framework/Test.cpp.o:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Test.cpp.o
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Test.cpp.o
 .PHONY : Framework/Test.cpp.o
 
 Framework/Test.i: Framework/Test.cpp.i
@@ -265,7 +265,7 @@ Framework/Test.i: Framework/Test.cpp.i
 
 # target to preprocess a source file
 Framework/Test.cpp.i:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Test.cpp.i
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Test.cpp.i
 .PHONY : Framework/Test.cpp.i
 
 Framework/Test.s: Framework/Test.cpp.s
@@ -274,7 +274,7 @@ Framework/Test.s: Framework/Test.cpp.s
 
 # target to generate assembly for a file
 Framework/Test.cpp.s:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Test.cpp.s
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/Test.cpp.s
 .PHONY : Framework/Test.cpp.s
 
 Framework/imgui.o: Framework/imgui.cpp.o
@@ -283,7 +283,7 @@ Framework/imgui.o: Framework/imgui.cpp.o
 
 # target to build an object file
 Framework/imgui.cpp.o:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/imgui.cpp.o
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/imgui.cpp.o
 .PHONY : Framework/imgui.cpp.o
 
 Framework/imgui.i: Framework/imgui.cpp.i
@@ -292,7 +292,7 @@ Framework/imgui.i: Framework/imgui.cpp.i
 
 # target to preprocess a source file
 Framework/imgui.cpp.i:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/imgui.cpp.i
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/imgui.cpp.i
 .PHONY : Framework/imgui.cpp.i
 
 Framework/imgui.s: Framework/imgui.cpp.s
@@ -301,7 +301,7 @@ Framework/imgui.s: Framework/imgui.cpp.s
 
 # target to generate assembly for a file
 Framework/imgui.cpp.s:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/imgui.cpp.s
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Framework/imgui.cpp.s
 .PHONY : Framework/imgui.cpp.s
 
 Tests/TestEntries.o: Tests/TestEntries.cpp.o
@@ -310,7 +310,7 @@ Tests/TestEntries.o: Tests/TestEntries.cpp.o
 
 # target to build an object file
 Tests/TestEntries.cpp.o:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Tests/TestEntries.cpp.o
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Tests/TestEntries.cpp.o
 .PHONY : Tests/TestEntries.cpp.o
 
 Tests/TestEntries.i: Tests/TestEntries.cpp.i
@@ -319,7 +319,7 @@ Tests/TestEntries.i: Tests/TestEntries.cpp.i
 
 # target to preprocess a source file
 Tests/TestEntries.cpp.i:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Tests/TestEntries.cpp.i
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Tests/TestEntries.cpp.i
 .PHONY : Tests/TestEntries.cpp.i
 
 Tests/TestEntries.s: Tests/TestEntries.cpp.s
@@ -328,7 +328,7 @@ Tests/TestEntries.s: Tests/TestEntries.cpp.s
 
 # target to generate assembly for a file
 Tests/TestEntries.cpp.s:
-	cd /home/trungl/CountUp/Box2D/Build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Tests/TestEntries.cpp.s
+	cd /home/trungl/CountUp/Box2D/build && $(MAKE) -f Testbed/CMakeFiles/Testbed.dir/build.make Testbed/CMakeFiles/Testbed.dir/Tests/TestEntries.cpp.s
 .PHONY : Tests/TestEntries.cpp.s
 
 # Help Target
@@ -373,6 +373,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/trungl/CountUp/Box2D/Build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/trungl/CountUp/Box2D/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

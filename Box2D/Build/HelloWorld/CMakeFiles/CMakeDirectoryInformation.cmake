@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/home/trungl/CountUp/Box2D")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/trungl/CountUp/Box2D/Build")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/trungl/CountUp/Box2D/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

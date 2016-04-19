@@ -34,11 +34,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/trungl/CountUp/Box2D/Build/Box2D/cmake_install.cmake")
-  include("/home/trungl/CountUp/Box2D/Build/HelloWorld/cmake_install.cmake")
-  include("/home/trungl/CountUp/Box2D/Build/glew/cmake_install.cmake")
-  include("/home/trungl/CountUp/Box2D/Build/glfw/cmake_install.cmake")
-  include("/home/trungl/CountUp/Box2D/Build/Testbed/cmake_install.cmake")
+  include("/home/trungl/CountUp/Box2D/build/Box2D/cmake_install.cmake")
+  include("/home/trungl/CountUp/Box2D/build/HelloWorld/cmake_install.cmake")
+  include("/home/trungl/CountUp/Box2D/build/glew/cmake_install.cmake")
+  include("/home/trungl/CountUp/Box2D/build/glfw/cmake_install.cmake")
+  include("/home/trungl/CountUp/Box2D/build/Testbed/cmake_install.cmake")
 
 endif()
 
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/trungl/CountUp/Box2D/Build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/trungl/CountUp/Box2D/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/trungl/CountUp/Box2D/Build/CMakeFiles/3.4.1/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/trungl/CountUp/Box2D/build/CMakeFiles/3.4.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/c++ 
@@ -23,33 +23,33 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/trungl/CountUp/Box2D/Build/CMakeFiles/3.4.1/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/trungl/CountUp/Box2D/build/CMakeFiles/3.4.1/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_c176b/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_c176b.dir/build.make CMakeFiles/cmTC_c176b.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c176b.dir/testCCompiler.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_c176b.dir/testCCompiler.c.o   -c /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_c176b
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c176b.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_c176b.dir/testCCompiler.c.o  -o cmTC_c176b -rdynamic 
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/local/bin/gmake" "cmTC_45e2e/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_45e2e.dir/build.make CMakeFiles/cmTC_45e2e.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_45e2e.dir/testCCompiler.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_45e2e.dir/testCCompiler.c.o   -c /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_45e2e
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_45e2e.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_45e2e.dir/testCCompiler.c.o  -o cmTC_45e2e -rdynamic 
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_97596/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_97596.dir/build.make CMakeFiles/cmTC_97596.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o   -c /usr/local/stow/cmake/cmake-3.4.1/share/cmake-3.4/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_97596
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_97596.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o  -o cmTC_97596 -rdynamic  
+Run Build Command:"/usr/local/bin/gmake" "cmTC_5b58a/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_5b58a.dir/build.make CMakeFiles/cmTC_5b58a.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o   -c /usr/local/stow/cmake/cmake-3.4.1/share/cmake-3.4/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_5b58a
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b58a.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o  -o cmTC_5b58a -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper
@@ -59,23 +59,23 @@ Thread model: posix
 gcc version 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC) 
 COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_97596' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_97596 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5b58a' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_5b58a /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/local/bin/gmake" "cmTC_97596/fast"]
-  ignore line: [/usr/local/bin/gmake -f CMakeFiles/cmTC_97596.dir/build.make CMakeFiles/cmTC_97596.dir/build]
-  ignore line: [gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o   -c /usr/local/stow/cmake/cmake-3.4.1/share/cmake-3.4/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_97596]
-  ignore line: [/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_97596.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o  -o cmTC_97596 -rdynamic  ]
+  ignore line: [Run Build Command:"/usr/local/bin/gmake" "cmTC_5b58a/fast"]
+  ignore line: [/usr/local/bin/gmake -f CMakeFiles/cmTC_5b58a.dir/build.make CMakeFiles/cmTC_5b58a.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o   -c /usr/local/stow/cmake/cmake-3.4.1/share/cmake-3.4/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_5b58a]
+  ignore line: [/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b58a.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o  -o cmTC_5b58a -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper]
@@ -85,8 +85,8 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC) ]
   ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_97596' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_97596 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5b58a' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_5b58a /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
     arg [/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2] ==> ignore
     arg [--build-id] ==> ignore
     arg [--no-add-needed] ==> ignore
@@ -98,7 +98,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_97596] ==> ignore
+    arg [cmTC_5b58a] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o] ==> ignore
@@ -107,7 +107,7 @@ Parsed C implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..]
-    arg [CMakeFiles/cmTC_97596.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_5b58a.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -136,17 +136,17 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_f72b3/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_f72b3.dir/build.make CMakeFiles/cmTC_f72b3.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f72b3.dir/feature_tests.c.o
-/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_f72b3.dir/feature_tests.c.o   -c /home/trungl/CountUp/Box2D/Build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_f72b3
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f72b3.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_f72b3.dir/feature_tests.c.o  -o cmTC_f72b3 -rdynamic 
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/local/bin/gmake" "cmTC_9736c/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_9736c.dir/build.make CMakeFiles/cmTC_9736c.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9736c.dir/feature_tests.c.o
+/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_9736c.dir/feature_tests.c.o   -c /home/trungl/CountUp/Box2D/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_9736c
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9736c.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_9736c.dir/feature_tests.c.o  -o cmTC_9736c -rdynamic 
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -156,17 +156,17 @@ gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTm
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_c47a9/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_c47a9.dir/build.make CMakeFiles/cmTC_c47a9.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c47a9.dir/feature_tests.c.o
-/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_c47a9.dir/feature_tests.c.o   -c /home/trungl/CountUp/Box2D/Build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_c47a9
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c47a9.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_c47a9.dir/feature_tests.c.o  -o cmTC_c47a9 -rdynamic 
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/local/bin/gmake" "cmTC_5631d/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_5631d.dir/build.make CMakeFiles/cmTC_5631d.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5631d.dir/feature_tests.c.o
+/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_5631d.dir/feature_tests.c.o   -c /home/trungl/CountUp/Box2D/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_5631d
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5631d.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_5631d.dir/feature_tests.c.o  -o cmTC_5631d -rdynamic 
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -176,17 +176,17 @@ gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTm
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_233fb/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_233fb.dir/build.make CMakeFiles/cmTC_233fb.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_233fb.dir/feature_tests.c.o
-/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_233fb.dir/feature_tests.c.o   -c /home/trungl/CountUp/Box2D/Build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_233fb
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_233fb.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_233fb.dir/feature_tests.c.o  -o cmTC_233fb -rdynamic 
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/local/bin/gmake" "cmTC_2ea4c/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_2ea4c.dir/build.make CMakeFiles/cmTC_2ea4c.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2ea4c.dir/feature_tests.c.o
+/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_2ea4c.dir/feature_tests.c.o   -c /home/trungl/CountUp/Box2D/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_2ea4c
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2ea4c.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_2ea4c.dir/feature_tests.c.o  -o cmTC_2ea4c -rdynamic 
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -194,30 +194,30 @@ gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTm
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_972d8/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_972d8.dir/build.make CMakeFiles/cmTC_972d8.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_972d8.dir/testCXXCompiler.cxx.o
-/usr/bin/c++      -o CMakeFiles/cmTC_972d8.dir/testCXXCompiler.cxx.o -c /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_972d8
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_972d8.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_972d8.dir/testCXXCompiler.cxx.o  -o cmTC_972d8 -rdynamic 
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/local/bin/gmake" "cmTC_83cb9/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_83cb9.dir/build.make CMakeFiles/cmTC_83cb9.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_83cb9.dir/testCXXCompiler.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_83cb9.dir/testCXXCompiler.cxx.o -c /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_83cb9
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_83cb9.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_83cb9.dir/testCXXCompiler.cxx.o  -o cmTC_83cb9 -rdynamic 
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_36092/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_36092.dir/build.make CMakeFiles/cmTC_36092.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++      -o CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/stow/cmake/cmake-3.4.1/share/cmake-3.4/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_36092
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_36092.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_36092 -rdynamic  
+Run Build Command:"/usr/local/bin/gmake" "cmTC_0b96a/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_0b96a.dir/build.make CMakeFiles/cmTC_0b96a.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++      -o CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/stow/cmake/cmake-3.4.1/share/cmake-3.4/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_0b96a
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0b96a.dir/link.txt --verbose=1
+/usr/bin/c++       -v CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_0b96a -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper
@@ -227,23 +227,23 @@ Thread model: posix
 gcc version 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC) 
 COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_36092' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_36092 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_0b96a' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_0b96a /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/local/bin/gmake" "cmTC_36092/fast"]
-  ignore line: [/usr/local/bin/gmake -f CMakeFiles/cmTC_36092.dir/build.make CMakeFiles/cmTC_36092.dir/build]
-  ignore line: [gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/stow/cmake/cmake-3.4.1/share/cmake-3.4/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_36092]
-  ignore line: [/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_36092.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_36092 -rdynamic  ]
+  ignore line: [Run Build Command:"/usr/local/bin/gmake" "cmTC_0b96a/fast"]
+  ignore line: [/usr/local/bin/gmake -f CMakeFiles/cmTC_0b96a.dir/build.make CMakeFiles/cmTC_0b96a.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/stow/cmake/cmake-3.4.1/share/cmake-3.4/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_0b96a]
+  ignore line: [/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0b96a.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_0b96a -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper]
@@ -253,8 +253,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC) ]
   ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_36092' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_36092 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_0b96a' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_0b96a /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
     arg [/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2] ==> ignore
     arg [--build-id] ==> ignore
     arg [--no-add-needed] ==> ignore
@@ -266,7 +266,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_36092] ==> ignore
+    arg [cmTC_0b96a] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o] ==> ignore
@@ -275,7 +275,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..]
-    arg [CMakeFiles/cmTC_36092.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_0b96a.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -302,17 +302,17 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++1y] compiler features compiled with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_823af/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_823af.dir/build.make CMakeFiles/cmTC_823af.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_823af.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++1y -o CMakeFiles/cmTC_823af.dir/feature_tests.cxx.o -c /home/trungl/CountUp/Box2D/Build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_823af
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_823af.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_823af.dir/feature_tests.cxx.o  -o cmTC_823af -rdynamic 
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/local/bin/gmake" "cmTC_c1b55/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_c1b55.dir/build.make CMakeFiles/cmTC_c1b55.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c1b55.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++1y -o CMakeFiles/cmTC_c1b55.dir/feature_tests.cxx.o -c /home/trungl/CountUp/Box2D/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_c1b55
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c1b55.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_c1b55.dir/feature_tests.cxx.o  -o cmTC_c1b55 -rdynamic 
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -375,17 +375,17 @@ gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTm
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_25c12/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_25c12.dir/build.make CMakeFiles/cmTC_25c12.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_25c12.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_25c12.dir/feature_tests.cxx.o -c /home/trungl/CountUp/Box2D/Build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_25c12
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_25c12.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_25c12.dir/feature_tests.cxx.o  -o cmTC_25c12 -rdynamic 
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/local/bin/gmake" "cmTC_1c09c/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_1c09c.dir/build.make CMakeFiles/cmTC_1c09c.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1c09c.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_1c09c.dir/feature_tests.cxx.o -c /home/trungl/CountUp/Box2D/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_1c09c
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c09c.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_1c09c.dir/feature_tests.cxx.o  -o cmTC_1c09c -rdynamic 
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -448,17 +448,17 @@ gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTm
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp
+Change Dir: /home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/local/bin/gmake" "cmTC_dd875/fast"
-/usr/local/bin/gmake -f CMakeFiles/cmTC_dd875.dir/build.make CMakeFiles/cmTC_dd875.dir/build
-gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_dd875.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_dd875.dir/feature_tests.cxx.o -c /home/trungl/CountUp/Box2D/Build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_dd875
-/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dd875.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_dd875.dir/feature_tests.cxx.o  -o cmTC_dd875 -rdynamic 
-gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/Build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/local/bin/gmake" "cmTC_27f9e/fast"
+/usr/local/bin/gmake -f CMakeFiles/cmTC_27f9e.dir/build.make CMakeFiles/cmTC_27f9e.dir/build
+gmake[1]: Entering directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_27f9e.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_27f9e.dir/feature_tests.cxx.o -c /home/trungl/CountUp/Box2D/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_27f9e
+/usr/local/stow/cmake/cmake-3.4.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27f9e.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_27f9e.dir/feature_tests.cxx.o  -o cmTC_27f9e -rdynamic 
+gmake[1]: Leaving directory '/home/trungl/CountUp/Box2D/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

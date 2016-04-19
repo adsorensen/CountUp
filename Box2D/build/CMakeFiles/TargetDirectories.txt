@@ -1,5 +1,0 @@
-/home/trungl/CountUp/Box2D/build/Testbed/CMakeFiles/Testbed.dir
-/home/trungl/CountUp/Box2D/build/glfw/CMakeFiles/glfw.dir
-/home/trungl/CountUp/Box2D/build/glew/CMakeFiles/glew.dir
-/home/trungl/CountUp/Box2D/build/HelloWorld/CMakeFiles/HelloWorld.dir
-/home/trungl/CountUp/Box2D/build/Box2D/CMakeFiles/Box2D.dir
