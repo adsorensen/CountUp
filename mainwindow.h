@@ -21,6 +21,7 @@
 #include <gamemodel.h>
 #include <mathnode.h>
 #include <QMouseEvent>
+#include <Box2D/Box2D.h>
 
 namespace Ui {
 class MainWindow;
@@ -30,7 +31,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     GameModel game;
-
+    b2World* myWorld;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -43,6 +44,8 @@ private slots:
     void on_tableWidget_cellEntered(int row, int column);
 
     bool eventFilter(QObject *obj, QEvent *event);
+
+    void on_entry();
 
 private:
     Ui::MainWindow *ui;

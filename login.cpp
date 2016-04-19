@@ -23,8 +23,6 @@ Login::Login(QWidget *parent) :
     int y = (screenGeometry.height() - this->height()) / 2;
     this->move(x, y);
     this->show();
-
-
 }
 
 Login::~Login()

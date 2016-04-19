@@ -17,8 +17,10 @@ public:
     ~Levelscreen();
     MainWindow w;
 
-private slots:
+signals:
+    void game_started();
 
+private slots:
     void on_playButton_pressed();
 
 private:

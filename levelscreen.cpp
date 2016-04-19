@@ -33,4 +33,5 @@ void Levelscreen::on_playButton_pressed()
 {
     this->hide();
     w.show();
+    emit game_started();
 }

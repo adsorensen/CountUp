@@ -16,6 +16,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <Box2D/Box2D.h>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QDesktopWidget>
@@ -50,6 +51,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->viewport()->setMouseTracking(true);
     ui->tableWidget->installEventFilter(this);
     ui->tableWidget->viewport()->installEventFilter(this);
+
+    // Connect slots and signals
+    QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
 }
 
 // Destructor
@@ -99,7 +103,6 @@ void MainWindow::on_tableWidget_cellEntered(int row, int column)
 
 }
 
-
 //End string on mouse release
 //Send current formula to game model to evaluate
 //If valid expression, replace math nodes with new nodes from game model
@@ -114,6 +117,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     return QMainWindow::eventFilter(obj, event);
 }
 
+//
+void MainWindow::on_entry()
+{
+
+}
 
 
 
