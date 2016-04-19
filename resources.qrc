@@ -3,4 +3,8 @@
         <file>Resources/bg.png</file>
         <file>Resources/loginbg.png</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>Resources/bomb.png</file>
+        <file>Resources/shuffle.png</file>
+    </qresource>
 </RCC>
