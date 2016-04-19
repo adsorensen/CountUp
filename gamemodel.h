@@ -5,6 +5,8 @@
 #include <QString>
 #include <QVector>
 #include <QPair>
+#include <QMap>
+#include "level.h"
 
 
 class GameModel
@@ -12,13 +14,18 @@ class GameModel
 public:
     GameModel();
     ~GameModel();
+    int levelNum;
     int targetNum;
     int currentNum;
     int mBombCounter;
+    int mul2BombCounter;
+    int mul4BombCounter;
+    int div2BombCounter;
     int movesRemaining;
     int difficulty;
 
-    MathNode grid[10][10];
+    QVector<QVector<MathNode> > grid;
+    QMap<int, Level> levelMap;
 
     int FormulaReader(QString);
     bool FormulaCheck(QString);
@@ -27,6 +34,11 @@ public:
     void RemoveNode(QVector<QPair<int, int> >);
     void PopulateGrid();
     QString GenerateMathNode(bool);
+public slots:
+    void LevelStart(int);
+    void OnMove(QVector<QPair<int,int> >);
+signals:
+    void InvalidFormulaSig();
 };
 
 #endif // GAMEMODEL_H
