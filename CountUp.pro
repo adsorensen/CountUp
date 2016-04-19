@@ -5,6 +5,11 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += sql widgets
+
+
+QTPLUGIN += QSQLMYSQL
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,7 +22,6 @@ SOURCES += main.cpp\
     gamemodel.cpp \
     mathnode.cpp \
     formula.cpp \
-    network.cpp \
     login.cpp \
     levelscreen.cpp \
     mainwindow.cpp
@@ -26,7 +30,6 @@ HEADERS  += \
     gamemodel.h \
     mathnode.h \
     formula.h \
-    network.h \
     login.h \
     levelscreen.h \
     mainwindow.h
@@ -43,7 +46,17 @@ FORMS    += \
 #INCLUDEPATH += "./../CountUp/SFMLX/include"
 #DEPENDPATH += "./../CountUp/SFMLX/include"
 
+INCLUDEPATH += ../CountUp/Box2D/
+LIBS += -L"../CountUp/Box2D/build/Box2D"
+LIBS += -lBox2D
+
 RESOURCES += \
     resources.qrc
+
+
+
+
+
+
 
 
