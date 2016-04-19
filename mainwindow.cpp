@@ -92,7 +92,7 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
     //retrieve value from math node
     //append to formula string
-    qDebug() << "Start expression";
+    qDebug() << "Start expression" << column << row;
 
 }
 
