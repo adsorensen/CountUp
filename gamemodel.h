@@ -7,13 +7,16 @@
 #include <QPair>
 #include <QMap>
 #include "level.h"
+#include <QObject>
 
 
-class GameModel
+class GameModel : public QObject
 {
+    Q_OBJECT
+
 public:
     GameModel();
-    ~GameModel();
+    //~GameModel();
     int levelNum;
     int targetNum;
     int currentNum;
@@ -25,7 +28,7 @@ public:
     int difficulty;
 
     QVector<QVector<MathNode> > grid;
-    QMap<int, Level> levelMap;
+    QMap<int, Level*> levelMap;
 
     int FormulaReader(QString);
     bool FormulaCheck(QString);

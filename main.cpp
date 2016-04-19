@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     bool doSleep = true;
 
-    b2World* myWorld = new b2World(gravity);
+    //b2World* myWorld = new b2World(gravity);
 
     return a.exec();
 }

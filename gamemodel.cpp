@@ -16,16 +16,16 @@ GameModel::GameModel()
     }
 
     for (int i = 0; i < 25; i++) {
-        levelMap[i] = new Level(i,i,i,i,i,i,i);
+        levelMap[i] = new Level(i,i,i,i,i,i,i,i);
     }
 
     PopulateGrid();
 }
 
-GameModel::~GameModel()
-{
-    //Destructor
-}
+//GameModel::~GameModel()
+//{
+//    //Destructor
+//}
 
 bool GameModel::FormulaCheck(QString formula)
 {
@@ -246,22 +246,22 @@ void GameModel::LevelStart(int lNum)
 {
     levelNum = lNum;
     difficulty = lNum % 5 + 1;
-    targetNum = levelMap[levelNum].targetNum;
+    targetNum = levelMap[levelNum]->targetNum;
     currentNum = 0;
-    mBombCounter = levelMap[levelNum].moduloBomb;
-    mul2BombCounter = levelMap[levelNum].multiplyTwoBomb;
-    mul4BombCounter = levelMap[levelNum].multiplyFourBomb;
-    div2BombCounter = levelMap[levelNum].divideTwoBomb;
-    movesRemaining = levelMap[levelNum].movesNum;
+    mBombCounter = levelMap[levelNum]->moduloBomb;
+    mul2BombCounter = levelMap[levelNum]->multiplyTwoBomb;
+    mul4BombCounter = levelMap[levelNum]->multiplyFourBomb;
+    div2BombCounter = levelMap[levelNum]->divideTwoBomb;
+    movesRemaining = levelMap[levelNum]->movesNum;
 
     PopulateGrid();
 }
 
 void GameModel::OnMove(QVector<QPair<int, int> > cellList)
 {
-    QString forumla = "";
+    QString formula = "";
     for (int i = 0; i < cellList.length(); i++) {
-        forumla = formula + grid[cellList[i].first][cellList[i].second].value;
+        formula = formula + grid[cellList[i].first][cellList[i].second].value;
     }
     if (FormulaCheck(formula)) {
         //valid formula
