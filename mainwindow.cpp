@@ -86,11 +86,14 @@ void MainWindow::createBalls()
     //release the mock balls
     for(int i=0; i<64; i++) {
         //dx should be between 60 and 620 in the x
-        //and should only be increments of 80ish so it fits in the grid
+        //and should only be increments of 80ish so it fits in the gri
+        //random does not work well, very predictable ball placements
         int dx = 620 - qrand() % 560;
-        int dy = qrand() % 2;
-        _objects.append(createBall(b2Vec2(dx, 25.0f), 34.0f));
+        int dy = qrand() % 500 + 60;
+        _objects.append(createBall(b2Vec2(dx, dy), 34.2f));
     }
+
+    //iterate through each row and place balls manually in exact locations instead of randomly
 
 }
 
@@ -260,8 +263,8 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     b2FixtureDef fd;
     fd.shape = &shape;
     fd.density = 1.0f;
-    fd.friction = 1.0f;
-    fd.restitution = 0.3f;
+    fd.friction = 0.4f;
+    fd.restitution = 0.6f;
     o.fixture = o.body->CreateFixture(&fd);
     o.type = BallObject;
     return o;
