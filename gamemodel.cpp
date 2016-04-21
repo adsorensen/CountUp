@@ -23,10 +23,12 @@ GameModel::GameModel()
     PopulateGrid();
 }
 
-//GameModel::~GameModel()
-//{
-//    //Destructor
-//}
+
+
+GameModel::~GameModel()
+{
+    //Destructor
+}
 
 bool GameModel::FormulaCheck(QVector<bool> opList)
 {
@@ -59,29 +61,61 @@ int GameModel::FormulaReader(QVector<QString> formula)
     QStack<QString> operands;
 
     int totalVal = 0;
+    int firstOperand;
+    int secondOperand;
 
     for (int i = 0; i < formula.length(); i ++) {
         if (formula[i].at(i).isDigit()) {
-
-            if (operators.length() > 0) {
-                if (operators.top() == "*") {
-                    operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
-                    operators.pop();
-                } else if (operators.top() == "/") {
-                    operands.push(QString::number(operands.pop().toInt() / formula[i].toInt()));
-                    operators.pop();
-                }
+            if (operators.top() == "*") {
+                operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
+                operators.pop();
+            } else if (operators.top() == "/") {
+                operands.push(QString::number(operands.pop().toInt() / formula[i].toInt()));
+                operators.pop();
             } else {
             operands.push(formula[i]);
             }
         }
-        else if (formula[i] == "+") {
+        else if (formula[i] == "+" or formula[i] == "-") {
+            if (operators.top() == "+") {
+                 secondOperand = operands.pop().toInt();
+                 firstOperand = operands.pop().toInt();
+
+                 operands.push(QString::number(firstOperand + secondOperand));
+                 operators.pop();
+
+            }
+            else if (operators.top()  == "-") {
+                secondOperand = operands.pop().toInt();
+                firstOperand = operands.pop().toInt();
+
+                operands.push(QString::number(firstOperand- secondOperand));
+                operators.pop();
+            }
+        }
+        else
+            operators.push(formula[i]);
+    }
+
+    if (operators.length() != 0) {
+        if (operators.top() == "+") {
+             secondOperand = operands.pop().toInt();
+             firstOperand = operands.pop().toInt();
+
+             operands.push(QString::number(firstOperand + secondOperand));
+             operators.pop();
 
         }
-        else if (formula[i] == "-") {
+        else if (operators.top()  == "-") {
+            secondOperand = operands.pop().toInt();
+            firstOperand = operands.pop().toInt();
 
+            operands.push(QString::number(firstOperand- secondOperand));
+            operators.pop();
         }
     }
+
+    return operands.pop().toInt();
 }
 
 void GameModel::ShuffleGrid()
@@ -200,6 +234,15 @@ void GameModel::PopulateGrid()
     }
 }
 
+void GameModel::CheckWin() {
+    if (currentNum == targetNum) {
+        emit LevelCompletedSig();
+    }
+    else {
+        emit ContinueLevelSig(movesRemaining, currentNum);
+    }
+}
+
 QString GameModel::GenerateMathNode(bool isOperator)
 {
     //Generates MathNode based on difficulty
@@ -287,6 +330,7 @@ QString GameModel::GenerateMathNode(bool isOperator)
             break;
         }
     }
+    return ret;
 }
 
 void GameModel::LevelStart(int lNum)
@@ -321,7 +365,12 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         //valid formula
         int result = FormulaReader(formula);
         currentNum += result;
+        movesRemaining--;
+        if (movesRemaining == 0) {
+            emit GameOverSig();
+        }
         //TODO: Check win-state and proceed appropriately
+        CheckWin();
     } else {
         //invalid formula
         emit InvalidFormulaSig();

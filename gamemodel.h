@@ -17,7 +17,7 @@ class GameModel : public QObject
 
 public:
     GameModel();
-    //~GameModel();
+    ~GameModel();
     int levelNum;
     int targetNum;
     int currentNum;
@@ -37,12 +37,16 @@ public:
     void BombGrid(QString);
     void RemoveNode(QVector<QPair<int, int> >);
     void PopulateGrid();
+    void CheckWin();
     QString GenerateMathNode(bool);
 public slots:
     void LevelStart(int);
     void OnMove(QVector<QPair<int,int> >);
 signals:
     void InvalidFormulaSig();
+    void LevelCompletedSig();\
+    void GameOverSig();
+    void ContinueLevelSig(int, int);
 };
 
 #endif // GAMEMODEL_H
