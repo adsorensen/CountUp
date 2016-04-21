@@ -58,43 +58,43 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->viewport()->setMouseTracking(true);
     ui->tableWidget->installEventFilter(this);
     ui->tableWidget->viewport()->installEventFilter(this);
-    ui->tableWidget->hide();
+    //ui->tableWidget->hide();
 
     // Connect slots and signals
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
 
     //Create world
-    b2Vec2 gravity(0.0f, 12.0f); //normal earth gravity, 9.8 m/s/s straight down!
+    b2Vec2 gravity(0.0f, 9.8f); //normal earth gravity, 9.8 m/s/s straight down!
     World = new b2World(gravity);
 
 
 
     //release the mock balls
-    for(int i=0; i<5; i++) {
+    for(int i=0; i<15; i++) {
+        //dx should be between 60 and 620 in the x
+        //and should only be increments of 80ish so it fits in the grid
         int dx = 620 - qrand() % 560;
         int dy = qrand() % 2;
         _objects.append(createBall(b2Vec2(dx, 25.0f), 1.0f));
     }
 
+    _objects.append(createWall(60.0f, 305.0f, 560.0f, 1.0f, 0.0)); //test wall
 
     //Create walls for grid
     _objects.append(createWall(60.0f, 615.0f, 560.0f, 1.0f, 0.0)); //ground
     _objects.append(createWall(60.0f, 55.0f, 1.0f, 560.0f, 0.0));  //left border
     _objects.append(createWall(620.0f, 55.0f, 1.0f, 560.0f, 0.0));  //right border
 
+    //balls do not collide with walls
+
     //inner borders
-//    _objects.append(createWall(130.0f, 55.0f, 1.0f, 560.0f, 0.0));
-//    _objects.append(createWall(200.0f, 55.0f, 1.0f, 560.0f, 0.0));
-//    _objects.append(createWall(270.0f, 55.0f, 1.0f, 560.0f, 0.0));
-//    _objects.append(createWall(340.0f, 55.0f, 1.0f, 560.0f, 0.0));
-//    _objects.append(createWall(410.0f, 55.0f, 1.0f, 560.0f, 0.0));
-//    _objects.append(createWall(480.0f, 55.0f, 1.0f, 560.0f, 0.0));
-//    _objects.append(createWall(550.0f, 55.0f, 1.0f, 560.0f, 0.0));
-
-
-
-
-
+    _objects.append(createWall(130.0f, 55.0f, 1.0f, 560.0f, 0.0));
+    _objects.append(createWall(200.0f, 55.0f, 1.0f, 560.0f, 0.0));
+    _objects.append(createWall(270.0f, 55.0f, 1.0f, 560.0f, 0.0));
+    _objects.append(createWall(340.0f, 55.0f, 1.0f, 560.0f, 0.0));
+    _objects.append(createWall(410.0f, 55.0f, 1.0f, 560.0f, 0.0));
+    _objects.append(createWall(480.0f, 55.0f, 1.0f, 560.0f, 0.0));
+    _objects.append(createWall(550.0f, 55.0f, 1.0f, 560.0f, 0.0));
 
 }
 
@@ -120,16 +120,11 @@ void MainWindow::paintEvent(QPaintEvent *)
         case BallObject:
             drawEllipse(&p, o);
 
-
             break;
         case WallObject:
             drawWall(&p, o);
-
         }
-
     }
-
-
  }
 
 //Sets value of the cell according to model
@@ -157,8 +152,7 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 
     qDebug() << "Start expression" << column << row;
     //ui->tableWidget->setItem(row,column,item);
-    _objects.append(createWall(60.0f, 55.0f, 1.0f, 560.0f, 0.0));  //left border
-    _objects.append(createWall(620.0f, 55.0f, 1.0f, 560.0f, 0.0));  //right border
+
 
 }
 
@@ -183,12 +177,13 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     return QMainWindow::eventFilter(obj, event);
 }
 
-//
+//What does this do?
 void MainWindow::on_entry()
 {
 
 }
 
+//Draw walls for grid
 void MainWindow::drawWall(QPainter *p, const Object& o){
     float32 x = o.body->GetPosition().x;
     float32 y = o.body->GetPosition().y;
@@ -209,6 +204,7 @@ void MainWindow::drawWall(QPainter *p, const Object& o){
     p->restore();
 }
 
+//Create walls for grid
 Object MainWindow::createWall(float32 x, float32 y, float32 w, float32 h, float32 angle) {
     Object o;
     // body
@@ -230,6 +226,7 @@ Object MainWindow::createWall(float32 x, float32 y, float32 w, float32 h, float3
     return o;
 }
 
+//Create ball model
 Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     Object o;
     // body
@@ -239,7 +236,7 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     o.body = World->CreateBody(&bd);
     // shape
     b2CircleShape shape;
-    shape.m_radius = radius;
+    shape.m_radius = radius + 20;
     // fixture
     b2FixtureDef fd;
     fd.shape = &shape;
@@ -251,13 +248,16 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     return o;
 }
 
+//Drae ball model
 void MainWindow::drawEllipse(QPainter *p, const Object& o) {
     float32 x = o.body->GetPosition().x;
     float32 y = o.body->GetPosition().y;
-    float32 r = o.fixture->GetShape()->m_radius + 20;
+    float32 r = o.fixture->GetShape()->m_radius;
     p->drawEllipse(QPointF(x, y), r, r);
+
 }
 
+//Start simulator
 void MainWindow::start() {
     //if(!_timerId) {
         _timerId = startTimer(1000/60); // 60fps
