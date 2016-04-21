@@ -68,7 +68,21 @@ MainWindow::MainWindow(QWidget *parent) :
     World = new b2World(gravity);
 
 
+    createWalls();
+    createBalls();
 
+
+
+}
+
+// Destructor
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::createBalls()
+{
     //release the mock balls
     for(int i=0; i<64; i++) {
         //dx should be between 60 and 620 in the x
@@ -78,6 +92,10 @@ MainWindow::MainWindow(QWidget *parent) :
         _objects.append(createBall(b2Vec2(dx, 25.0f), 34.0f));
     }
 
+}
+
+void MainWindow::createWalls()
+{
     //_objects.append(createWall(60.0f, 305.0f, 560.0f, 1.0f, 0.0)); //test wall
 
     //Create walls for grid
@@ -85,10 +103,15 @@ MainWindow::MainWindow(QWidget *parent) :
     _objects.append(createWall(60.0f, 55.0f, 1.0f, 560.0f, 0.0));  //left border
     _objects.append(createWall(620.0f, 55.0f, 1.0f, 560.0f, 0.0));  //right border
 
+    //balls do not populate grid, they fall outside and into the abyss of nothingness
 
-    //funnel
-    _objects.append(createWall(-210.0f, -45.0f, 300.0f, 1.0f, -0.25f*b2_pi));
-    _objects.append(createWall(590.0f, -45.0f, 300.0f, 1.0f, 0.25f*b2_pi));
+    //funnel 1
+    _objects.append(createWall(-30.0f, 28.0f, 100.0f, 1.0f, -0.25f*b2_pi));
+    _objects.append(createWall(620.0f, 28.0f, 100.0f, 1.0f, 0.25f*b2_pi));
+
+    //funnel2
+//   _objects.append(createWall(-210.0f, -45.0f, 300.0f, 1.0f, -0.25f*b2_pi));
+//   _objects.append(createWall(590.0f, -45.0f, 300.0f, 1.0f, 0.25f*b2_pi));
 
     //inner borders
     _objects.append(createWall(130.0f, 55.0f, 1.0f, 560.0f, 0.0));
@@ -98,14 +121,8 @@ MainWindow::MainWindow(QWidget *parent) :
     _objects.append(createWall(410.0f, 55.0f, 1.0f, 560.0f, 0.0));
     _objects.append(createWall(480.0f, 55.0f, 1.0f, 560.0f, 0.0));
     _objects.append(createWall(550.0f, 55.0f, 1.0f, 560.0f, 0.0));
-
 }
 
-// Destructor
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
 
 void MainWindow::paintEvent(QPaintEvent *)
  {
@@ -180,7 +197,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     return QMainWindow::eventFilter(obj, event);
 }
 
-//What does this do?
 void MainWindow::on_entry()
 {
 
@@ -252,6 +268,7 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
 }
 
 //Drae ball model
+//Work on getting getting a nice circle bg drawn
 void MainWindow::drawEllipse(QPainter *p, const Object& o) {
     float32 x = o.body->GetPosition().x;
     float32 y = o.body->GetPosition().y;

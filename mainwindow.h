@@ -75,6 +75,8 @@ private:
     Object createBall(const b2Vec2& pos, float32 radius);
     void drawWall(QPainter *p, const Object& o);
     void drawEllipse(QPainter *p, const Object& o);
+    void createBalls();
+    void createWalls();
 
 };
 
