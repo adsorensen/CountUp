@@ -18,7 +18,7 @@ public:
     MainWindow w;
 
 signals:
-    void game_started();
+    void game_started(int);
 
 private slots:
     void on_playButton_pressed();

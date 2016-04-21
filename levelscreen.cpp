@@ -19,7 +19,7 @@ Levelscreen::Levelscreen(QWidget *parent) :
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
 
     this->setStyleSheet("Levelscreen {border-image: url(:/background/Resources/loginbg.png); };");
-
+    ui->warning->hide();
 
     int x = (screenGeometry.width() - this->width()) / 2;
     int y = (screenGeometry.height() - this->height()) / 2;
@@ -34,9 +34,90 @@ Levelscreen::~Levelscreen()
 
 void Levelscreen::on_playButton_pressed()
 {
-    this->hide();
+    int level;
+    bool a, b, c, d, e, difficulty = false;
+    a = ui->easyButton->isChecked();
+    b = ui->mediumButton->isChecked();
+    c = ui->hardButton->isChecked();
+    d = ui->veryhardButton->isChecked();
+    e = ui->extremeButton->isChecked();
 
-    w.show();
-    w.start();
-    emit game_started();
+    if (a || b || c || d || e)
+    {
+        if (a)
+        {
+            level = 0;
+            difficulty = true;
+        }
+
+        if (b)
+        {
+            level = 5;
+            difficulty = true;
+        }
+
+        if (c)
+        {
+            level = 10;
+            difficulty = true;
+        }
+
+        if (d)
+        {
+            level = 15;
+            difficulty = true;
+        }
+
+        if (e)
+        {
+            level = 20;
+            difficulty = true;
+        }
+    }
+    else
+    {
+        ui->warning->setText("Must select difficulty");
+        ui->warning->show();
+    }
+    if (difficulty)
+    {
+        a = ui->Level1Button->isChecked();
+        b = ui->Level2Button->isChecked();
+        c = ui->Level3Button->isChecked();
+        d = ui->Level4Button->isChecked();
+        e = ui->Level5Button->isChecked();
+        if (a || b || c || d || e)
+        {
+            if (a)
+            {
+                level += 1;
+            }
+            if (b)
+            {
+                level += 2;
+            }
+            if (c)
+            {
+                level += 3;
+            }
+            if (d)
+            {
+                level += 4;
+            }
+            if (e)
+            {
+                level += 5;
+            }
+            this->hide();
+
+            w.show();
+            w.start();
+            emit game_started(level);
+        }
+        else
+        {
+            ui->warning->setText("Must select level");
+            ui->warning->show();
+        }
+    }
 }
