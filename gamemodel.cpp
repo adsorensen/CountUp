@@ -55,7 +55,7 @@ bool GameModel::FormulaCheck(QVector<bool> opList)
 int GameModel::FormulaReader(QVector<QString> formula)
 {
     //Interprets formula
-    QStack<QString> operators;
+    /*QStack<QString> operators;
     QStack<QString> operands;
 
     int totalVal = 0;
@@ -81,7 +81,7 @@ int GameModel::FormulaReader(QVector<QString> formula)
         else if (formula[i] == "-") {
 
         }
-    }
+    }*/
 }
 
 void GameModel::ShuffleGrid()

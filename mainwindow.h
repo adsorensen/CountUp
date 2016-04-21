@@ -40,6 +40,10 @@ struct Object
     int type;
     b2Body *body;
     b2Fixture *fixture;
+    int numberValue;
+    QString operatorValue;
+    int column;
+    int row;
 };
 
 class MainWindow : public QMainWindow
@@ -77,7 +81,7 @@ private:
     void drawEllipse(QPainter *p, const Object& o);
     void createBalls();
     void createWalls();
-
+    QColor generateColor(MathNode);
 };
 
 #endif // MAINWINDOW_H
