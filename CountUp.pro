@@ -51,7 +51,7 @@ FORMS    += \
 #DEPENDPATH += "./../CountUp/SFMLX/include"
 
 INCLUDEPATH += ../CountUp/Box2D/
-LIBS += -L"../CountUp/Box2D/build/Box2D"
+LIBS += -L"../CountUp/Box2D/Build/Box2D"
 LIBS += -lBox2D
 
 RESOURCES += \

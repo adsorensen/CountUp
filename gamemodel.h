@@ -30,8 +30,8 @@ public:
     QVector<QVector<MathNode> > grid;
     QMap<int, Level*> levelMap;
 
-    int FormulaReader(QString);
-    bool FormulaCheck(QString);
+    int FormulaReader(QVector<QString>);
+    bool FormulaCheck(QVector<bool>);
     void ShuffleGrid();
     void BombGrid(QString);
     void RemoveNode(QVector<QPair<int, int> >);

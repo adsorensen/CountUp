@@ -1,5 +1,6 @@
 #include "gamemodel.h"
 #include <QDebug>
+#include <ctype.h>
 
 GameModel::GameModel()
 {
@@ -27,14 +28,60 @@ GameModel::GameModel()
 //    //Destructor
 //}
 
-bool GameModel::FormulaCheck(QString formula)
+bool GameModel::FormulaCheck(QVector<bool> opList)
 {
     //Checks if formula is valid
+    if (!opList[0]) {
+        bool lastBool = opList[0];
+        if (opList.length() >= 3) {
+            for (int i = 1; i < opList.length(); i++) {
+                if ((lastBool && opList[i]) || (!lastBool && !opList[i])) {
+                    return false;
+                }
+                lastBool = opList[i];
+            }
+            if (opList[opList.length()-1]) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+    return false;
 }
 
-int GameModel::FormulaReader(QString formula)
+int GameModel::FormulaReader(QVector<QString> formula)
 {
     //Interprets formula
+    QStack<QString> operators;
+    QStack<QString> operands;
+
+    int totalVal = 0;
+
+    for (int i = 0; i < formula.length(); i ++) {
+        if (isdigit(formula[i][0])) {
+
+            if (operators.length() > 0) {
+                if (operators.top() == "*") {
+                    operands.push(operands.pop() * formula[i].toInt());
+                    operators.pop();
+                } else if (operators.top() == "/") {
+                    operands.push(operands.pop() / formula[i].toInt());
+                    operators.pop();
+                }
+            } else {
+            operands.push(formula[i]);
+            }
+        }
+        else if (formula[i] == "+") {
+
+        }
+        else if (formula[i] == "-") {
+
+        }
+    }
 }
 
 void GameModel::ShuffleGrid()
@@ -259,11 +306,18 @@ void GameModel::LevelStart(int lNum)
 
 void GameModel::OnMove(QVector<QPair<int, int> > cellList)
 {
-    QString formula = "";
-    for (int i = 0; i < cellList.length(); i++) {
-        formula = formula + grid[cellList[i].first][cellList[i].second].value;
+    QVector<QString> formula;
+    QVector<bool> boolList;
+    for (auto i = 0; i < cellList.length(); i++) {
+        if (grid[cellList[i].first][cellList[i].second].isOperator) {
+            boolList.push_back(true);
+        } else {
+            boolList.push_back(false);
+        }
+        formula.push_back(grid[cellList[i].first][cellList[i].second].value);
     }
-    if (FormulaCheck(formula)) {
+
+    if (FormulaCheck(boolList)) {
         //valid formula
         int result = FormulaReader(formula);
         currentNum += result;
