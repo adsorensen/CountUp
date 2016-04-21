@@ -70,22 +70,25 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     //release the mock balls
-    for(int i=0; i<15; i++) {
+    for(int i=0; i<64; i++) {
         //dx should be between 60 and 620 in the x
         //and should only be increments of 80ish so it fits in the grid
         int dx = 620 - qrand() % 560;
         int dy = qrand() % 2;
-        _objects.append(createBall(b2Vec2(dx, 25.0f), 1.0f));
+        _objects.append(createBall(b2Vec2(dx, 25.0f), 34.0f));
     }
 
-    _objects.append(createWall(60.0f, 305.0f, 560.0f, 1.0f, 0.0)); //test wall
+    //_objects.append(createWall(60.0f, 305.0f, 560.0f, 1.0f, 0.0)); //test wall
 
     //Create walls for grid
     _objects.append(createWall(60.0f, 615.0f, 560.0f, 1.0f, 0.0)); //ground
     _objects.append(createWall(60.0f, 55.0f, 1.0f, 560.0f, 0.0));  //left border
     _objects.append(createWall(620.0f, 55.0f, 1.0f, 560.0f, 0.0));  //right border
 
-    //balls do not collide with walls
+
+    //funnel
+    _objects.append(createWall(-210.0f, -45.0f, 300.0f, 1.0f, -0.25f*b2_pi));
+    _objects.append(createWall(590.0f, -45.0f, 300.0f, 1.0f, 0.25f*b2_pi));
 
     //inner borders
     _objects.append(createWall(130.0f, 55.0f, 1.0f, 560.0f, 0.0));
@@ -236,13 +239,13 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     o.body = World->CreateBody(&bd);
     // shape
     b2CircleShape shape;
-    shape.m_radius = radius + 20;
+    shape.m_radius = radius; //ADJUST BALL RADIUS HERE
     // fixture
     b2FixtureDef fd;
     fd.shape = &shape;
     fd.density = 1.0f;
     fd.friction = 1.0f;
-    fd.restitution = 0.6f;
+    fd.restitution = 0.3f;
     o.fixture = o.body->CreateFixture(&fd);
     o.type = BallObject;
     return o;
