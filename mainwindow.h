@@ -55,6 +55,8 @@ class MainWindow : public QMainWindow
     int _timerId = 0;
     QTransform _transform;
     QVector<Object> _objects;
+    QVector<QPair<int, int>> coordinates;
+    bool begin;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -71,6 +73,8 @@ private slots:
 
     void on_entry();
 
+    void on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+
 private:
     Ui::MainWindow *ui;
     void paintEvent(QPaintEvent*);
@@ -82,6 +86,9 @@ private:
     void createBalls();
     void createWalls();
     QColor generateColor(MathNode);
+
+signals:
+    void current_positions(QVector<QPair<int, int>>);
 };
 
 #endif // MAINWINDOW_H
