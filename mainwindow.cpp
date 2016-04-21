@@ -23,6 +23,7 @@
 #include <QRect>
 #include <QApplication>
 #include <QDebug>
+#include <QRadialGradient>
 #include <QMouseEvent>
 #include <QtGui>
 #include <QPixmap>
@@ -45,8 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->move(x, y);
     this->show();
 
-
-
     // Sets the background image
     this->setStyleSheet("MainWindow {border-image: url(:/background/Resources/bg.png); };");
 
@@ -64,15 +63,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
 
     //Create world
-    b2Vec2 gravity(0.0f, 9.8f); //normal earth gravity, 9.8 m/s/s straight down!
+    b2Vec2 gravity(0.0f, 75.0f); //normal earth gravity, 9.8 m/s/s straight down!
     World = new b2World(gravity);
 
 
     createWalls();
     createBalls();
-
-
-
 }
 
 // Destructor
@@ -83,18 +79,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::createBalls()
 {
-    //release the mock balls
-    for(int i=0; i<64; i++) {
-        //dx should be between 60 and 620 in the x
-        //and should only be increments of 80ish so it fits in the gri
-        //random does not work well, very predictable ball placements
-        int dx = 620 - qrand() % 560;
-        int dy = qrand() % 500 + 60;
-        _objects.append(createBall(b2Vec2(dx, dy), 34.2f));
+    int offsetX = 95.0f;
+    int offsetY = 90.0f;
+    for (int i=0; i<8; i++)
+    {
+        for (int j=0; j<8; j++)
+        {
+            int dx = offsetX + i*70;
+            int dy = offsetY + j*70;
+            _objects.append(createBall(b2Vec2(dx, dy), 35.0f));
+        }
     }
-
-    //iterate through each row and place balls manually in exact locations instead of randomly
-
 }
 
 void MainWindow::createWalls()
@@ -129,23 +124,18 @@ void MainWindow::createWalls()
 
 void MainWindow::paintEvent(QPaintEvent *)
  {
-    //what does this do?
-//     QStyleOption opt;
-//     opt.init(this);
-//     QPainter p(this);
-//     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
-
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing, true);
     p.setTransform(_transform);
-    foreach(const Object& o, _objects) {
-        switch(o.type) {
-        case BallObject:
-            drawEllipse(&p, o);
-
-            break;
-        case WallObject:
-            drawWall(&p, o);
+    foreach(const Object& o, _objects)
+    {
+        switch(o.type)
+        {
+            case BallObject:
+                drawEllipse(&p, o);
+                break;
+            case WallObject:
+                drawWall(&p, o);
         }
     }
  }
@@ -264,20 +254,35 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     fd.shape = &shape;
     fd.density = 1.0f;
     fd.friction = 0.4f;
-    fd.restitution = 0.6f;
+    fd.restitution = 1.0f;
     o.fixture = o.body->CreateFixture(&fd);
     o.type = BallObject;
     return o;
 }
 
-//Drae ball model
+//Draw ball model
 //Work on getting getting a nice circle bg drawn
-void MainWindow::drawEllipse(QPainter *p, const Object& o) {
+void MainWindow::drawEllipse(QPainter *p, const Object& o)
+{
+    // Fills nodes
+    QPen pen(Qt::black, 2);
+    p->setPen(pen);
+    //QBrush brush(Qt::green);
+    //p->setBrush(brush);
+    MathNode myNode;
+    myNode.value = QString::number(qrand()%10);
     float32 x = o.body->GetPosition().x;
     float32 y = o.body->GetPosition().y;
     float32 r = o.fixture->GetShape()->m_radius;
+
+    QLinearGradient gradient(0, 0, x, y);
+    gradient.setColorAt(0.0, Qt::blue);
+    gradient.setColorAt(1.0, generateColor(myNode));
+    p->setBrush(gradient);
+
     p->drawEllipse(QPointF(x, y), r, r);
 
+    // This gets called too many times????
 }
 
 //Start simulator
@@ -294,6 +299,46 @@ void MainWindow::timerEvent(QTimerEvent *event) {
     }
 }
 
-
-
-
+QColor MainWindow::generateColor(MathNode currentNode)
+{
+    if (currentNode.value.endsWith("1"))
+    {
+        return Qt::green;
+    }
+    if (currentNode.value.endsWith("2"))
+    {
+        return Qt::blue;
+    }
+    if (currentNode.value.endsWith("3"))
+    {
+        return Qt::yellow;
+    }
+    if (currentNode.value.endsWith("4"))
+    {
+        return Qt::black;
+    }
+    if (currentNode.value.endsWith("5"))
+    {
+        return Qt::cyan;
+    }
+    if (currentNode.value.endsWith("6"))
+    {
+        return Qt::magenta;
+    }
+    if (currentNode.value.endsWith("7"))
+    {
+        return QColor(237, 145, 33);
+    }
+    if (currentNode.value.endsWith("8"))
+    {
+        return QColor(159, 0, 197);
+    }
+    if (currentNode.value.endsWith("9"))
+    {
+        return QColor(222, 82, 133);
+    }
+    else
+    {
+        return Qt::red;
+    }
+}
