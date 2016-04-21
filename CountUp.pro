@@ -4,8 +4,10 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core
+QT += gui
 QT += sql widgets
+QT += opengl
 
 
 QTPLUGIN += QSQLMYSQL
@@ -54,6 +56,7 @@ LIBS += -lBox2D
 
 RESOURCES += \
     resources.qrc
+
 
 
 
