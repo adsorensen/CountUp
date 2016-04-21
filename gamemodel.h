@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QPair>
 #include <QMap>
+#include <QStack>
 #include "level.h"
 #include <QObject>
 

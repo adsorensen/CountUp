@@ -61,14 +61,14 @@ int GameModel::FormulaReader(QVector<QString> formula)
     int totalVal = 0;
 
     for (int i = 0; i < formula.length(); i ++) {
-        if (isdigit(formula[i][0])) {
+        if (formula[i].at(i).isDigit()) {
 
             if (operators.length() > 0) {
                 if (operators.top() == "*") {
-                    operands.push(operands.pop() * formula[i].toInt());
+                    operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
                     operators.pop();
                 } else if (operators.top() == "/") {
-                    operands.push(operands.pop() / formula[i].toInt());
+                    operands.push(QString::number(operands.pop().toInt() / formula[i].toInt()));
                     operators.pop();
                 }
             } else {
