@@ -14,16 +14,15 @@ int main(int argc, char *argv[])
     Login login;
 
     login.show();
-    b2Vec2 world;
-    b2AABB world1;
+    //b2Vec2 world;
+    //b2AABB world1;
 
 
-    b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s/s straight down!
+    //b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s/s straight down!
 
 
-    bool doSleep = true;
 
-    b2World* myWorld = new b2World(gravity);
+    //b2World* myWorld = new b2World(gravity);
 
     return a.exec();
 }

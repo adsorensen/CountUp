@@ -18,6 +18,9 @@ Levelscreen::Levelscreen(QWidget *parent) :
     w.hide();
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
 
+    this->setStyleSheet("Levelscreen {border-image: url(:/background/Resources/loginbg.png); };");
+
+
     int x = (screenGeometry.width() - this->width()) / 2;
     int y = (screenGeometry.height() - this->height()) / 2;
     this->move(x, y);
@@ -32,6 +35,8 @@ Levelscreen::~Levelscreen()
 void Levelscreen::on_playButton_pressed()
 {
     this->hide();
+
     w.show();
+    w.start();
     emit game_started();
 }
