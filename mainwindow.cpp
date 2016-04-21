@@ -57,7 +57,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->viewport()->setMouseTracking(true);
     ui->tableWidget->installEventFilter(this);
     ui->tableWidget->viewport()->installEventFilter(this);
-    //ui->tableWidget->hide();
 
     // Connect slots and signals
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
@@ -66,9 +65,10 @@ MainWindow::MainWindow(QWidget *parent) :
     b2Vec2 gravity(0.0f, 75.0f); //normal earth gravity, 9.8 m/s/s straight down!
     World = new b2World(gravity);
 
-
     createWalls();
     createBalls();
+
+    begin = true;
 }
 
 // Destructor
@@ -127,12 +127,14 @@ void MainWindow::paintEvent(QPaintEvent *)
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing, true);
     p.setTransform(_transform);
+    int count = 1;
     foreach(const Object& o, _objects)
     {
         switch(o.type)
         {
             case BallObject:
                 drawEllipse(&p, o);
+                //qDebug() << "gets called:" << count++ << "times.";
                 break;
             case WallObject:
                 drawWall(&p, o);
@@ -163,10 +165,8 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
     //retrieve value from math node
     //append to formula string
 
-    qDebug() << "Start expression" << column << row;
+    //qDebug() << "Start expression" << column << row;
     //ui->tableWidget->setItem(row,column,item);
-
-
 }
 
 //Same thing here but for drag
@@ -184,8 +184,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == ui->tableWidget->viewport())
     {
-        if (event->type() == QEvent::MouseButtonRelease)
-            qDebug() << "End expression";
+        //if (event->type() == QEvent::MouseButtonRelease)
+           // qDebug() << "End expression";
     }
     return QMainWindow::eventFilter(obj, event);
 }
@@ -264,6 +264,8 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
 //Work on getting getting a nice circle bg drawn
 void MainWindow::drawEllipse(QPainter *p, const Object& o)
 {
+    // This gets called too many times????
+
     // Fills nodes
     QPen pen(Qt::black, 2);
     p->setPen(pen);
@@ -281,8 +283,6 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
     p->setBrush(gradient);
 
     p->drawEllipse(QPointF(x, y), r, r);
-
-    // This gets called too many times????
 }
 
 //Start simulator
@@ -299,6 +299,7 @@ void MainWindow::timerEvent(QTimerEvent *event) {
     }
 }
 
+// Returns a QColor based on the input MathNode's ending value
 QColor MainWindow::generateColor(MathNode currentNode)
 {
     if (currentNode.value.endsWith("1"))
@@ -341,4 +342,18 @@ QColor MainWindow::generateColor(MathNode currentNode)
     {
         return Qt::red;
     }
+}
+
+void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+    qDebug() << "add expression" << currentColumn << currentRow;
+    if (begin == false)
+    {
+        QPair<int, int> rowAndCol;
+        rowAndCol.first = currentRow;
+        rowAndCol.second = currentColumn;
+        coordinates.append(rowAndCol);
+        emit current_positions(coordinates);
+    }
+    begin = false;
 }
