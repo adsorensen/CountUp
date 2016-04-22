@@ -58,7 +58,7 @@ border-color: rgb(0, 0, 0);</string>
      <bool>false</bool>
     </property>
     <property name="selectionMode">
-     <enum>QAbstractItemView::SingleSelection</enum>
+     <enum>QAbstractItemView::NoSelection</enum>
     </property>
     <property name="gridStyle">
      <enum>Qt::SolidLine</enum>
@@ -540,7 +540,7 @@ color: lightGray;
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

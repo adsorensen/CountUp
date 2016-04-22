@@ -58,23 +58,26 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->installEventFilter(this);
     ui->tableWidget->viewport()->installEventFilter(this);
 
+
     // Connect slots and signals
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
 
     //Create world
-    b2Vec2 gravity(0.0f, 75.0f); //normal earth gravity, 9.8 m/s/s straight down!
+    b2Vec2 gravity(0.0f, 100.0f); //normal earth gravity, 9.8 m/s/s straight down!
     World = new b2World(gravity);
 
     createWalls();
     createBalls();
 
     begin = true;
+
 }
 
 // Destructor
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete World;
 }
 
 void MainWindow::createBalls()
@@ -85,9 +88,9 @@ void MainWindow::createBalls()
     {
         for (int j=0; j<8; j++)
         {
-            int dx = offsetX + i*70;
-            int dy = offsetY + j*70;
-            _objects.append(createBall(b2Vec2(dx, dy), 35.0f));
+            int dx = offsetX + j*70;
+            int dy = offsetY + i*70;
+            _objects.append(createBall(b2Vec2(dx, dy), radius));
         }
     }
 }
@@ -97,28 +100,28 @@ void MainWindow::createWalls()
     //_objects.append(createWall(60.0f, 305.0f, 560.0f, 1.0f, 0.0)); //test wall
 
     //Create walls for grid
-    _objects.append(createWall(60.0f, 615.0f, 560.0f, 1.0f, 0.0)); //ground
-    _objects.append(createWall(60.0f, 55.0f, 1.0f, 560.0f, 0.0));  //left border
-    _objects.append(createWall(620.0f, 55.0f, 1.0f, 560.0f, 0.0));  //right border
+    walls.append(createWall(60.0f, 615.0f, 560.0f, 1.0f, 0.0)); //ground
+    walls.append(createWall(60.0f, 55.0f, 1.0f, 560.0f, 0.0));  //left border
+    walls.append(createWall(620.0f, 55.0f, 1.0f, 560.0f, 0.0));  //right border
 
     //balls do not populate grid, they fall outside and into the abyss of nothingness
 
     //funnel 1
-    _objects.append(createWall(-30.0f, 28.0f, 100.0f, 1.0f, -0.25f*b2_pi));
-    _objects.append(createWall(620.0f, 28.0f, 100.0f, 1.0f, 0.25f*b2_pi));
+    walls.append(createWall(-30.0f, 28.0f, 100.0f, 1.0f, -0.25f*b2_pi));
+    walls.append(createWall(620.0f, 28.0f, 100.0f, 1.0f, 0.25f*b2_pi));
 
     //funnel2
 //   _objects.append(createWall(-210.0f, -45.0f, 300.0f, 1.0f, -0.25f*b2_pi));
 //   _objects.append(createWall(590.0f, -45.0f, 300.0f, 1.0f, 0.25f*b2_pi));
 
     //inner borders
-    _objects.append(createWall(130.0f, 55.0f, 1.0f, 560.0f, 0.0));
-    _objects.append(createWall(200.0f, 55.0f, 1.0f, 560.0f, 0.0));
-    _objects.append(createWall(270.0f, 55.0f, 1.0f, 560.0f, 0.0));
-    _objects.append(createWall(340.0f, 55.0f, 1.0f, 560.0f, 0.0));
-    _objects.append(createWall(410.0f, 55.0f, 1.0f, 560.0f, 0.0));
-    _objects.append(createWall(480.0f, 55.0f, 1.0f, 560.0f, 0.0));
-    _objects.append(createWall(550.0f, 55.0f, 1.0f, 560.0f, 0.0));
+    walls.append(createWall(130.0f, 55.0f, 0.5f, 560.0f, 0.0));
+    walls.append(createWall(200.0f, 55.0f, 0.5f, 560.0f, 0.0));
+    walls.append(createWall(270.0f, 55.0f, 0.5f, 560.0f, 0.0));
+    walls.append(createWall(340.0f, 55.0f, 0.5f, 560.0f, 0.0));
+    walls.append(createWall(410.0f, 55.0f, 0.5f, 560.0f, 0.0));
+    walls.append(createWall(480.0f, 55.0f, 0.5f, 560.0f, 0.0));
+    walls.append(createWall(550.0f, 55.0f, 0.5f, 560.0f, 0.0));
 }
 
 
@@ -127,18 +130,15 @@ void MainWindow::paintEvent(QPaintEvent *)
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing, true);
     p.setTransform(_transform);
-    int count = 1;
     foreach(const Object& o, _objects)
     {
-        switch(o.type)
-        {
-            case BallObject:
-                drawEllipse(&p, o);
-                //qDebug() << "gets called:" << count++ << "times.";
-                break;
-            case WallObject:
-                drawWall(&p, o);
-        }
+        drawEllipse(&p, o);
+    }
+    foreach(const Object& o, walls)
+    {
+\
+        drawWall(&p, o);
+
     }
  }
 
@@ -167,12 +167,17 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 
     //qDebug() << "Start expression" << column << row;
     //ui->tableWidget->setItem(row,column,item);
+
+    //validate formula before removing math ball
+    removeBallAt(column, row);
 }
 
 //Same thing here but for drag
 //Do not register diagonal nodes?
 void MainWindow::on_tableWidget_cellEntered(int row, int column)
 {
+    //validate formula before removing math ball
+    //removeBallAt(column, row);
 
 }
 
@@ -240,23 +245,42 @@ Object MainWindow::createWall(float32 x, float32 y, float32 w, float32 h, float3
 
 //Create ball model
 Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
-    Object o;
+    Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
+
     // body
     b2BodyDef bd;
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
+    balls.append(o.body);
+
     // shape
     b2CircleShape shape;
     shape.m_radius = radius; //ADJUST BALL RADIUS HERE
     // fixture
-    b2FixtureDef fd;
-    fd.shape = &shape;
-    fd.density = 1.0f;
-    fd.friction = 0.4f;
-    fd.restitution = 1.0f;
-    o.fixture = o.body->CreateFixture(&fd);
+    // add mass
+    for(int i = 0; i < 15; i++)
+    {
+        b2FixtureDef fd;
+        fd.shape = &shape;
+        fd.density = 1.0f;
+        fd.friction = 0.6f;
+        fd.restitution = 0.0f;
+        o.fixture = o.body->CreateFixture(&fd);
+
+    }
+
+
+
     o.type = BallObject;
+    o.column = pos.x;
+    o.row = pos.y;
+
+
+    MathNode myNode;
+    myNode.value = QString::number(qrand()%10);
+    o.color = generateColor(myNode);
+
     return o;
 }
 
@@ -271,15 +295,14 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
     p->setPen(pen);
     //QBrush brush(Qt::green);
     //p->setBrush(brush);
-    MathNode myNode;
-    myNode.value = QString::number(qrand()%10);
+
     float32 x = o.body->GetPosition().x;
     float32 y = o.body->GetPosition().y;
     float32 r = o.fixture->GetShape()->m_radius;
 
     QLinearGradient gradient(0, 0, x, y);
     gradient.setColorAt(0.0, Qt::blue);
-    gradient.setColorAt(1.0, generateColor(myNode));
+    gradient.setColorAt(1.0, o.color);
     p->setBrush(gradient);
 
     p->drawEllipse(QPointF(x, y), r, r);
@@ -357,3 +380,36 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
     }
     begin = false;
 }
+
+void MainWindow::on_bombButton_pressed()
+{
+
+
+}
+
+void MainWindow::removeBallAt(float32 column, float32 row)
+{
+    int index = getIndex((int)column, (int)row);
+    _objects.removeAt(index);
+
+    b2Body *body = balls.at(index);
+    balls.removeAt(index);
+
+    World->DestroyBody(body);
+
+    spawnBallAt(column, index);
+}
+
+void MainWindow::spawnBallAt(float32 column, int index)
+{
+    _objects.insert(index, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius));
+
+}
+
+int MainWindow::getIndex(int column, int row)
+{
+    int index = row * 8 + column;
+    return index;
+}
+
+

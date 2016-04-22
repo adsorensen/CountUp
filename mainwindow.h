@@ -42,8 +42,9 @@ struct Object
     b2Fixture *fixture;
     int numberValue;
     QString operatorValue;
-    int column;
-    int row;
+    float32 column;
+    float32 row;
+    QColor color;
 };
 
 class MainWindow : public QMainWindow
@@ -55,8 +56,11 @@ class MainWindow : public QMainWindow
     int _timerId = 0;
     QTransform _transform;
     QVector<Object> _objects;
+    QVector<Object> walls;
     QVector<QPair<int, int>> coordinates;
     bool begin;
+    QVector<b2Body *> balls;
+
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -75,6 +79,8 @@ private slots:
 
     void on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
+    void on_bombButton_pressed();
+
 private:
     Ui::MainWindow *ui;
     void paintEvent(QPaintEvent*);
@@ -86,6 +92,10 @@ private:
     void createBalls();
     void createWalls();
     QColor generateColor(MathNode);
+    void removeBallAt(float32 column, float32 row);
+    void spawnBallAt(float32 column, int index);
+    int getIndex(int column, int row);
+    float32 radius = 34.4f;
 
 signals:
     void current_positions(QVector<QPair<int, int>>);
