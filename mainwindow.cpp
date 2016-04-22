@@ -259,7 +259,7 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     shape.m_radius = radius; //ADJUST BALL RADIUS HERE
     // fixture
     // add mass
-    for(int i = 0; i < 15; i++)
+    for(int i = 0; i < 10; i++)
     {
         b2FixtureDef fd;
         fd.shape = &shape;
@@ -281,6 +281,46 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
 
     return o;
 }
+
+Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
+{
+    Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
+
+    // body
+    b2BodyDef bd;
+    bd.type = b2_dynamicBody;
+    bd.position = pos;
+    o.body = World->CreateBody(&bd);
+    balls.insert(index, o.body);
+
+    // shape
+    b2CircleShape shape;
+    shape.m_radius = radius; //ADJUST BALL RADIUS HERE
+    // fixture
+    // add mass
+    for(int i = 0; i < 10; i++)
+    {
+        b2FixtureDef fd;
+        fd.shape = &shape;
+        fd.density = 1.0f;
+        fd.friction = 0.6f;
+        fd.restitution = 0.0f;
+        o.fixture = o.body->CreateFixture(&fd);
+
+    }
+
+    o.type = BallObject;
+    o.column = pos.x;
+    o.row = pos.y;
+
+
+    MathNode myNode;
+    myNode.value = QString::number(qrand()%10);
+    o.color = generateColor(myNode);
+
+    return o;
+}
+
 
 //Draw ball model
 //Work on getting getting a nice circle bg drawn
@@ -402,7 +442,8 @@ void MainWindow::removeBallAt(float32 column, float32 row)
 
 void MainWindow::spawnBallAt(float32 column, int index)
 {
-    _objects.insert(index, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius));
+    //incorrect index
+    _objects.insert(index, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, index));
 
 }
 
@@ -411,5 +452,6 @@ int MainWindow::getIndex(int column, int row)
     int index = row * 8 + column;
     return index;
 }
+
 
 

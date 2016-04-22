@@ -87,6 +87,7 @@ private:
     void timerEvent(QTimerEvent *);
     Object createWall(float32 x, float32 y, float32 w, float32 h, float32 angle);
     Object createBall(const b2Vec2& pos, float32 radius);
+    Object createBall(const b2Vec2& pos, float32 radius, int index);
     void drawWall(QPainter *p, const Object& o);
     void drawEllipse(QPainter *p, const Object& o);
     void createBalls();
