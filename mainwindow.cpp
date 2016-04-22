@@ -136,7 +136,7 @@ void MainWindow::paintEvent(QPaintEvent *)
     }
     foreach(const Object& o, walls)
     {
-\
+
         drawWall(&p, o);
 
     }
@@ -407,7 +407,7 @@ QColor MainWindow::generateColor(MathNode currentNode)
 
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
-    qDebug() << "add expression" << currentColumn << currentRow;
+    //qDebug() << "add expression" << currentColumn << currentRow;
     if (begin == false)
     {
         QPair<int, int> rowAndCol;
@@ -430,14 +430,14 @@ void MainWindow::removeBallAt(float32 column, float32 row)
     qDebug() << "removing ball at column: " <<column << " row: " << row;
     int index = getIndex((int)column, (int)row);
     qDebug() << "index: " << index ;
-    _objects.removeAt(index);
 
     b2Body *body = balls.at(index);
-    balls.removeAt(index);
 
     World->DestroyBody(body);
 
     spawnBallAt(column, index);
+
+    updateIndex(index);
 }
 
 void MainWindow::spawnBallAt(float32 column, int index)
@@ -453,5 +453,112 @@ int MainWindow::getIndex(int column, int row)
     return index;
 }
 
+//for trickling down
+void MainWindow::updateIndex(int index)
+{
+    //current ball
+    int current = index;
+    //ball right above it
+    int previous = current - 8;
 
 
+    while(current > 7)
+    {
+        Object temp = _objects.at(previous);
+        b2Body *body = balls.at(previous);
+
+
+        _objects.removeAt(current);
+        balls.removeAt(current);
+
+        _objects.insert(current, temp);
+        balls.insert(current, body);
+
+        current = current - 8;
+        previous = previous - 8;
+    }
+
+}
+
+Object MainWindow::createBallTrickle(const b2Vec2& pos, float32 radius)
+{
+    Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
+
+    // body
+    b2BodyDef bd;
+    bd.type = b2_dynamicBody;
+    bd.position = pos;
+    o.body = World->CreateBody(&bd);
+    balls.insert(0, o.body);
+
+    // shape
+    b2CircleShape shape;
+    shape.m_radius = radius; //ADJUST BALL RADIUS HERE
+    // fixture
+    // add mass
+    for(int i = 0; i < 10; i++)
+    {
+        b2FixtureDef fd;
+        fd.shape = &shape;
+        fd.density = 1.0f;
+        fd.friction = 0.6f;
+        fd.restitution = 0.0f;
+        o.fixture = o.body->CreateFixture(&fd);
+
+    }
+
+    o.type = BallObject;
+    o.column = pos.x;
+    o.row = pos.y;
+
+
+    MathNode myNode;
+    myNode.value = QString::number(qrand()%10);
+    o.color = generateColor(myNode);
+
+    return o;
+}
+
+
+
+void MainWindow::on_shuffleButton_pressed()
+{
+    while(!_objects.isEmpty())
+    {
+        _objects.removeFirst();
+    }
+
+    foreach(b2Body* b, balls)
+    {
+        balls.removeOne(b);
+        World->DestroyBody(b);
+
+    }
+
+    int offsetX = 95.0f;
+    int offsetY = 90.0f;
+    int dropheight = 10.0f;
+    for (int i=7; i>-1; i--)
+    {
+        for (int j=7; j>-1; j--)
+        {
+            int dx = offsetX + j*70;
+            int dy = offsetY + i*70;
+            _objects.prepend(createBallTrickle(b2Vec2(dx, dropheight), radius));
+
+
+            delay(50);
+        }
+        dropheight = dropheight - 70.0f;
+    }
+
+}
+
+void MainWindow::delay(int millisecondsToWait)
+{
+    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+}

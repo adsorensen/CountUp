@@ -81,12 +81,15 @@ private slots:
 
     void on_bombButton_pressed();
 
+    void on_shuffleButton_pressed();
+
 private:
     Ui::MainWindow *ui;
     void paintEvent(QPaintEvent*);
     void timerEvent(QTimerEvent *);
     Object createWall(float32 x, float32 y, float32 w, float32 h, float32 angle);
     Object createBall(const b2Vec2& pos, float32 radius);
+    Object createBallTrickle(const b2Vec2& pos, float32 radius);
     Object createBall(const b2Vec2& pos, float32 radius, int index);
     void drawWall(QPainter *p, const Object& o);
     void drawEllipse(QPainter *p, const Object& o);
@@ -97,6 +100,8 @@ private:
     void spawnBallAt(float32 column, int index);
     int getIndex(int column, int row);
     float32 radius = 34.4f;
+    void updateIndex(int index);
+    void delay(int millisecondsToWait);
 
 signals:
     void current_positions(QVector<QPair<int, int>>);
