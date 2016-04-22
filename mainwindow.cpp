@@ -107,8 +107,8 @@ void MainWindow::createWalls()
     //balls do not populate grid, they fall outside and into the abyss of nothingness
 
     //funnel 1
-    walls.append(createWall(-30.0f, 28.0f, 100.0f, 1.0f, -0.25f*b2_pi));
-    walls.append(createWall(620.0f, 28.0f, 100.0f, 1.0f, 0.25f*b2_pi));
+    walls.append(createWall(-30.0f, 28.0f, 100.0f, 3.0f, -0.25f*b2_pi));
+    walls.append(createWall(613.0f, 28.0f, 100.0f, 3.0f, 0.25f*b2_pi));
 
     //funnel2
 //   _objects.append(createWall(-210.0f, -45.0f, 300.0f, 1.0f, -0.25f*b2_pi));
@@ -165,7 +165,7 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
     //retrieve value from math node
     //append to formula string
 
-    //qDebug() << "Start expression" << column << row;
+    qDebug() << "Start expression" << column << row;
     //ui->tableWidget->setItem(row,column,item);
 
     //validate formula before removing math ball
@@ -269,8 +269,6 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
         o.fixture = o.body->CreateFixture(&fd);
 
     }
-
-
 
     o.type = BallObject;
     o.column = pos.x;
@@ -389,7 +387,9 @@ void MainWindow::on_bombButton_pressed()
 
 void MainWindow::removeBallAt(float32 column, float32 row)
 {
+    qDebug() << "removing ball at column: " <<column << " row: " << row;
     int index = getIndex((int)column, (int)row);
+    qDebug() << "index: " << index ;
     _objects.removeAt(index);
 
     b2Body *body = balls.at(index);
