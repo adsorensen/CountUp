@@ -63,7 +63,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
 
     //Create world
-    b2Vec2 gravity(0.0f, 100.0f); //normal earth gravity, 9.8 m/s/s straight down!
+    b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
     World = new b2World(gravity);
 
     createWalls();
@@ -165,7 +165,7 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
     //retrieve value from math node
     //append to formula string
 
-    qDebug() << "Start expression" << column << row;
+    //qDebug() << "Start expression" << column << row;
     //ui->tableWidget->setItem(row,column,item);
 
     //validate formula before removing math ball
@@ -252,14 +252,13 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
-    balls.append(o.body);
 
     // shape
     b2CircleShape shape;
     shape.m_radius = radius; //ADJUST BALL RADIUS HERE
     // fixture
     // add mass
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 2; i++)
     {
         b2FixtureDef fd;
         fd.shape = &shape;
@@ -291,7 +290,6 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
-    balls.insert(index, o.body);
 
     // shape
     b2CircleShape shape;
@@ -323,7 +321,6 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
 
 
 //Draw ball model
-//Work on getting getting a nice circle bg drawn
 void MainWindow::drawEllipse(QPainter *p, const Object& o)
 {
     // This gets called too many times????
@@ -427,23 +424,24 @@ void MainWindow::on_bombButton_pressed()
 
 void MainWindow::removeBallAt(float32 column, float32 row)
 {
-    qDebug() << "removing ball at column: " <<column << " row: " << row;
     int index = getIndex((int)column, (int)row);
-    qDebug() << "index: " << index ;
+    qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
 
-    b2Body *body = balls.at(index);
+    b2Body *body = _objects.at(index).body;
+    //qDebug() << "removing ball at address " << body;
 
     World->DestroyBody(body);
 
+    updateIndex(index);
+
     spawnBallAt(column, index);
 
-    updateIndex(index);
 }
 
 void MainWindow::spawnBallAt(float32 column, int index)
 {
     //incorrect index
-    _objects.insert(index, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, index));
+    _objects.insert(index, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column));
 
 }
 
@@ -460,23 +458,33 @@ void MainWindow::updateIndex(int index)
     int current = index;
     //ball right above it
     int previous = current - 8;
+    bool flag = false;
 
-
-    while(current > 7)
+    while(current >= 8)
     {
+        flag = true;
+        qDebug() << "removing " << current << "replacing with " << previous;;
         Object temp = _objects.at(previous);
-        b2Body *body = balls.at(previous);
-
+        qDebug() << "ball at prev " << temp.color << " ball address at prev = " << temp.body;
 
         _objects.removeAt(current);
-        balls.removeAt(current);
 
         _objects.insert(current, temp);
-        balls.insert(current, body);
 
         current = current - 8;
         previous = previous - 8;
     }
+    if(flag == false)
+    {
+        qDebug() << "remvoing singular " << current;
+        Object temp = _objects.at(current);
+
+        _objects.removeAt(current);
+        qDebug() << "ball color at current singular " << temp.color << " ball address at prev = " << temp.body;
+
+    }
+
+    qDebug() << "done updating";
 
 }
 
@@ -489,7 +497,6 @@ Object MainWindow::createBallTrickle(const b2Vec2& pos, float32 radius)
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
-    balls.insert(0, o.body);
 
     // shape
     b2CircleShape shape;
@@ -523,17 +530,17 @@ Object MainWindow::createBallTrickle(const b2Vec2& pos, float32 radius)
 
 void MainWindow::on_shuffleButton_pressed()
 {
+    foreach(Object o, _objects)
+    {
+        World->DestroyBody(o.body);
+    }
+
     while(!_objects.isEmpty())
     {
         _objects.removeFirst();
     }
 
-    foreach(b2Body* b, balls)
-    {
-        balls.removeOne(b);
-        World->DestroyBody(b);
 
-    }
 
     int offsetX = 95.0f;
     int offsetY = 90.0f;

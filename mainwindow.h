@@ -38,6 +38,7 @@ enum {
 struct Object
 {
     int type;
+    int index;
     b2Body *body;
     b2Fixture *fixture;
     int numberValue;
@@ -45,6 +46,11 @@ struct Object
     float32 column;
     float32 row;
     QColor color;
+};
+
+struct ObjectInfo
+{
+    Object thisObject;
 };
 
 class MainWindow : public QMainWindow
@@ -59,7 +65,6 @@ class MainWindow : public QMainWindow
     QVector<Object> walls;
     QVector<QPair<int, int>> coordinates;
     bool begin;
-    QVector<b2Body *> balls;
 
 
 public:
