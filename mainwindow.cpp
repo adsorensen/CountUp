@@ -70,7 +70,6 @@ MainWindow::MainWindow(QWidget *parent) :
     createBalls();
 
     begin = true;
-
 }
 
 // Destructor
@@ -113,8 +112,8 @@ void MainWindow::createWalls()
     walls.append(createWall(613.0f, 28.0f, 100.0f, 3.0f, 0.25f*b2_pi));
 
     //funnel2
-//   _objects.append(createWall(-210.0f, -45.0f, 300.0f, 1.0f, -0.25f*b2_pi));
-//   _objects.append(createWall(590.0f, -45.0f, 300.0f, 1.0f, 0.25f*b2_pi));
+    //   _objects.append(createWall(-210.0f, -45.0f, 300.0f, 1.0f, -0.25f*b2_pi));
+    //   _objects.append(createWall(590.0f, -45.0f, 300.0f, 1.0f, 0.25f*b2_pi));
 
     //inner borders
     walls.append(createWall(130.0f, 55.0f, 0.5f, 560.0f, 0.0));
@@ -128,7 +127,7 @@ void MainWindow::createWalls()
 
 
 void MainWindow::paintEvent(QPaintEvent *)
- {
+{
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing, true);
     p.setTransform(_transform);
@@ -142,7 +141,7 @@ void MainWindow::paintEvent(QPaintEvent *)
         drawWall(&p, o);
 
     }
- }
+}
 
 //Sets value of the cell according to model
 void MainWindow::fillGrid(MathNode model[][10])
@@ -192,7 +191,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     if (obj == ui->tableWidget->viewport())
     {
         //if (event->type() == QEvent::MouseButtonRelease)
-           // qDebug() << "End expression";
+        // qDebug() << "End expression";
     }
     return QMainWindow::eventFilter(obj, event);
 }
@@ -349,7 +348,7 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
 //Start simulator
 void MainWindow::start() {
     //if(!_timerId) {
-        _timerId = startTimer(1000/60); // 60fps
+    _timerId = startTimer(1000/60); // 60fps
     //}
 }
 
@@ -464,37 +463,24 @@ void MainWindow::updateIndex(int index)
     int current = index;
     //ball right above it
     int previous = current - 8;
-    bool flag = false;
 
     while(current >= 8)
     {
-        flag = true;
 
-         qDebug() << "Object Previous to be Moved " << _objects.at(previous).index;
+        qDebug() << "Object Previous to be Moved " << _objects.at(previous).index;
 
         Object temp = _objects.at(previous);
 
         _objects.removeAt(current);
 
         _objects.insert(current, temp);
-
-            qDebug() << "Object Now At " << current << " is: " <<  _objects.at(current).index;
-
-
-            qDebug() << "Should be Same as First Object Now At " << previous << " is: " <<  _objects.at(previous).index;
+        qDebug() << "Object Now At " << current << " is: " <<  _objects.at(current).index;
+        qDebug() << "Should be Same as First Object Now At " << previous << " is: " <<  _objects.at(previous).index;
 
         current = current - 8;
         previous = previous - 8;
     }
-    if(flag == false)
-    {
-        Object temp = _objects.at(current);
-
-        _objects.removeAt(current);
-    }
-
     qDebug() << "done updating";
-
 }
 
 
@@ -512,8 +498,6 @@ void MainWindow::on_shuffleButton_pressed()
         _objects.removeFirst();
     }
 
-
-
     int offsetX = 95.0f;
     int offsetY = 90.0f;
     int dropheight = 10.0f;
@@ -525,8 +509,7 @@ void MainWindow::on_shuffleButton_pressed()
             int dy = offsetY + i*70;
             _objects.prepend(createBall(b2Vec2(dx, dropheight), radius));
 
-
-            delay(50);
+            delay(20);
         }
         dropheight = dropheight - 70.0f;
     }

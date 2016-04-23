@@ -89,6 +89,9 @@
    <property name="text">
     <string>Create a new account</string>
    </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="loginbutton">
    <property name="geometry">
