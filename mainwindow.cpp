@@ -84,13 +84,15 @@ void MainWindow::createBalls()
 {
     int offsetX = 95.0f;
     int offsetY = 90.0f;
+    int index = 0;
     for (int i=0; i<8; i++)
     {
         for (int j=0; j<8; j++)
         {
             int dx = offsetX + j*70;
             int dy = offsetY + i*70;
-            _objects.append(createBall(b2Vec2(dx, dy), radius));
+            _objects.append(createBall(b2Vec2(dx, dy), radius, index));
+            index++;
         }
     }
 }
@@ -290,13 +292,14 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
+    o.index = index;
 
     // shape
     b2CircleShape shape;
     shape.m_radius = radius; //ADJUST BALL RADIUS HERE
     // fixture
     // add mass
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 5; i++)
     {
         b2FixtureDef fd;
         fd.shape = &shape;
@@ -430,9 +433,9 @@ void MainWindow::removeBallAt(float32 column, float32 row)
     b2Body *body = _objects.at(index).body;
     //qDebug() << "removing ball at address " << body;
 
-    World->DestroyBody(body);
-
     updateIndex(index);
+
+    World->DestroyBody(body);
 
     spawnBallAt(column, index);
 
@@ -440,9 +443,12 @@ void MainWindow::removeBallAt(float32 column, float32 row)
 
 void MainWindow::spawnBallAt(float32 column, int index)
 {
+    qDebug() << "COLUMN " << column;
     //incorrect index
-    _objects.insert(index, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column));
 
+    _objects.removeAt(column);
+
+    _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column));
 }
 
 int MainWindow::getIndex(int column, int row)
@@ -463,68 +469,34 @@ void MainWindow::updateIndex(int index)
     while(current >= 8)
     {
         flag = true;
-        qDebug() << "removing " << current << "replacing with " << previous;;
+
+         qDebug() << "Object Previous to be Moved " << _objects.at(previous).index;
+
         Object temp = _objects.at(previous);
-        qDebug() << "ball at prev " << temp.color << " ball address at prev = " << temp.body;
 
         _objects.removeAt(current);
 
         _objects.insert(current, temp);
+
+            qDebug() << "Object Now At " << current << " is: " <<  _objects.at(current).index;
+
+
+            qDebug() << "Should be Same as First Object Now At " << previous << " is: " <<  _objects.at(previous).index;
 
         current = current - 8;
         previous = previous - 8;
     }
     if(flag == false)
     {
-        qDebug() << "remvoing singular " << current;
         Object temp = _objects.at(current);
 
         _objects.removeAt(current);
-        qDebug() << "ball color at current singular " << temp.color << " ball address at prev = " << temp.body;
-
     }
 
     qDebug() << "done updating";
 
 }
 
-Object MainWindow::createBallTrickle(const b2Vec2& pos, float32 radius)
-{
-    Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
-
-    // body
-    b2BodyDef bd;
-    bd.type = b2_dynamicBody;
-    bd.position = pos;
-    o.body = World->CreateBody(&bd);
-
-    // shape
-    b2CircleShape shape;
-    shape.m_radius = radius; //ADJUST BALL RADIUS HERE
-    // fixture
-    // add mass
-    for(int i = 0; i < 10; i++)
-    {
-        b2FixtureDef fd;
-        fd.shape = &shape;
-        fd.density = 1.0f;
-        fd.friction = 0.6f;
-        fd.restitution = 0.0f;
-        o.fixture = o.body->CreateFixture(&fd);
-
-    }
-
-    o.type = BallObject;
-    o.column = pos.x;
-    o.row = pos.y;
-
-
-    MathNode myNode;
-    myNode.value = QString::number(qrand()%10);
-    o.color = generateColor(myNode);
-
-    return o;
-}
 
 
 
@@ -551,14 +523,13 @@ void MainWindow::on_shuffleButton_pressed()
         {
             int dx = offsetX + j*70;
             int dy = offsetY + i*70;
-            _objects.prepend(createBallTrickle(b2Vec2(dx, dropheight), radius));
+            _objects.prepend(createBall(b2Vec2(dx, dropheight), radius));
 
 
             delay(50);
         }
         dropheight = dropheight - 70.0f;
     }
-
 }
 
 void MainWindow::delay(int millisecondsToWait)
