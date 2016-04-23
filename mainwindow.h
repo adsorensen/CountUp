@@ -41,7 +41,7 @@ struct Object
     int index;
     b2Body *body;
     b2Fixture *fixture;
-    int numberValue;
+    QString numberValue;
     QString operatorValue;
     float32 column;
     float32 row;

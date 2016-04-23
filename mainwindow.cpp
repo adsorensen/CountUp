@@ -58,7 +58,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->installEventFilter(this);
     ui->tableWidget->viewport()->installEventFilter(this);
 
-
     // Connect slots and signals
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
 
@@ -137,9 +136,7 @@ void MainWindow::paintEvent(QPaintEvent *)
     }
     foreach(const Object& o, walls)
     {
-
         drawWall(&p, o);
-
     }
 }
 
@@ -170,7 +167,7 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
     //ui->tableWidget->setItem(row,column,item);
 
     //validate formula before removing math ball
-    removeBallAt(column, row);
+
 }
 
 //Same thing here but for drag
@@ -278,7 +275,7 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     MathNode myNode;
     myNode.value = QString::number(qrand()%10);
     o.color = generateColor(myNode);
-
+    o.numberValue = myNode.value;
     return o;
 }
 
@@ -330,19 +327,21 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
     // Fills nodes
     QPen pen(Qt::black, 2);
     p->setPen(pen);
-    //QBrush brush(Qt::green);
-    //p->setBrush(brush);
+    QBrush brush(o.color);
 
     float32 x = o.body->GetPosition().x;
     float32 y = o.body->GetPosition().y;
     float32 r = o.fixture->GetShape()->m_radius;
 
-    QLinearGradient gradient(0, 0, x, y);
-    gradient.setColorAt(0.0, Qt::blue);
-    gradient.setColorAt(1.0, o.color);
-    p->setBrush(gradient);
+    p->setBrush(brush);
 
     p->drawEllipse(QPointF(x, y), r, r);
+
+    brush.setColor(Qt::white);
+
+    p->setBrush(brush);
+
+    p->drawText(QPointF(x, y), o.numberValue);
 }
 
 //Start simulator
@@ -406,7 +405,7 @@ QColor MainWindow::generateColor(MathNode currentNode)
 
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
-    //qDebug() << "add expression" << currentColumn << currentRow;
+    qDebug() << "add expression" << currentColumn << currentRow;
     if (begin == false)
     {
         QPair<int, int> rowAndCol;
@@ -414,6 +413,7 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
         rowAndCol.second = currentColumn;
         coordinates.append(rowAndCol);
         emit current_positions(coordinates);
+        removeBallAt(currentColumn, currentRow);
     }
     begin = false;
 }
@@ -437,7 +437,6 @@ void MainWindow::removeBallAt(float32 column, float32 row)
     World->DestroyBody(body);
 
     spawnBallAt(column, index);
-
 }
 
 void MainWindow::spawnBallAt(float32 column, int index)
@@ -509,7 +508,7 @@ void MainWindow::on_shuffleButton_pressed()
             int dy = offsetY + i*70;
             _objects.prepend(createBall(b2Vec2(dx, dropheight), radius));
 
-            delay(20);
+            delay(50);
         }
         dropheight = dropheight - 70.0f;
     }

@@ -518,13 +518,13 @@ color: lightGray;
    </widget>
    <zorder>dynFormulaLabel</zorder>
    <zorder>graphicsView</zorder>
-   <zorder>tableWidget</zorder>
    <zorder>difficultyBox</zorder>
    <zorder>dynLevelLabel</zorder>
    <zorder>difficultyLabel</zorder>
    <zorder>levelLabel</zorder>
    <zorder>dynDifficultyLabel</zorder>
    <zorder>dynLevelLabel_2</zorder>
+   <zorder>tableWidget</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -540,7 +540,7 @@ color: lightGray;
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
