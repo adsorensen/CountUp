@@ -54,6 +54,11 @@ INCLUDEPATH += ../CountUp/Box2D/
 LIBS += -L"../CountUp/Box2D/Build/Box2D"
 LIBS += -lBox2D
 
+INCLUDEPATH += ../CountUp/usr/include/
+LIBS += -L"../CountUp/usr/lib64"
+LIBS += -lmysqlcppconn-static
+
+
 RESOURCES += \
     resources.qrc
 
