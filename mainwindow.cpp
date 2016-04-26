@@ -68,8 +68,9 @@ MainWindow::MainWindow(QWidget *parent) :
     createWalls();
     //createBalls();
 
-    game.LevelStart(2, 4);
+    //game.LevelStart(difficulty, level);
 
+    game.LevelStart(3,3);
 
     fillGrid();
 
@@ -391,6 +392,7 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
 
     p->setBrush(brush);
 
+
     p->drawText(QPointF(x, y), o.numberValue);
 }
 
@@ -399,6 +401,31 @@ void MainWindow::start() {
     //if(!_timerId) {
     _timerId = startTimer(1000/60); // 60fps
     //}
+
+//    foreach(Object o, _objects)
+//    {
+//        World->DestroyBody(o.body);
+//    }
+
+//    while(!_objects.isEmpty())
+//    {
+//        _objects.removeFirst();
+//    }
+
+//    //Create world
+//    b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
+//    World = new b2World(gravity);
+
+//    createWalls();
+
+//    qDebug() << "difficulty " << difficulty;
+//    qDebug() << "level " << level;
+//    game.LevelStart(difficulty, level);
+
+
+//    fillGrid();
+
+//    begin = true;
 }
 
 void MainWindow::timerEvent(QTimerEvent *event) {
@@ -425,7 +452,7 @@ QColor MainWindow::generateColor(MathNode currentNode)
     }
     if (currentNode.value.endsWith("4"))
     {
-        return Qt::black;
+        return Qt::white;
     }
     if (currentNode.value.endsWith("5"))
     {
@@ -446,6 +473,10 @@ QColor MainWindow::generateColor(MathNode currentNode)
     if (currentNode.value.endsWith("9"))
     {
         return QColor(222, 82, 133);
+    }
+    if (currentNode.value.endsWith("0"))
+    {
+        return Qt::black;
     }
     else
     {

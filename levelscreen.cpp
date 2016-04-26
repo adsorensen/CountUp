@@ -16,6 +16,10 @@ Levelscreen::Levelscreen(QWidget *parent) :
 {
     ui->setupUi(this);
     w.hide();
+
+    w.level = 1;
+    w.difficulty = 1;
+
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
 
     this->setStyleSheet("Levelscreen {border-image: url(:/background/Resources/loginbg.png); };");
@@ -42,35 +46,41 @@ void Levelscreen::on_playButton_pressed()
     d = ui->veryhardButton->isChecked();
     e = ui->extremeButton->isChecked();
 
+    int diff = 0;
     if (a || b || c || d || e)
     {
         if (a)
         {
-            level = 0;
+            //level = 0;
+            diff = 1;
             difficulty = true;
         }
 
         if (b)
         {
-            level = 5;
+            diff = 2;
+            //level = 5;
             difficulty = true;
         }
 
         if (c)
         {
-            level = 10;
+            diff = 3;
+            //level = 10;
             difficulty = true;
         }
 
         if (d)
         {
-            level = 15;
+            diff = 4;
+            //level = 15;
             difficulty = true;
         }
 
         if (e)
         {
-            level = 20;
+            diff = 5;
+            //level = 20;
             difficulty = true;
         }
     }
@@ -81,6 +91,7 @@ void Levelscreen::on_playButton_pressed()
     }
     if (difficulty)
     {
+        int level;
         a = ui->Level1Button->isChecked();
         b = ui->Level2Button->isChecked();
         c = ui->Level3Button->isChecked();
@@ -90,26 +101,34 @@ void Levelscreen::on_playButton_pressed()
         {
             if (a)
             {
-                level += 1;
+                level = 1;
+                //level += 1;
             }
             if (b)
             {
-                level += 2;
+                level = 2;
+                //level += 2;
             }
             if (c)
             {
-                level += 3;
+                level = 3;
+                //level += 3;
             }
             if (d)
             {
-                level += 4;
+                level = 4;
+                //level += 4;
             }
             if (e)
             {
-                level += 5;
+                level = 5;
+                //level += 5;
             }
             this->hide();
-
+            qDebug() << "d " << diff;
+            qDebug() << "l " << level;
+            w.level = level;
+            w.difficulty = diff;
             w.show();
             w.start();
             emit game_started(level);

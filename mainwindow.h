@@ -67,11 +67,14 @@ class MainWindow : public QMainWindow
     bool begin;
 
 
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void fillGrid();
     void start();
+    int difficulty;
+    int level;
 
 private slots:
     void on_tableWidget_cellClicked(int row, int column);
