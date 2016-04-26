@@ -129,12 +129,64 @@ int GameModel::FormulaReader(QVector<QString> formula)
 
 void GameModel::ShuffleGrid()
 {
-    //Shuffles grid to prevent
+    //Shuffles grid to prevent stale games
+
+    //Sets the value of all grid values to 0
+    for (int i = 0; i < grid.length(); i++) {
+        for (int j = 0; j < grid[i].length(); j++) {
+            grid[i][j].value = "0";
+        }
+    }
+    //Repopulates the grid
+    PopulateGrid();
+
+    //Decriments the turn number by one
+    movesRemaining--;
+
+    if (movesRemaining <= 0) {
+        emit GameOverSig();
+    }
 }
 
-void GameModel::BombGrid(QString bombOp)
+void GameModel::BombGrid(int bombOp)
 {
     //Applies operation bombOp on all operands in grid
+    switch (bombOp) {
+    case 1: // Multiply by 2
+        for (int i = 0; i < grid.length(); i++) {
+            for (int j = 0; j < grid[i].length(); j++) {
+                if (!grid[i][j].isOperator) {
+                    grid[i][j].value = grid[i][j].value.toInt() * 2;
+                }
+            }
+        }
+        break;
+    case 2: //Multiply by 4
+        for (int i = 0; i < grid.length(); i++) {
+            for (int j = 0; j < grid[i].length(); j++) {
+                if (!grid[i][j].isOperator) {
+                    grid[i][j].value = grid[i][j].value.toInt() * 4;
+                }
+            }
+        }
+    case 3: //Divide by 2
+        for (int i = 0; i < grid.length(); i++) {
+            for (int j = 0; j < grid[i].length(); j++) {
+                if (!grid[i][j].isOperator) {
+                    grid[i][j].value = (int)(grid[i][j].value.toInt() / 2 + 0.5);
+                }
+            }
+        }
+        break;
+    case 4: //Modulo by 10
+        for (int i = 0; i < grid.length(); i++) {
+            for (int j = 0; j < grid[i].length(); j++) {
+                if (!grid[i][j].isOperator) {
+                    grid[i][j].value = grid[i][j].value.toInt() % 10;
+                }
+            }
+        }
+    }
 }
 
 void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
@@ -210,31 +262,37 @@ void GameModel::PopulateGrid()
                 if (yCount != 0) {
                     yCount = yCount/operatorSpread.length();
                     if (yCount > 0.5) {
-                        //Create a operand MathNode
+                        //Create a operand MathNode and emit signal for the views
                         grid[x][y].value = GenerateMathNode(false);
                         grid[x][y].isOperator = false;
+                        emit CreateBubbleAtSig(x,y);
                     } else if (yCount < 0.5) {
-                        //Create a operator MathNode
+                        //Create a operator MathNode and emit signal for the view
                         grid[x][y].value = GenerateMathNode(true);
                         grid[x][y].isOperator = true;
+                        emit CreateBubbleAtSig(x,y);
                     } else {
-                        //Create a random MathNode
+                        //Create a random MathNode and emit signal for the view
                         if (qrand() % 2 == 0) {
                             grid[x][y].value = GenerateMathNode(false);
                             grid[x][y].isOperator = false;
+                            emit CreateBubbleAtSig(x,y);
                         } else {
                             grid[x][y].value = GenerateMathNode(true);
                             grid[x][y].isOperator = true;
+                            emit CreateBubbleAtSig(x,y);
                         }
                     }
                 } else {
-                    //Create a random MathNode
+                    //Create a random MathNode and emit signal for the view
                     if (qrand() % 2 == 0) {
                         grid[x][y].value = GenerateMathNode(false);
                         grid[x][y].isOperator = false;
+                        emit CreateBubbleAtSig(x,y);
                     } else {
                         grid[x][y].value = GenerateMathNode(true);
                         grid[x][y].isOperator = true;
+                        emit CreateBubbleAtSig(x,y);
                     }
                 }
 

@@ -35,7 +35,7 @@ public:
     int FormulaReader(QVector<QString>);
     bool FormulaCheck(QVector<bool>);
     void ShuffleGrid();
-    void BombGrid(QString);
+    void BombGrid(int);
     void RemoveNode(QVector<QPair<int, int> >);
     void PopulateGrid();
     void CheckWin();
@@ -48,6 +48,7 @@ signals:
     void LevelCompletedSig();\
     void GameOverSig();
     void ContinueLevelSig(int, int);
+    void CreateBubbleAtSig(int, int);
 };
 
 #endif // GAMEMODEL_H
