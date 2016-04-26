@@ -40,7 +40,7 @@ public:
     void CheckWin();
     QString GenerateMathNode(bool);
 public slots:
-    void LevelStart(int);
+    void LevelStart(int, int);
     void OnMove(QVector<QPair<int,int> >);
 signals:
     void InvalidFormulaSig();

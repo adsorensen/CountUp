@@ -2,7 +2,9 @@
 
 MathNode::MathNode()
 {
-
+    value = "0";
+    isOperator = false;
+    isSelected = false;
 }
 
 MathNode::MathNode(const MathNode &obj)
