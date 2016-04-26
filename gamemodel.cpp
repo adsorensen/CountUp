@@ -433,13 +433,12 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
 
         //remove nodes here
         while (cellList.length() > 0) {
-
             grid[cellList[0].first][cellList[0].second].value = "0";
-
-            cellList.remove(0);
         }
 
         PopulateGrid();
+
+        emit RemoveBubblesAtSig(cellList);
 
         if (movesRemaining == 0) {
             emit GameOverSig();

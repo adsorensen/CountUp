@@ -49,6 +49,7 @@ signals:
     void GameOverSig();
     void ContinueLevelSig(int, int);
     void CreateBubbleAtSig(int, int);
+    void RemoveBubblesAtSig(QVector<QPair<int, int> >);
 };
 
 #endif // GAMEMODEL_H
