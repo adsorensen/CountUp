@@ -5,6 +5,7 @@
 #include <QAbstractButton>
 #include <mainwindow.h>
 #include <levelscreen.h>
+#include <network.h>
 
 namespace Ui {
 class Login;
@@ -32,6 +33,7 @@ signals:
 private:
     Ui::Login *ui;
     bool newUser;
+    Network myNetwork;
 };
 
 #endif // LOGIN_H

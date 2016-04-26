@@ -265,22 +265,22 @@ void GameModel::PopulateGrid()
                         //Create a operand MathNode and emit signal for the views
                         grid[x][y].value = GenerateMathNode(false);
                         grid[x][y].isOperator = false;
-                        emit CreateBubbleAtSig(x,y);
+                        emit CreateBubbleAtSig(x);
                     } else if (yCount < 0.5) {
                         //Create a operator MathNode and emit signal for the view
                         grid[x][y].value = GenerateMathNode(true);
                         grid[x][y].isOperator = true;
-                        emit CreateBubbleAtSig(x,y);
+                        emit CreateBubbleAtSig(x);
                     } else {
                         //Create a random MathNode and emit signal for the view
                         if (qrand() % 2 == 0) {
                             grid[x][y].value = GenerateMathNode(false);
                             grid[x][y].isOperator = false;
-                            emit CreateBubbleAtSig(x,y);
+                            emit CreateBubbleAtSig(x);
                         } else {
                             grid[x][y].value = GenerateMathNode(true);
                             grid[x][y].isOperator = true;
-                            emit CreateBubbleAtSig(x,y);
+                            emit CreateBubbleAtSig(x);
                         }
                     }
                 } else {
@@ -288,11 +288,11 @@ void GameModel::PopulateGrid()
                     if (qrand() % 2 == 0) {
                         grid[x][y].value = GenerateMathNode(false);
                         grid[x][y].isOperator = false;
-                        emit CreateBubbleAtSig(x,y);
+                        emit CreateBubbleAtSig(x);
                     } else {
                         grid[x][y].value = GenerateMathNode(true);
                         grid[x][y].isOperator = true;
-                        emit CreateBubbleAtSig(x,y);
+                        emit CreateBubbleAtSig(x);
                     }
                 }
 
@@ -430,6 +430,17 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         int result = FormulaReader(formula);
         currentNum += result;
         movesRemaining--;
+
+        //remove nodes here
+        while (cellList.length() > 0) {
+
+            grid[cellList[0].first][cellList[0].second].value = "0";
+
+            cellList.remove(0);
+        }
+
+        PopulateGrid();
+
         if (movesRemaining == 0) {
             emit GameOverSig();
         }
