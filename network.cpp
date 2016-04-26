@@ -1,3 +1,4 @@
+
 #include "network.h"
 #include <usr/include/cppconn/driver.h>
 #include <usr/include/cppconn/exception.h>
@@ -181,11 +182,48 @@ bool Network::registerUser(QString username, QString password, QString admin, QS
     return success;
 
 }
-// TODO: Finish This
+
+bool Network::removeUser(QString username)
+{
+    bool success = false;
+
+    try{
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
+
+    driver = get_driver_instance();
+
+    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+
+    std::string nameS = fromQString(username);
+
+    stmt = con->createStatement();
+    std::string execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "';";
+
+    success = stmt->execute(execute);
+
+
+    delete res;
+    delete stmt;
+    delete con;
+    }
+    catch(sql::SQLException &e)
+    {
+        qDebug() << "error";
+    }
+
+    return success;
+
+}
+
 bool Network::updateHighscore(QString username, QString level, QString difficulty, QString highscore, QString currentlevel)
 {
     bool success1 = false;
-    bool success2 = false;
+    int sum;
+    int count = 0;
+    int averageScore;
 
     try{
     sql::Driver *driver;
@@ -209,30 +247,48 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
     res = stmt->executeQuery(execute);
     while (res->next())
     {
-      qDebug() << "\t... MySQL replies: ";
       int temp = res->getInt(1);
       if (level.QString::toInt() > temp) {
           stmt = con->createStatement();
           std::string execute1 = "INSERT INTO `cs5530db108`.`MathCrunchLevel` (`Username`, `Level`, `Difficulty`, `HighScore`) VALUES ('" + nameS + "'," + levelS + "," + difficultyS + ", " + highscoreS + "');";
 
           success1 = stmt->execute(execute1);
-
-          return success1;
-
       }
       else {
           stmt = con->createStatement();
+          std::string execute2 = "UPDATE `cs5530db108`.`MathCrunchLevel` SET HighScore = " + highscoreS + " WHERE 'Username' = '" + nameS + "' AND 'Difficulty' = " + difficultyS + " AND 'Level' = " + currentlevelS + " AND 'HighScore' < " + highscoreS + ";";
+
+          success1 = stmt->execute(execute2);
       }
 
     }
+
+    stmt = con->createStatement();
+    execute = "SELECT HighScore FROM `cs5530db108`.`MathCrunchLevel` WHERE 'Username' = '" + nameS + "';";
+    res = stmt->executeQuery(execute);
+
+    while (res->next())
+    {
+      int temp = res->getInt(1);
+      sum += temp;
+      count++;
+    }
+
+    averageScore = (total / count);
+
+    execute = "UPDATE `cs5530db108`.`MathCrunchUser` SET AverageScore = " + averageScore + " WHERE 'Username' = '" + nameS + "';";
+    res = stmt->executeQuery(execute);
+
     delete res;
     delete stmt;
     delete con;
-   }
+    }
     catch(sql::SQLException &e)
     {
         qDebug() << "error";
     }
+
+    return success1;
 
 }
 
@@ -255,17 +311,6 @@ bool Network::checkUserLogin(QString username, QString password)
     return success;
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //helper methods
 QString Network::toQString(std::string const &s)
