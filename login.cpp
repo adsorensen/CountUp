@@ -42,25 +42,73 @@ Login::~Login()
 //validate user login here
 void Login::on_loginbutton_pressed()
 {
+    int flag, flag2;
     if(ui->lineEdit->text() != "" && ui->lineEdit_2->text() != "")
     {
 
         QString name = ui->lineEdit->text(), password = ui->lineEdit_2->text();
+
+        //qDebug() << name << "   " << password;
+
+
         if(newUser)
         {
             //check to see if the login name exists
             //add new user to the database
+            bool isAdmin = ui->teacher->isChecked();
+            QString classText = ui->classBox->text();
+            //emit createUser(name, password, isAdmin, classText);
+            flag = myNetwork.registerUser(name, password, isAdmin, classText);
+            if(flag == 1)
+            {
+                //success
+                this->hide();
+                levelselector.show();
+            }
+            else if (flag == 2)
+            {
+                ui->warning->show();
+                ui->warning->setText("Login already exists");
+            }
+            else
+            {
+                ui->warning->setText("Something went wrong");
+                ui->warning->show();
+            }
         }
         else
         {
-            //validate user login
+            //emit validateLogin(name, password);
+            flag2 = myNetwork.checkUserLogin(name, password);
+
+            if(flag2 == 1)
+            {
+                qDebug() << flag2;
+                this->hide();
+                levelselector.show();
+            }
+            else if (flag2 == 2)
+            {
+                ui->warning->show();
+                ui->warning->setText("Wrong password");
+            }
+            else if (flag2 == 3)
+            {
+                ui->warning->show();
+                ui->warning->setText("Login doesn't exist");
+            }
+            else
+            {
+                ui->warning->show();
+                ui->warning->setText("Something went wrong");
+            }
         }
 
-        this->hide();
-        levelselector.show();
+
     }
     else
     {
+        ui->warning->setText("Must fill in all fields");
         ui->warning->show();
     }
 }
