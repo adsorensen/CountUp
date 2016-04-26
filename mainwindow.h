@@ -67,7 +67,6 @@ class MainWindow : public QMainWindow
     bool begin;
 
 
-
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -106,6 +105,7 @@ private:
     void createWalls();
     QColor generateColor(MathNode);
     void removeBallAt(float32 column, float32 row);
+    void removeBallAt(float32 column, float32 row, int delayVal);
     void spawnBallAt(float32 column, int index);
     int getIndex(int column, int row);
     float32 radius = 34.4f;

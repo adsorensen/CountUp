@@ -238,7 +238,17 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == ui->tableWidget->viewport())
     {
-        //if (event->type() == QEvent::MouseButtonRelease)
+        QPair<int, int> coord;
+        if (event->type() == QEvent::MouseButtonRelease)
+        {
+            foreach(coord, coordinates)
+            {
+                qDebug() << "first: " << coord.first << " secoasdfasdfasnd: " << coord.second;
+
+                removeBallAt(coord.first, coord.second, 100);
+            }
+            coordinates.clear();
+        }
         // qDebug() << "End expression";
     }
     return QMainWindow::eventFilter(obj, event);
@@ -490,11 +500,10 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
     if (begin == false)
     {
         QPair<int, int> rowAndCol;
-        rowAndCol.first = currentRow;
-        rowAndCol.second = currentColumn;
+        rowAndCol.first = currentColumn;
+        rowAndCol.second = currentRow;
         coordinates.append(rowAndCol);
         emit current_positions(coordinates);
-        removeBallAt(currentColumn, currentRow);
     }
     begin = false;
 }
@@ -502,10 +511,24 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
 void MainWindow::on_bombButton_pressed()
 {
 
-
 }
 
 void MainWindow::removeBallAt(float32 column, float32 row)
+{
+    int index = getIndex((int)column, (int)row);
+
+    b2Body *body = _objects.at(index).body;
+    //qDebug() << "removing ball at address " << body;
+
+    updateIndex(index);
+
+    World->DestroyBody(body);
+
+    spawnBallAt(column, index);
+
+}
+
+void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 {
     int index = getIndex((int)column, (int)row);
     qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
@@ -517,7 +540,11 @@ void MainWindow::removeBallAt(float32 column, float32 row)
 
     World->DestroyBody(body);
 
+    qDebug() << "Here";
+
     spawnBallAt(column, index);
+
+    delay(delayVal);
 }
 
 void MainWindow::spawnBallAt(float32 column, int index)
