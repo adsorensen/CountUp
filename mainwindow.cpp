@@ -310,10 +310,10 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
     o.column = pos.x;
     o.row = pos.y;
 
-
     MathNode myNode;
     myNode.value = QString::number(qrand()%10);
     o.color = generateColor(myNode);
+    o.numberValue = myNode.value;
 
     return o;
 }

@@ -8,41 +8,41 @@
 
 Network::Network()
 {
-//    try{
-//    sql::Driver *driver;
-//    sql::Connection *con;
-//    sql::Statement *stmt;
-//    sql::ResultSet *res;
+    try{
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
 
-//    driver = get_driver_instance();
-
-
-//    qDebug() << "trying";
-//    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
-//    qDebug() << "trying2";
-//    qDebug() << "trying3";
-//    stmt = con->createStatement();
-//    //stmt->execute("DROP TABLE IF EXISTS test");
-//    std::string execute = "SELECT * FROM `cs5530db108`.`RegisteredUser` WHERE `LoginName` = 'tswizzle';";
-
-//      res = stmt->executeQuery(execute);
-//      while (res->next())
-//      {
-//        qDebug() << "\t... MySQL replies: ";
-//        std::string temp = res->getString(2);
-//        QString ex = toQString(temp);
-//        qDebug() << ex;
+    driver = get_driver_instance();
 
 
-//      }
-//      delete res;
-//      delete stmt;
-//      delete con;
-//    }
-//    catch(sql::SQLException &e)
-//    {
-//        qDebug() << "error";
-//    }
+    qDebug() << "trying";
+    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+    qDebug() << "trying2";
+    qDebug() << "trying3";
+    stmt = con->createStatement();
+    //stmt->execute("DROP TABLE IF EXISTS test");
+    std::string execute = "SELECT * FROM `cs5530db108`.`RegisteredUser` WHERE `LoginName` = 'tswizzle';";
+
+      res = stmt->executeQuery(execute);
+      while (res->next())
+      {
+        qDebug() << "\t... MySQL replies: ";
+        std::string temp = res->getString(2);
+        QString ex = toQString(temp);
+        qDebug() << ex;
+
+
+      }
+      delete res;
+      delete stmt;
+      delete con;
+    }
+    catch(sql::SQLException &e)
+    {
+        qDebug() << "error";
+    }
 }
 
 //returns username, password, admin status, currentlevel, averagescore, userclass in that order
@@ -164,7 +164,7 @@ bool Network::registerUser(QString username, QString password, QString admin, QS
 
 
     stmt = con->createStatement();
-    std::string execute = "INSERT INTO `cs5530db108`.`MathCrunchUsers` (`Username`, `Password`, `AdminStatus`, `CurrentLevel`, `AverageScore`, `UserClass`) VALUES ('" + nameS + "','" + pwS + "','" + adminS + "','" + currentlevelS + "','" + avgscoreS +"','" + userclass +"');";
+    std::string execute = "INSERT INTO `cs5530db108`.`MathCrunchUsers` (`Username`, `Password`, `AdminStatus`, `CurrentLevel`, `AverageScore`, `UserClass`) VALUES ('" + nameS + "','" + pwS + "','" + adminS + "','" + currentlevelS + "','" + avgscoreS +"','" + userclassS +"');";
 
     success = stmt->execute(execute);
 
