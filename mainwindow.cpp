@@ -66,14 +66,8 @@ MainWindow::MainWindow(QWidget *parent) :
     World = new b2World(gravity);
 
     createWalls();
-    //createBalls();
 
-    //game.LevelStart(difficulty, level);
-
-    game.LevelStart(3,3);
-
-    fillGrid();
-
+    gameStarted = false;
     begin = true;
 }
 
@@ -409,33 +403,37 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
 //Start simulator
 void MainWindow::start() {
     //if(!_timerId) {
-    _timerId = startTimer(1000/60); // 60fps
-    //}
+       _timerId = startTimer(1000/60); // 60fps
+       //}
+       gameStarted = true;
 
-//    foreach(Object o, _objects)
-//    {
-//        World->DestroyBody(o.body);
-//    }
+       foreach(Object o, _objects)
+       {
+           World->DestroyBody(o.body);
+       }
 
-//    while(!_objects.isEmpty())
-//    {
-//        _objects.removeFirst();
-//    }
+       while(!_objects.isEmpty())
+       {
+           _objects.removeFirst();
+       }
 
-//    //Create world
-//    b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
-//    World = new b2World(gravity);
+       //Create world
+       b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
+       World = new b2World(gravity);
 
-//    createWalls();
+       createWalls();
 
-//    qDebug() << "difficulty " << difficulty;
-//    qDebug() << "level " << level;
-//    game.LevelStart(difficulty, level);
+   //    qDebug() << "difficulty " << difficulty;
+   //    qDebug() << "level " << level;
+       game.LevelStart(level, difficulty);
+       //:LevelStart(int lNum, int diffNum)
 
+       ui->dynTargetLabel->setText(QString::number(game.targetNum));
+       ui->dynDifficultyLabel->setText(game.difficultyString);
+       ui->dynLevelLabel_2->setText(QString::number(game.levelNum));
+       fillGrid();
 
-//    fillGrid();
-
-//    begin = true;
+       begin = true;
 }
 
 void MainWindow::timerEvent(QTimerEvent *event) {
@@ -496,16 +494,20 @@ QColor MainWindow::generateColor(MathNode currentNode)
 
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
-    qDebug() << "add expression" << currentColumn << currentRow;
-    if (begin == false)
-    {
-        QPair<int, int> rowAndCol;
-        rowAndCol.first = currentColumn;
-        rowAndCol.second = currentRow;
-        coordinates.append(rowAndCol);
-        emit current_positions(coordinates);
-    }
-    begin = false;
+    if(gameStarted)
+        {
+            //qDebug() << "add expresrtrsion" << currentColumn << currentRow;
+            if (begin == false)
+            {
+                QPair<int, int> rowAndCol;
+                rowAndCol.first = currentRow;
+                rowAndCol.second = currentColumn;
+                coordinates.append(rowAndCol);
+                emit current_positions(coordinates);
+                removeBallAt(currentColumn, currentRow);
+            }
+            begin = false;
+        }
 }
 
 void MainWindow::on_bombButton_pressed()

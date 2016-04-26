@@ -27,6 +27,7 @@ public:
     int div2BombCounter;
     int movesRemaining;
     int difficulty;
+    QString difficultyString;
 
     QVector<QVector<MathNode> > grid;
     QMap<int, Level*> levelMap;

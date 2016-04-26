@@ -45,6 +45,7 @@ void Levelscreen::on_playButton_pressed()
     c = ui->hardButton->isChecked();
     d = ui->veryhardButton->isChecked();
     e = ui->extremeButton->isChecked();
+    QString temp;
 
     int diff = 0;
     if (a || b || c || d || e)
@@ -54,6 +55,7 @@ void Levelscreen::on_playButton_pressed()
             //level = 0;
             diff = 1;
             difficulty = true;
+            temp = "Easy";
         }
 
         if (b)
@@ -61,6 +63,7 @@ void Levelscreen::on_playButton_pressed()
             diff = 2;
             //level = 5;
             difficulty = true;
+            temp = "Medium";
         }
 
         if (c)
@@ -68,6 +71,7 @@ void Levelscreen::on_playButton_pressed()
             diff = 3;
             //level = 10;
             difficulty = true;
+            temp = "Hard";
         }
 
         if (d)
@@ -75,6 +79,7 @@ void Levelscreen::on_playButton_pressed()
             diff = 4;
             //level = 15;
             difficulty = true;
+            temp = "Very Hard";
         }
 
         if (e)
@@ -82,6 +87,7 @@ void Levelscreen::on_playButton_pressed()
             diff = 5;
             //level = 20;
             difficulty = true;
+            temp = "Extreme";
         }
     }
     else
@@ -125,10 +131,10 @@ void Levelscreen::on_playButton_pressed()
                 //level += 5;
             }
             this->hide();
-            qDebug() << "d " << diff;
-            qDebug() << "l " << level;
+
             w.level = level;
             w.difficulty = diff;
+            w.game.difficultyString = temp;
             w.show();
             w.start();
             emit game_started(level);

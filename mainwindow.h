@@ -56,7 +56,6 @@ struct ObjectInfo
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    GameModel game;
     b2World* World;
     b2Body* groundBody;
     int _timerId = 0;
@@ -65,9 +64,12 @@ class MainWindow : public QMainWindow
     QVector<Object> walls;
     QVector<QPair<int, int>> coordinates;
     bool begin;
+    bool gameStarted;
 
 
 public:
+    GameModel game;
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void fillGrid();
