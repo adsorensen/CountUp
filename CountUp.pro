@@ -7,6 +7,7 @@
 QT += core
 QT += gui
 QT += sql widgets
+QT += sql
 QT += opengl
 
 
@@ -27,7 +28,8 @@ SOURCES += main.cpp\
     login.cpp \
     levelscreen.cpp \
     mainwindow.cpp \
-    level.cpp
+    level.cpp \
+    network.cpp
 
 HEADERS  += \
     gamemodel.h \
@@ -36,7 +38,8 @@ HEADERS  += \
     login.h \
     levelscreen.h \
     mainwindow.h \
-    level.h
+    level.h \
+    network.h
 
 FORMS    += \
     login.ui \
@@ -49,6 +52,8 @@ FORMS    += \
 
 #INCLUDEPATH += "./../CountUp/SFMLX/include"
 #DEPENDPATH += "./../CountUp/SFMLX/include"
+
+LIBS += -lGL -lGLU  -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl
 
 INCLUDEPATH += ../CountUp/Box2D/
 LIBS += -L"../CountUp/Box2D/Build/Box2D"

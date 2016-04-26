@@ -6,13 +6,12 @@
 #include <Box2D/Box2D.h>
 #include <Box2D/Dynamics/b2World.h>
 #include <QString>
+#include <stdio.h>
+#include <string>
+#include <network.h>
 
 
-#include <usr/include/cppconn/driver.h>
-#include <usr/include/cppconn/exception.h>
-#include <usr/include/cppconn/resultset.h>
-#include <usr/include/cppconn/statement.h>
-#include <usr/include/mysql_connection.h>
+
 
 
 
@@ -23,39 +22,12 @@ int main(int argc, char *argv[])
 
 //    login.show();
 
-    try{
-    sql::Driver *driver;
-    sql::Connection *con;
-    sql::Statement *stmt;
-    sql::ResultSet *res;
+    Network nw;
 
-
-    driver = get_driver_instance();
-
-    qDebug() << "trying";
-    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
-    qDebug() << "trying2";
-
-    con->setSchema("test");
-    qDebug() << "trying3";
-      stmt = con->createStatement();
-      res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
-      while (res->next()) {
-        qDebug() << "\t... MySQL replies: ";
-        /* Access column data by alias or column name */
-
-      }
-      delete res;
-      delete stmt;
-      delete con;
-    }
-    catch(sql::SQLException &e)
-    {
-        qDebug() << "error";
-    }
 
     return a.exec();
 }
+
 
 
 
