@@ -16,11 +16,20 @@ GameModel::GameModel()
         }
     }
 
+//    //f/*or(int i = 0; i < grid.size(); i++)
+//    {
+//        QVector<MathNode> temp = grid.at(i);
+
+//        for(int j = 0; j < temp.size(); j++)
+//        {
+//            qDebug() << temp.at(j).value;
+//            //qDebug() << index;
+//        }
+//    }*/
+
     for (int i = 0; i < 25; i++) {
         levelMap[i] = new Level(i,i,i,i,i,i,i,i);
     }
-
-    PopulateGrid();
 }
 
 
@@ -176,22 +185,22 @@ void GameModel::PopulateGrid()
                 //Node is empty
                 QVector<bool> operatorSpread;
                 if (x != 0) {
-                    if (grid[x-1][y].value != "0") {
+                    if (grid[x-1][y].isOperator) {
                         operatorSpread.push_back(grid[x-1][y].isOperator);
                     }
                 }
                 if (y != 0) {
-                    if (grid[x][y-1].value != "0") {
+                    if (grid[x][y-1].isOperator) {
                         operatorSpread.push_back(grid[x][y-1].isOperator);
                     }
                 }
                 if (x != grid.size()-1) {
-                    if (grid[x+1][y].value != "0") {
+                    if (grid[x+1][y].isOperator) {
                         operatorSpread.push_back(grid[x+1][y].isOperator);
                     }
                 }
                 if (y != grid[x].size()-1) {
-                    if (grid[x][y+1].value != "0") {
+                    if (grid[x][y+1].isOperator) {
                         operatorSpread.push_back(grid[x][y+1].isOperator);
                     }
                 }
@@ -253,47 +262,42 @@ QString GameModel::GenerateMathNode(bool isOperator)
         case 1: //Easy
             num = qrand() % 5 + 1;
             if ((qrand() % 2) == 0) {
-                ret = "-" + num;
+                ret = "-" + QString::number(num);
             } else {
-                ret = num;
+                ret = QString::number(num);
             }
-            return ret;
             break;
         case 2: //Medium
             num = qrand() % 10 + 1;
             if ((qrand() % 2) == 0) {
-                ret = "-" + num;
+                ret = "-" + QString::number(num);
             } else {
-                ret = num;
+                ret = QString::number(num);
             }
-            return ret;
             break;
         case 3: //Hard
             num = qrand() % 20 + 1;
             if ((qrand() % 2) == 0) {
-                ret = "-" + num;
+                ret = "-" + QString::number(num);
             } else {
-                ret = num;
+                ret = QString::number(num);
             }
-            return ret;
             break;
         case 4: //Very Hard
             num = qrand() % 50 + 1;
             if ((qrand() % 2) == 0) {
-                ret = "-" + num;
+                ret = "-" + QString::number(num);
             } else {
-                ret = num;
+                ret = QString::number(num);
             }
-            return ret;
             break;
         case 5: //Extreme
             num = qrand() % 100 + 1;
             if ((qrand() % 2) == 0) {
-                ret = "-" + num;
+                ret = "-" + QString::number(num);
             } else {
-                ret = num;
+                ret = QString::number(num);
             }
-            return ret;
             break;
         }
     } else {
@@ -330,13 +334,15 @@ QString GameModel::GenerateMathNode(bool isOperator)
             break;
         }
     }
+    //qDebug() << ret << " " <<  isOperator;
     return ret;
 }
 
-void GameModel::LevelStart(int lNum)
+void GameModel::LevelStart(int lNum, int diffNum)
 {
     levelNum = lNum;
-    difficulty = lNum % 5 + 1;
+    difficulty = diffNum;
+    //qDebug() << difficulty;
     targetNum = levelMap[levelNum]->targetNum;
     currentNum = 0;
     mBombCounter = levelMap[levelNum]->moduloBomb;

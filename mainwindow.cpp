@@ -68,6 +68,23 @@ MainWindow::MainWindow(QWidget *parent) :
     createWalls();
     createBalls();
 
+    game.LevelStart(2, 4);
+    int index = 0;
+
+    //qDebug() << game.grid.size();
+    for(int i = 0; i < game.grid.size(); i++)
+    {
+        QVector<MathNode> temp = game.grid.at(i);
+
+        for(int j = 0; j < temp.size(); j++)
+        {
+            qDebug() << temp.at(j).value;
+            //qDebug() << index;
+            index++;
+        }
+    }
+
+
     begin = true;
 }
 
@@ -144,9 +161,9 @@ void MainWindow::paintEvent(QPaintEvent *)
 void MainWindow::fillGrid(MathNode model[][10])
 {
 
-    for(int x = 0; x < 10; x++)
+    for(int x = 0; x < 8; x++)
     {
-        for(int y = 0; y < 10; y++)
+        for(int y = 0; y < 8; y++)
         {
             MathNode current = model[y][x];
 
