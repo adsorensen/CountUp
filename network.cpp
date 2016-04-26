@@ -136,15 +136,14 @@ QVector<QString> Network::getPlayerLevel(QString username)
     {
         qDebug() << "error";
     }
-
-
     return playerInfo;
 }
 
 
-bool Network::registerUser(QString username, QString password, QString admin, QString userclass)
+int Network::registerUser(QString username, QString password, bool admin, QString userclass)
 {
     bool success = false;
+    int flag = 0;
 
     try{
     sql::Driver *driver;
@@ -158,29 +157,37 @@ bool Network::registerUser(QString username, QString password, QString admin, QS
 
     std::string nameS = fromQString(username);
     std::string pwS = fromQString(password);
-    std::string adminS = fromQString(admin);
+    std::string adminS = "";
+    if (admin)
+    {
+        adminS = "true";
+    }
+    else
+    {
+        adminS = "false";
+    }
+
     std::string currentlevelS = "1";
     std::string avgscoreS = "0";
     std::string userclassS = fromQString(userclass);
 
-
     stmt = con->createStatement();
+
     std::string execute = "INSERT INTO `cs5530db108`.`MathCrunchUsers` (`Username`, `Password`, `AdminStatus`, `CurrentLevel`, `AverageScore`, `UserClass`) VALUES ('" + nameS + "','" + pwS + "','" + adminS + "','" + currentlevelS + "','" + avgscoreS +"','" + userclassS +"');";
 
     success = stmt->execute(execute);
+    flag = 1;
 
-
-    delete res;
+    //delete res;
     delete stmt;
     delete con;
     }
     catch(sql::SQLException &e)
     {
-        qDebug() << "error";
+        qDebug() << "error" << e.what();
+        flag = 2;
     }
-
-    return success;
-
+    return flag;
 }
 
 bool Network::removeUser(QString username)
@@ -274,9 +281,9 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
       count++;
     }
 
-    averageScore = (total / count);
+    //averageScore = (total / count);
 
-    execute = "UPDATE `cs5530db108`.`MathCrunchUser` SET AverageScore = " + averageScore + " WHERE 'Username' = '" + nameS + "';";
+    //execute = "UPDATE `cs5530db108`.`MathCrunchUser` SET AverageScore = " + averageScore + " WHERE 'Username' = '" + nameS + "';";
     res = stmt->executeQuery(execute);
 
     delete res;
@@ -292,24 +299,61 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
 
 }
 
-bool Network::checkUserLogin(QString username, QString password)
+int Network::checkUserLogin(QString username, QString password)
 {
-    bool success = false;
+    int success = 0;
     QVector<QString> playerInfo = getPlayerInfo(username);
+    std::string name = fromQString(username);
+    std::string passwordS = fromQString(password);
 
-    if(!playerInfo.isEmpty())
+    std::string query = "SELECT * from `cs5530db108`.`MathCrunchUsers` WHERE Username = '" + name + "' AND Password = '" + passwordS + "';";
+    std::string query2 = "SELECT * FROM `cs5530db108`.`MathCrunchUsers` WHERE Username = '" + name + "';";
+    try
     {
-        //0 is username, 1 is password
-        QString pw = playerInfo.at(1);
-        if(pw == password)
+        sql::Driver *driver;
+        sql::Connection *con;
+        sql::Statement *stmt;
+        sql::ResultSet *res;
+
+        driver = get_driver_instance();
+
+        con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(query);
+
+        if (res->next())
         {
-            success = true;
+            qDebug() << "success";
+            success = 1;
         }
+        else
+        {
+            res = stmt->executeQuery(query2);
+            if (res->next())
+            {
+                //wrong password
+                success = 2;
+            }
+            else
+            {
+                //user doesn't exist
+                success = 3;
+            }
+        }
+        delete res;
+        delete con;
+        delete stmt;
+
+    }
+    catch(sql::SQLException &e)
+    {
+        qDebug() << "error" << e.what();
+        success = -1;
     }
 
-
     return success;
-
 }
 
 //helper methods
