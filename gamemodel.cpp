@@ -75,38 +75,42 @@ int GameModel::FormulaReader(QVector<QString> formula)
 
     for (int i = 0; i < formula.length(); i ++) {
         if (formula[i].at(i).isDigit()) {
-            if (operators.top() == "*") {
-                operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
-                operators.pop();
-            } else if (operators.top() == "/") {
-                operands.push(QString::number(operands.pop().toInt() / formula[i].toInt()));
-                operators.pop();
+            if (!operators.isEmpty()) {
+                if (operators.top() == "*") {
+                    operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
+                    operators.pop();
+                } else if (operators.top() == "/") {
+                    operands.push(QString::number(operands.pop().toInt() / formula[i].toInt()));
+                    operators.pop();
+                }
             } else {
-            operands.push(formula[i]);
+                operands.push(formula[i]);
             }
         }
         else if (formula[i] == "+" or formula[i] == "-") {
-            if (operators.top() == "+") {
-                 secondOperand = operands.pop().toInt();
-                 firstOperand = operands.pop().toInt();
+            if (!operators.isEmpty()) {
+                if (operators.top() == "+") {
+                     secondOperand = operands.pop().toInt();
+                     firstOperand = operands.pop().toInt();
 
-                 operands.push(QString::number(firstOperand + secondOperand));
-                 operators.pop();
+                     operands.push(QString::number(firstOperand + secondOperand));
+                     operators.pop();
 
-            }
-            else if (operators.top()  == "-") {
-                secondOperand = operands.pop().toInt();
-                firstOperand = operands.pop().toInt();
+                }
+                else if (operators.top()  == "-") {
+                    secondOperand = operands.pop().toInt();
+                    firstOperand = operands.pop().toInt();
 
-                operands.push(QString::number(firstOperand- secondOperand));
-                operators.pop();
+                    operands.push(QString::number(firstOperand- secondOperand));
+                    operators.pop();
+                }
             }
         }
         else
             operators.push(formula[i]);
     }
 
-    if (operators.length() != 0) {
+    if (!operators.isEmpty()) {
         if (operators.top() == "+") {
              secondOperand = operands.pop().toInt();
              firstOperand = operands.pop().toInt();
