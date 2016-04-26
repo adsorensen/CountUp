@@ -19,7 +19,7 @@ public:
     QVector<QString> getPlayerInfo(QString username);
     QVector<QString> getPlayerLevel(QString username);
 
-    bool registerUser(QString username, QString password, QString admin, QString currentlevel, QString avgscore, QString userclass);
+    bool registerUser(QString username, QString password, QString admin, QString userclass);
     bool updateHighscore(QString username, QString level, QString difficulty, QString highscore, QString currentlevel);
     bool checkUserLogin(QString username, QString password);
 

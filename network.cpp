@@ -141,7 +141,7 @@ QVector<QString> Network::getPlayerLevel(QString username)
 }
 
 
-bool Network::registerUser(QString username, QString password, QString admin, QString currentlevel, QString avgscore, QString userclass)
+bool Network::registerUser(QString username, QString password, QString admin, QString userclass)
 {
     bool success = false;
 
@@ -158,8 +158,8 @@ bool Network::registerUser(QString username, QString password, QString admin, QS
     std::string nameS = fromQString(username);
     std::string pwS = fromQString(password);
     std::string adminS = fromQString(admin);
-    std::string currentlevelS = fromQString(currentlevel);
-    std::string avgscoreS = fromQString(avgscore);
+    std::string currentlevelS = "1";
+    std::string avgscoreS = "0";
     std::string userclassS = fromQString(userclass);
 
 
@@ -181,7 +181,7 @@ bool Network::registerUser(QString username, QString password, QString admin, QS
     return success;
 
 }
-
+// TODO: Finish This
 bool Network::updateHighscore(QString username, QString level, QString difficulty, QString highscore, QString currentlevel)
 {
     bool success1 = false;
@@ -203,32 +203,37 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
     std::string highscoreS = fromQString(highscore);
     std::string currentlevelS = fromQString(currentlevel);
 
-
     stmt = con->createStatement();
-    std::string execute = "REPLACE INTO `cs5530db108`.`MathCrunchLevel` (`Username`, `Level`, `Difficulty`, `CurrentLevel`, `HighScore`) VALUES ('" + nameS + "','" + levelS + "','" + difficultyS + "');";
-    std::string execute2 = "UPDATE `cs5530db108`.`MathCrunchUsers` SET `CurrentLevel` = '" + currentlevelS + "' WHERE `Username` = '" + nameS +"';";
+    std::string execute = "SELECT CurrentLevel FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "';";
 
-    success1 = stmt->execute(execute);
-    success2 = stmt->execute(execute2);
+    res = stmt->executeQuery(execute);
+    while (res->next())
+    {
+      qDebug() << "\t... MySQL replies: ";
+      int temp = res->getInt(1);
+      if (level.QString::toInt() > temp) {
+          stmt = con->createStatement();
+          std::string execute1 = "INSERT INTO `cs5530db108`.`MathCrunchLevel` (`Username`, `Level`, `Difficulty`, `HighScore`) VALUES ('" + nameS + "'," + levelS + "," + difficultyS + ", " + highscoreS + "');";
 
+          success1 = stmt->execute(execute1);
 
+          return success1;
+
+      }
+      else {
+          stmt = con->createStatement();
+      }
+
+    }
     delete res;
     delete stmt;
     delete con;
-    }
+   }
     catch(sql::SQLException &e)
     {
         qDebug() << "error";
     }
 
-    if(success1 == true && success2 == true)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
 }
 
 bool Network::checkUserLogin(QString username, QString password)
