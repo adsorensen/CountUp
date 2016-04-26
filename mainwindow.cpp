@@ -67,7 +67,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     createWalls();
 
-    gameStarted = false;
     begin = true;
 }
 
@@ -484,7 +483,7 @@ QColor MainWindow::generateColor(MathNode currentNode)
     }
     if (currentNode.value.endsWith("0"))
     {
-        return Qt::black;
+        return QColor(51, 102, 0);
     }
     else
     {
@@ -494,20 +493,16 @@ QColor MainWindow::generateColor(MathNode currentNode)
 
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
-    if(gameStarted)
-        {
-            //qDebug() << "add expresrtrsion" << currentColumn << currentRow;
-            if (begin == false)
-            {
-                QPair<int, int> rowAndCol;
-                rowAndCol.first = currentRow;
-                rowAndCol.second = currentColumn;
-                coordinates.append(rowAndCol);
-                emit current_positions(coordinates);
-                removeBallAt(currentColumn, currentRow);
-            }
-            begin = false;
-        }
+    qDebug() << "add expression" << currentColumn << currentRow;
+    if (begin == false)
+    {
+        QPair<int, int> rowAndCol;
+        rowAndCol.first = currentColumn;
+        rowAndCol.second = currentRow;
+        coordinates.append(rowAndCol);
+        emit current_positions(coordinates);
+    }
+    begin = false;
 }
 
 void MainWindow::on_bombButton_pressed()
