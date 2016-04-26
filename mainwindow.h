@@ -70,7 +70,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void fillGrid(MathNode model[][10]);
+    void fillGrid();
     void start();
 
 private slots:
@@ -95,6 +95,8 @@ private:
     Object createWall(float32 x, float32 y, float32 w, float32 h, float32 angle);
     Object createBall(const b2Vec2& pos, float32 radius);
     Object createBall(const b2Vec2& pos, float32 radius, int index);
+    Object createBall(const b2Vec2& pos, float32 radius, int index, MathNode mn);
+
     void drawWall(QPainter *p, const Object& o);
     void drawEllipse(QPainter *p, const Object& o);
     void createBalls();

@@ -66,24 +66,12 @@ MainWindow::MainWindow(QWidget *parent) :
     World = new b2World(gravity);
 
     createWalls();
-    createBalls();
+    //createBalls();
 
     game.LevelStart(2, 4);
-    int index = 0;
 
-    //qDebug() << game.grid.size();
-    for(int i = 0; i < game.grid.size(); i++)
-    {
-        QVector<MathNode> temp = game.grid.at(i);
 
-        for(int j = 0; j < temp.size(); j++)
-        {
-            qDebug() << temp.at(j).value;
-            //qDebug() << index;
-            index++;
-        }
-    }
-
+    fillGrid();
 
     begin = true;
 }
@@ -94,6 +82,66 @@ MainWindow::~MainWindow()
     delete ui;
     delete World;
 }
+
+//Sets value of the cell according to model
+void MainWindow::fillGrid()
+{
+    int index = 0;
+    int offsetX = 95.0f;
+    int offsetY = 90.0f;
+    //qDebug() << game.grid.size();
+    for(int i = 0; i < game.grid.size(); i++)
+    {
+        QVector<MathNode> column = game.grid.at(i);
+
+        for(int j = 0; j < column.size(); j++)
+        {
+            int dx = offsetX + j*70;
+            int dy = offsetY + i*70;
+            MathNode mn = column.at(j);
+            _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
+            index++;
+
+        }
+    }
+}
+
+Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index, MathNode mn)
+{
+    Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
+
+    // body
+    b2BodyDef bd;
+    bd.type = b2_dynamicBody;
+    bd.position = pos;
+    o.body = World->CreateBody(&bd);
+
+    // shape
+    b2CircleShape shape;
+    shape.m_radius = radius; //ADJUST BALL RADIUS HERE
+    // fixture
+    // add mass
+    for(int i = 0; i < 2; i++)
+    {
+        b2FixtureDef fd;
+        fd.shape = &shape;
+        fd.density = 1.0f;
+        fd.friction = 0.6f;
+        fd.restitution = 0.0f;
+        o.fixture = o.body->CreateFixture(&fd);
+
+    }
+
+    o.type = BallObject;
+    o.column = pos.x;
+    o.row = pos.y;
+
+
+    o.color = generateColor(mn);
+    o.numberValue = mn.value;
+    return o;
+}
+
 
 void MainWindow::createBalls()
 {
@@ -157,22 +205,7 @@ void MainWindow::paintEvent(QPaintEvent *)
     }
 }
 
-//Sets value of the cell according to model
-void MainWindow::fillGrid(MathNode model[][10])
-{
 
-    for(int x = 0; x < 8; x++)
-    {
-        for(int y = 0; y < 8; y++)
-        {
-            MathNode current = model[y][x];
-
-            ui->tableWidget->setItem(y, x, new QTableWidgetItem);
-            ui->tableWidget->item(y, x)->setText(current.value);
-            ui->tableWidget->item(y, x)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
-}
 
 //Add math node to current formula
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
