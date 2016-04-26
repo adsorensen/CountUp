@@ -60,10 +60,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connect slots and signals
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
+    QObject::connect(game, SIGNAL(InvalidFormulaSig), this, SLOT(dealWithInvalidFormula()));
+    QObject::connect(game, SIGNAL(LevelCompletedSig), this, SLOT(dealWithCompletedLevel()));
+    QObject::connect(game, SIGNAL(GameOverSig), this, SLOT(gameOver()));
+    QObject::connect(game, SIGNAL(ContinueLevelSig), this, SLOT(nextMove(int, int)));
 
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
     World = new b2World(gravity);
+    gameStarted = false;
 
     createWalls();
 
@@ -238,7 +243,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             {
                 qDebug() << "first: " << coord.first << " secoasdfasdfasnd: " << coord.second;
 
-                removeBallAt(coord.first, coord.second, 100);
+                game.OnMove(coordinates);
+
+                //removeBallAt(coord.first, coord.second, 100);
             }
             coordinates.clear();
         }
@@ -396,7 +403,7 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
     p->setBrush(brush);
 
 
-    p->drawText(QPointF(x, y), o.numberValue);
+    p->drawText(QPointF(x - 4, y + 4), o.numberValue);
 }
 
 //Start simulator
@@ -493,16 +500,21 @@ QColor MainWindow::generateColor(MathNode currentNode)
 
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
-    qDebug() << "add expression" << currentColumn << currentRow;
-    if (begin == false)
-    {
-        QPair<int, int> rowAndCol;
-        rowAndCol.first = currentColumn;
-        rowAndCol.second = currentRow;
-        coordinates.append(rowAndCol);
-        emit current_positions(coordinates);
-    }
-    begin = false;
+    //if(gameStarted)
+    //{
+        if (begin == false)
+        {
+            qDebug() << "add expression" << currentColumn << currentRow;
+
+            QPair<int, int> rowAndCol;
+            rowAndCol.first = currentColumn;
+            rowAndCol.second = currentRow;
+            coordinates.append(rowAndCol);
+            emit current_positions(coordinates);
+        }
+        begin = false;
+    //}
+
 }
 
 void MainWindow::on_bombButton_pressed()
@@ -528,7 +540,7 @@ void MainWindow::removeBallAt(float32 column, float32 row)
 void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 {
     int index = getIndex((int)column, (int)row);
-    qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
+    //qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
 
     b2Body *body = _objects.at(index).body;
     //qDebug() << "removing ball at address " << body;
@@ -537,7 +549,7 @@ void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 
     World->DestroyBody(body);
 
-    qDebug() << "Here";
+    //qDebug() << "Here";
 
     spawnBallAt(column, index);
 
@@ -546,7 +558,7 @@ void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 
 void MainWindow::spawnBallAt(float32 column, int index)
 {
-    qDebug() << "COLUMN " << column;
+    //qDebug() << "COLUMN " << column;
     //incorrect index
 
     _objects.removeAt(column);
@@ -571,20 +583,20 @@ void MainWindow::updateIndex(int index)
     while(current >= 8)
     {
 
-        qDebug() << "Object Previous to be Moved " << _objects.at(previous).index;
+       // qDebug() << "Object Previous to be Moved " << _objects.at(previous).index;
 
         Object temp = _objects.at(previous);
 
         _objects.removeAt(current);
 
         _objects.insert(current, temp);
-        qDebug() << "Object Now At " << current << " is: " <<  _objects.at(current).index;
-        qDebug() << "Should be Same as First Object Now At " << previous << " is: " <<  _objects.at(previous).index;
+        //qDebug() << "Object Now At " << current << " is: " <<  _objects.at(current).index;
+        //qDebug() << "Should be Same as First Object Now At " << previous << " is: " <<  _objects.at(previous).index;
 
         current = current - 8;
         previous = previous - 8;
     }
-    qDebug() << "done updating";
+    //qDebug() << "done updating";
 }
 
 

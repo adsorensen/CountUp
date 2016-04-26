@@ -67,6 +67,7 @@ class MainWindow : public QMainWindow
     bool gameStarted;
 
 
+
 public:
     GameModel game;
 
@@ -91,6 +92,14 @@ private slots:
     void on_bombButton_pressed();
 
     void on_shuffleButton_pressed();
+
+    void dealWithInvalidFormula();
+
+    void dealWithCompletedLevel();
+
+    void gameOver();
+
+    void nextMove(int movesRemaining, int currentNum);
 
 private:
     Ui::MainWindow *ui;
