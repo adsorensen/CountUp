@@ -48,7 +48,7 @@ signals:
     void LevelCompletedSig();\
     void GameOverSig();
     void ContinueLevelSig(int, int);
-    void CreateBubbleAtSig(int);
+    void CreateBubbleAtSig(int, int);
 };
 
 #endif // GAMEMODEL_H
