@@ -122,6 +122,7 @@ private:
     float32 radius = 34.4f;
     void updateIndex(int index);
     void delay(int millisecondsToWait);
+    void checkIntegrity();
 
 signals:
     void current_positions(QVector<QPair<int, int>>);

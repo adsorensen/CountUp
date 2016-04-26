@@ -60,10 +60,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connect slots and signals
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
-    QObject::connect(game, SIGNAL(InvalidFormulaSig), this, SLOT(dealWithInvalidFormula()));
-    QObject::connect(game, SIGNAL(LevelCompletedSig), this, SLOT(dealWithCompletedLevel()));
-    QObject::connect(game, SIGNAL(GameOverSig), this, SLOT(gameOver()));
-    QObject::connect(game, SIGNAL(ContinueLevelSig), this, SLOT(nextMove(int, int)));
+    QObject::connect(&game, SIGNAL(InvalidFormulaSig), this, SLOT(dealWithInvalidFormula()));
+    QObject::connect(&game, SIGNAL(LevelCompletedSig), this, SLOT(dealWithCompletedLevel()));
+    QObject::connect(&game, SIGNAL(GameOverSig), this, SLOT(gameOver()));
+    QObject::connect(&game, SIGNAL(ContinueLevelSig), this, SLOT(nextMove(int, int)));
+    //QObject::connect(game, SIGNAL(CreateBubbleAtSig(int, int)), this, createBa);
 
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
@@ -239,15 +240,17 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         QPair<int, int> coord;
         if (event->type() == QEvent::MouseButtonRelease)
         {
-            foreach(coord, coordinates)
-            {
-                qDebug() << "first: " << coord.first << " secoasdfasdfasnd: " << coord.second;
+//            foreach(coord, coordinates)
+//            {
+//                qDebug() << "first: " << coord.first << " secoasdfasdfasnd: " << coord.second;
 
-                game.OnMove(coordinates);
+//                game.OnMove(coordinates);
 
-                //removeBallAt(coord.first, coord.second, 100);
-            }
-            coordinates.clear();
+//                //removeBallAt(coord.first, coord.second, 100);
+//            }
+            game.OnMove(coordinates);
+
+            //coordinates.clear();
         }
         // qDebug() << "End expression";
     }
@@ -638,4 +641,24 @@ void MainWindow::delay(int millisecondsToWait)
     {
         QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
     }
+}
+
+void MainWindow::dealWithInvalidFormula()
+{
+
+}
+
+void MainWindow::dealWithCompletedLevel()
+{
+
+}
+
+void MainWindow::gameOver()
+{
+
+}
+
+void MainWindow::nextMove(int movesRemaining, int currentNum)
+{
+
 }
