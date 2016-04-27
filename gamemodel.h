@@ -38,6 +38,7 @@ public:
     void BombGrid(int);
     void RemoveNode(QVector<QPair<int, int> >);
     void PopulateGrid();
+    void ClearGrid();
     void CheckWin();
     QString GenerateMathNode(bool);
 public slots:

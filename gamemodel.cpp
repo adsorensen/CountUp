@@ -73,8 +73,8 @@ int GameModel::FormulaReader(QVector<QString> formula)
     int firstOperand;
     int secondOperand;
 
-    for (int i = 0; i < formula.length(); i ++) {
-        if (formula[i].at(i).isDigit()) {
+    for (int i = 0; i < formula.length(); i++) {
+        if (formula[i].toInt() != 0) {
             if (!operators.isEmpty()) {
                 if (operators.top() == "*") {
                     operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
@@ -88,11 +88,11 @@ int GameModel::FormulaReader(QVector<QString> formula)
             }
         }
         else if (formula[i] == "+" or formula[i] == "-") {
+                                            qDebug() << "else if";
             if (!operators.isEmpty()) {
                 if (operators.top() == "+") {
                      secondOperand = operands.pop().toInt();
                      firstOperand = operands.pop().toInt();
-
                      operands.push(QString::number(firstOperand + secondOperand));
                      operators.pop();
 
@@ -136,11 +136,7 @@ void GameModel::ShuffleGrid()
     //Shuffles grid to prevent stale games
 
     //Sets the value of all grid values to 0
-    for (int i = 0; i < grid.length(); i++) {
-        for (int j = 0; j < grid[i].length(); j++) {
-            grid[i][j].value = "0";
-        }
-    }
+    ClearGrid();
     //Repopulates the grid
     PopulateGrid();
 
@@ -305,6 +301,14 @@ void GameModel::PopulateGrid()
     }
 }
 
+void GameModel::ClearGrid() {
+    for (int x = 0; x < grid.size(); x++) {
+        for (int y = 0; y < grid[x].size(); y++) {
+            grid[x][y].value = "0";
+        }
+    }
+}
+
 void GameModel::CheckWin() {
     if (currentNum == targetNum) {
         emit LevelCompletedSig();
@@ -396,7 +400,6 @@ QString GameModel::GenerateMathNode(bool isOperator)
             break;
         }
     }
-    //qDebug() << ret << " " <<  isOperator;
     return ret;
 }
 
@@ -404,7 +407,6 @@ void GameModel::LevelStart(int lNum, int diffNum)
 {
     levelNum = lNum;
     difficulty = diffNum;
-    //qDebug() << difficulty;
     targetNum = levelMap[levelNum]->targetNum;
     currentNum = 0;
     mBombCounter = levelMap[levelNum]->moduloBomb;
@@ -431,7 +433,9 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
 
     if (FormulaCheck(boolList)) {
         //valid formula
+        qDebug() << "here1";
         int result = FormulaReader(formula);
+        qDebug() << "here2";
         currentNum += result;
         movesRemaining--;
 
