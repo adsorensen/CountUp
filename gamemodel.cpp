@@ -75,10 +75,11 @@ int GameModel::FormulaReader(QVector<QString> formula)
 
     for (int i = 0; i < formula.length(); i++) {
         if (formula[i].toInt() != 0) {
-            qDebug() << formula[i].toInt();
+            //qDebug() << formula[i].toInt();
             if (!operators.isEmpty()) {
                 if (operators.top() == "*") {
                     operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
+
                     operators.pop();
                 } else if (operators.top() == "/") {
                     operands.push(QString::number(operands.pop().toInt() / formula[i].toInt()));
@@ -118,25 +119,26 @@ int GameModel::FormulaReader(QVector<QString> formula)
 
 
     if (!operators.isEmpty()) {
-        qDebug() << "operators was not empty";
+       // qDebug() << "operators was not empty";
         if (operators.top() == "+") {
-            qDebug() << operators.count();
-            qDebug() << operands.count();
+
 
 
              secondOperand = operands.pop().toInt();
              firstOperand = operands.pop().toInt();
 
              operands.push(QString::number(firstOperand + secondOperand));
-             qDebug() << QString::number(firstOperand + secondOperand);
+             //qDebug() << QString::number(firstOperand + secondOperand);
              operators.pop();
 
         }
         else if (operators.top()  == "-") {
+
             secondOperand = operands.pop().toInt();
             firstOperand = operands.pop().toInt();
 
             operands.push(QString::number(firstOperand- secondOperand));
+            //qDebug() << QString::number(firstOperand + secondOperand);
             operators.pop();
         }
     }
@@ -450,6 +452,9 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         //valid formula
         int result = FormulaReader(formula);
         currentNum += result;
+
+        qDebug() << "result = " << result;
+        qDebug() << "current number = " << currentNum;
         movesRemaining--;
         RemoveNode(cellList);
 
@@ -463,4 +468,9 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         //invalid formula
         emit InvalidFormulaSig();
     }
+}
+
+void GameModel::getUsername(QString username)
+{
+
 }

@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     Login login;
 
+    QObject::connect(&login, SIGNAL(sendUsername(QString)), &login.levelselector.w.game, SLOT(getUsername(QString)));
+
     login.show();
 
     Network nw;

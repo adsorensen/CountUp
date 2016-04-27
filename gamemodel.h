@@ -47,6 +47,7 @@ public:
 public slots:
     void LevelStart(int, int);
     void OnMove(QVector<QPair<int,int> >);
+    void getUsername(QString);
 signals:
     void InvalidFormulaSig();
     void LevelCompletedSig();\
