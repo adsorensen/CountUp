@@ -1,3 +1,19 @@
+/**
+* Backend of the screen in the UI that allows users to select a level
+*
+* CS3505, April 2016.
+* Team: It's Lit (fire, fire, fire)
+*
+* @author Adam Sorensen
+*         Connor Douglas
+*         Johnny Le
+*         Michelle Nguyen
+*         Steven Sun
+*         Trung Le
+*         Yu Song
+*         Zhi Wong
+*/
+
 #include "levelscreen.h"
 #include "ui_levelscreen.h"
 #include <QGraphicsScene>
@@ -35,10 +51,8 @@ Levelscreen::~Levelscreen()
     delete ui;
 }
 
-
 void Levelscreen::on_playButton_pressed()
 {
-    int level;
     bool a, b, c, d, e, difficulty = false;
     a = ui->easyButton->isChecked();
     b = ui->mediumButton->isChecked();
@@ -52,7 +66,6 @@ void Levelscreen::on_playButton_pressed()
     {
         if (a)
         {
-            //level = 0;
             diff = 1;
             difficulty = true;
             temp = "Easy";
@@ -61,7 +74,6 @@ void Levelscreen::on_playButton_pressed()
         if (b)
         {
             diff = 2;
-            //level = 5;
             difficulty = true;
             temp = "Medium";
         }
@@ -69,7 +81,6 @@ void Levelscreen::on_playButton_pressed()
         if (c)
         {
             diff = 3;
-            //level = 10;
             difficulty = true;
             temp = "Hard";
         }
@@ -77,7 +88,6 @@ void Levelscreen::on_playButton_pressed()
         if (d)
         {
             diff = 4;
-            //level = 15;
             difficulty = true;
             temp = "Very Hard";
         }
@@ -85,7 +95,6 @@ void Levelscreen::on_playButton_pressed()
         if (e)
         {
             diff = 5;
-            //level = 20;
             difficulty = true;
             temp = "Extreme";
         }
@@ -108,27 +117,22 @@ void Levelscreen::on_playButton_pressed()
             if (a)
             {
                 level = 1;
-                //level += 1;
             }
             if (b)
             {
                 level = 2;
-                //level += 2;
             }
             if (c)
             {
                 level = 3;
-                //level += 3;
             }
             if (d)
             {
                 level = 4;
-                //level += 4;
             }
             if (e)
             {
                 level = 5;
-                //level += 5;
             }
             this->hide();
 

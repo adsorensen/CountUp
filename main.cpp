@@ -1,3 +1,17 @@
+/**
+* CS3505, April 2016.
+* Team: It's Lit (fire, fire, fire)
+*
+* @author Adam Sorensen
+*         Connor Douglas
+*         Johnny Le
+*         Michelle Nguyen
+*         Steven Sun
+*         Trung Le
+*         Yu Song
+*         Zhi Wong
+*/
+
 #include "mainwindow.h"
 #include <QApplication>
 #include <login.h>
@@ -9,11 +23,6 @@
 #include <stdio.h>
 #include <string>
 #include <network.h>
-
-
-
-
-
 
 int main(int argc, char *argv[])
 {
@@ -27,41 +36,3 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
-
-
-
-
-//try {
-//  sql::Driver *driver;
-//  sql::Connection *con;
-//  sql::Statement *stmt;
-//  sql::ResultSet *res;
-
-//  /* Create a connection */
-//  driver = get_driver_instance();
-//  con = driver->connect("tcp://127.0.0.1:3306", "root", "root");
-//  /* Connect to the MySQL test database */
-//  con->setSchema("test");
-
-//  stmt = con->createStatement();
-//  res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
-//  while (res->next()) {
-//    cout << "\t... MySQL replies: ";
-//    /* Access column data by alias or column name */
-//    cout << res->getString("_message") << endl;
-//    cout << "\t... MySQL says it again: ";
-//    /* Access column fata by numeric offset, 1 is the first column */
-//    cout << res->getString(1) << endl;
-//  }
-//  delete res;
-//  delete stmt;
-//  delete con;
-
-//} catch (sql::SQLException &e) {
-//      cout << "# ERR: SQLException in " << __FILE__;
-//      cout << "(" << __FUNCTION__ << ") on line " »
-//         << __LINE__ << endl;
-//      cout << "# ERR: " << e.what();
-//      cout << " (MySQL error code: " << e.getErrorCode();
-//      cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-//}

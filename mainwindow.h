@@ -66,11 +66,8 @@ class MainWindow : public QMainWindow
     bool begin;
     bool gameStarted;
 
-
-
 public:
     GameModel game;
-
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void fillGrid();
@@ -80,32 +77,19 @@ public:
 
 private slots:
     void on_tableWidget_cellClicked(int row, int column);
-
     void on_tableWidget_cellEntered(int row, int column);
-
     bool eventFilter(QObject *obj, QEvent *event);
-
-    void on_entry();
-
     void on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
-
     void on_bombButton_pressed();
-
     void on_shuffleButton_pressed();
 
 public slots:
-
     void dealWithInvalidFormula();
-
     void dealWithCompletedLevel();
-
     void gameOver();
-
     void nextMove(int movesRemaining, int currentNum);
-
     void dealWithNewBubble(int, int);
     void removeBubbles(QVector<QPair<int, int>>);
-
 
 private:
     Ui::MainWindow *ui;
@@ -115,7 +99,6 @@ private:
     Object createBall(const b2Vec2& pos, float32 radius);
     Object createBall(const b2Vec2& pos, float32 radius, int index);
     Object createBall(const b2Vec2& pos, float32 radius, int index, MathNode mn);
-
     void drawWall(QPainter *p, const Object& o);
     void drawEllipse(QPainter *p, const Object& o);
     void createBalls();
@@ -130,7 +113,6 @@ private:
     void updateIndex(int index);
     void delay(int millisecondsToWait);
     void checkIntegrity();
-
 
 signals:
     void current_positions(QVector<QPair<int, int>>);

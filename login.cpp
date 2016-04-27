@@ -1,3 +1,19 @@
+/**
+* Backend of the screen in the UI that allows users/admins to log in
+*
+* CS3505, April 2016.
+* Team: It's Lit (fire, fire, fire)
+*
+* @author Adam Sorensen
+*         Connor Douglas
+*         Johnny Le
+*         Michelle Nguyen
+*         Steven Sun
+*         Trung Le
+*         Yu Song
+*         Zhi Wong
+*/
+
 #include "login.h"
 #include "ui_login.h"
 #include <QDebug>

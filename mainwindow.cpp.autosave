@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
+    
     // Centers application on start up
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     ui->setupUi(this);
@@ -46,10 +46,10 @@ MainWindow::MainWindow(QWidget *parent) :
     int y = (screenGeometry.height() - this->height()) / 2;
     this->move(x, y);
     this->show();
-
+    
     // Sets the background image
     this->setStyleSheet("MainWindow {border-image: url(:/background/Resources/bg.png); };");
-
+    
     // Initializes the game "grid"
     ui->tableWidget->horizontalHeader()->sectionResizeMode(QHeaderView::Fixed);
     ui->tableWidget->verticalHeader()->sectionResizeMode(QHeaderView::Fixed);
@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->viewport()->setMouseTracking(true);
     ui->tableWidget->installEventFilter(this);
     ui->tableWidget->viewport()->installEventFilter(this);
-
+    
     // Connect slots and signals
     QObject::connect(&game, SIGNAL(InvalidFormulaSig()), this, SLOT(dealWithInvalidFormula()));
     QObject::connect(&game, SIGNAL(LevelCompletedSig()), this, SLOT(dealWithCompletedLevel()));
@@ -66,14 +66,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(&game, SIGNAL(ContinueLevelSig(int, int)), this, SLOT(nextMove(int, int)));
     QObject::connect(&game, SIGNAL(CreateBubbleAtSig(int, int)), this, SLOT(dealWithNewBubble(int, int)));
     QObject::connect(&game, SIGNAL(RemoveBubblesAtSig(QVector<QPair<int,int> >)), this, SLOT(removeBubbles(QVector<QPair<int,int>>)));
-
+    
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
     World = new b2World(gravity);
     gameStarted = false;
-
+    
     createWalls();
-
+    
     begin = true;
 }
 
@@ -94,7 +94,7 @@ void MainWindow::fillGrid()
     for(int i = 0; i < game.grid.size(); i++)
     {
         QVector<MathNode> column = game.grid.at(i);
-
+        
         for(int j = 0; j < column.size(); j++)
         {
             int dx = offsetX + j*70;
@@ -102,7 +102,7 @@ void MainWindow::fillGrid()
             MathNode mn = column.at(j);
             _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
             index++;
-
+            
         }
     }
 }
@@ -110,13 +110,13 @@ void MainWindow::fillGrid()
 Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index, MathNode mn)
 {
     Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
-
+    
     // body
     b2BodyDef bd;
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
-
+    
     // shape
     b2CircleShape shape;
     shape.m_radius = radius; //ADJUST BALL RADIUS HERE
@@ -130,19 +130,18 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index, Math
         fd.friction = 0.6f;
         fd.restitution = 0.0f;
         o.fixture = o.body->CreateFixture(&fd);
-
+        
     }
-
+    
     o.type = BallObject;
     o.column = pos.x;
     o.row = pos.y;
-
-
+    
+    
     o.color = generateColor(mn);
     o.numberValue = mn.value;
     return o;
 }
-
 
 void MainWindow::createBalls()
 {
@@ -164,22 +163,22 @@ void MainWindow::createBalls()
 void MainWindow::createWalls()
 {
     //_objects.append(createWall(60.0f, 305.0f, 560.0f, 1.0f, 0.0)); //test wall
-
+    
     //Create walls for grid
     walls.append(createWall(60.0f, 615.0f, 560.0f, 1.0f, 0.0)); //ground
     walls.append(createWall(60.0f, 55.0f, 1.0f, 560.0f, 0.0));  //left border
     walls.append(createWall(620.0f, 55.0f, 1.0f, 560.0f, 0.0));  //right border
-
+    
     //balls do not populate grid, they fall outside and into the abyss of nothingness
-
+    
     //funnel 1
     walls.append(createWall(-30.0f, 28.0f, 100.0f, 3.0f, -0.25f*b2_pi));
     walls.append(createWall(613.0f, 28.0f, 100.0f, 3.0f, 0.25f*b2_pi));
-
+    
     //funnel2
     //   _objects.append(createWall(-210.0f, -45.0f, 300.0f, 1.0f, -0.25f*b2_pi));
     //   _objects.append(createWall(590.0f, -45.0f, 300.0f, 1.0f, 0.25f*b2_pi));
-
+    
     //inner borders
     walls.append(createWall(130.0f, 55.0f, 0.5f, 560.0f, 0.0));
     walls.append(createWall(200.0f, 55.0f, 0.5f, 560.0f, 0.0));
@@ -213,12 +212,12 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
     //retrieve value from math node
     //append to formula string
-
+    
     //qDebug() << "Start expression" << column << row;
     //ui->tableWidget->setItem(row,column,item);
-
+    
     //validate formula before removing math ball
-
+    
 }
 
 //Same thing here but for drag
@@ -227,7 +226,7 @@ void MainWindow::on_tableWidget_cellEntered(int row, int column)
 {
     //validate formula before removing math ball
     //removeBallAt(column, row);
-
+    
 }
 
 //End string on mouse release
@@ -244,15 +243,15 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             //            foreach(coord, coordinates)
             //            {
             //                qDebug() << "first: " << coord.first << " secoasdfasdfasnd: " << coord.second;
-
+            
             //                game.OnMove(coordinates);
-
+            
             //                //removeBallAt(coord.first, coord.second, 100);
             //            }
             qDebug() <<"onmove";
             qDebug() << game.currentNum;
             qDebug() << coordinates.size();
-
+            
             for(int i = 0; i < coordinates.size(); i++)
             {
                 MathNode mn = game.grid.at(coordinates.at(i).first).at(coordinates.at(i).second);
@@ -265,7 +264,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
                 coordinates.clear();
             }
             qDebug() << "here2";
-
+            
             qDebug() << "current num" << game.currentNum;
         }
         // qDebug() << "End expression";
@@ -281,16 +280,16 @@ void MainWindow::drawWall(QPainter *p, const Object& o){
     const b2PolygonShape *shape = dynamic_cast<b2PolygonShape*>(o.fixture->GetShape());
     float32 hx = shape->GetVertex(1).x;
     float32 hy = shape->GetVertex(2).y;
-
+    
     QRectF r(x-hx, y-hy, 2*hx, 2*hy);
-
+    
     p->save();
     p->translate(r.center());
     p->rotate(angle*180/b2_pi);
     p->translate(-r.center());
     p->drawRect(r);
     p->fillRect(r, Qt::white);
-
+    
     p->restore();
 }
 
@@ -319,13 +318,13 @@ Object MainWindow::createWall(float32 x, float32 y, float32 w, float32 h, float3
 //Create ball model
 Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
-
+    
     // body
     b2BodyDef bd;
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
-
+    
     // shape
     b2CircleShape shape;
     shape.m_radius = radius; //ADJUST BALL RADIUS HERE
@@ -339,14 +338,14 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
         fd.friction = 0.6f;
         fd.restitution = 0.0f;
         o.fixture = o.body->CreateFixture(&fd);
-
+        
     }
-
+    
     o.type = BallObject;
     o.column = pos.x;
     o.row = pos.y;
-
-
+    
+    
     MathNode myNode;
     myNode.value = QString::number(qrand()%10);
     o.color = generateColor(myNode);
@@ -357,14 +356,14 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
 Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
 {
     Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
-
+    
     // body
     b2BodyDef bd;
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
     o.index = index;
-
+    
     // shape
     b2CircleShape shape;
     shape.m_radius = radius; //ADJUST BALL RADIUS HERE
@@ -378,18 +377,18 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
         fd.friction = 0.6f;
         fd.restitution = 0.0f;
         o.fixture = o.body->CreateFixture(&fd);
-
+        
     }
-
+    
     o.type = BallObject;
     o.column = pos.x;
     o.row = pos.y;
-
+    
     MathNode myNode;
     myNode.value = QString::number(qrand()%10);
     o.color = generateColor(myNode);
     o.numberValue = myNode.value;
-
+    
     return o;
 }
 
@@ -399,24 +398,24 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
 {
     QFont font;
     font.setPixelSize(20);
-
+    
     // Fills nodes
     QPen pen(Qt::black, 2);
     p->setPen(pen);
     QBrush brush(o.color);
-
+    
     float32 x = o.body->GetPosition().x;
     float32 y = o.body->GetPosition().y;
     float32 r = o.fixture->GetShape()->m_radius;
-
+    
     p->setBrush(brush);
-
+    
     p->drawEllipse(QPointF(x, y), r, r);
-
+    
     brush.setColor(Qt::white);
-
+    
     p->setBrush(brush);
-
+    
     p->setFont(font);
     p->drawText(QPointF(x - 5, y + 5), o.numberValue);
 }
@@ -427,38 +426,38 @@ void MainWindow::start() {
     _timerId = startTimer(1000/60); // 60fps
     //}
     gameStarted = true;
-
-
+    
+    
     foreach(Object o, _objects)
     {
         World->DestroyBody(o.body);
     }
-
+    
     while(!_objects.isEmpty())
     {
         _objects.removeFirst();
     }
-
+    
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
     World = new b2World(gravity);
-
+    
     createWalls();
-
-
+    
+    
     game.LevelStart(level, difficulty);
-
+    
     //:LevelStart(int lNum, int diffNum)
-
+    
     ui->dynTargetLabel->setText(QString::number(game.targetNum));
     ui->dynDifficultyLabel->setText(game.difficultyString);
     ui->dynLevelLabel_2->setText(QString::number(game.levelNum));
-
+    
     fillGrid();
-
-
+    
+    
     begin = true;
-
+    
 }
 
 void MainWindow::timerEvent(QTimerEvent *event) {
@@ -522,7 +521,7 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
     QPair<int, int> rowAndCol;
     if ((currentRow == 0 && currentColumn == 0) && ((previousRow == -1 &&  previousColumn == -1)))
     {
-       ;
+        ;
     }
     else
     {
@@ -535,40 +534,40 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
 
 void MainWindow::on_bombButton_pressed()
 {
-
+    
 }
 
 void MainWindow::removeBallAt(float32 column, float32 row)
 {
     int index = getIndex((int)column, (int)row);
-
+    
     b2Body *body = _objects.at(index).body;
     //qDebug() << "removing ball at address " << body;
-
+    
     updateIndex(index);
-
+    
     World->DestroyBody(body);
-
+    
     spawnBallAt(column, index);
-
+    
 }
 
 void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 {
     int index = getIndex((int)column, (int)row);
     //qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
-
+    
     b2Body *body = _objects.at(index).body;
     //qDebug() << "removing ball at address " << body;
-
+    
     updateIndex(index);
-
+    
     World->DestroyBody(body);
-
+    
     //qDebug() << "Here";
-
+    
     spawnBallAt(column, index);
-
+    
     delay(delayVal);
 }
 
@@ -577,9 +576,9 @@ void MainWindow::spawnBallAt(float32 column, int index)
     //qDebug() << "COLUMN " << column;
     //incorrect index
     qDebug() << "removing";
-
+    
     _objects.removeAt(column);
-
+    
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column));
 }
 
@@ -596,20 +595,20 @@ void MainWindow::updateIndex(int index)
     int current = index;
     //ball right above it
     int previous = current - 8;
-
+    
     while(current >= 8)
     {
-
+        
         // qDebug() << "Object Previous to be Moved " << _objects.at(previous).index;
-
+        
         Object temp = _objects.at(previous);
-
+        
         _objects.removeAt(current);
-
+        
         _objects.insert(current, temp);
         //qDebug() << "Object Now At " << current << " is: " <<  _objects.at(current).index;
         //qDebug() << "Should be Same as First Object Now At " << previous << " is: " <<  _objects.at(previous).index;
-
+        
         current = current - 8;
         previous = previous - 8;
     }
@@ -625,12 +624,12 @@ void MainWindow::on_shuffleButton_pressed()
     {
         World->DestroyBody(o.body);
     }
-
+    
     while(!_objects.isEmpty())
     {
         _objects.removeFirst();
     }
-
+    
     int offsetX = 95.0f;
     int offsetY = 90.0f;
     int dropheight = 10.0f;
@@ -641,7 +640,7 @@ void MainWindow::on_shuffleButton_pressed()
             int dx = offsetX + j*70;
             int dy = offsetY + i*70;
             _objects.prepend(createBall(b2Vec2(dx, dropheight), radius));
-
+            
             delay(50);
         }
         dropheight = dropheight - 70.0f;
@@ -659,17 +658,17 @@ void MainWindow::delay(int millisecondsToWait)
 
 void MainWindow::dealWithInvalidFormula()
 {
-
+    
 }
 
 void MainWindow::dealWithCompletedLevel()
 {
-
+    
 }
 
 void MainWindow::gameOver()
 {
-
+    
 }
 
 void MainWindow::nextMove(int movesRemaining, int currentNum)
@@ -679,9 +678,9 @@ void MainWindow::nextMove(int movesRemaining, int currentNum)
 void MainWindow::dealWithNewBubble(int column, int row)
 {
     int index = getIndex(column, row);
-
+    
     MathNode mn = game.grid[column][row];
-
+    
     spawnBallAt(column, index, mn);
 }
 
@@ -689,7 +688,7 @@ void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
 {
     _objects.removeAt(column);
     qDebug() <<"removebub";
-
+    
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column, mn));
 }
 

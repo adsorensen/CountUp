@@ -1,3 +1,19 @@
+/**
+* Logical backend of the Number Crunch game
+*
+* CS3505, April 2016.
+* Team: It's Lit (fire, fire, fire)
+*
+* @author Adam Sorensen
+*         Connor Douglas
+*         Johnny Le
+*         Michelle Nguyen
+*         Steven Sun
+*         Trung Le
+*         Yu Song
+*         Zhi Wong
+*/
+
 #include "gamemodel.h"
 #include <QDebug>
 #include <ctype.h>
@@ -16,16 +32,16 @@ GameModel::GameModel()
         }
     }
 
-//    //f/*or(int i = 0; i < grid.size(); i++)
-//    {
-//        QVector<MathNode> temp = grid.at(i);
+    //    //f/*or(int i = 0; i < grid.size(); i++)
+    //    {
+    //        QVector<MathNode> temp = grid.at(i);
 
-//        for(int j = 0; j < temp.size(); j++)
-//        {
-//            qDebug() << temp.at(j).value;
-//            //qDebug() << index;
-//        }
-//    }*/
+    //        for(int j = 0; j < temp.size(); j++)
+    //        {
+    //            qDebug() << temp.at(j).value;
+    //            //qDebug() << index;
+    //        }
+    //    }*/
 
     for (int i = 0; i < 25; i++) {
         levelMap[i] = new Level(i,i,i,i,i,i,i,i);
@@ -93,10 +109,10 @@ int GameModel::FormulaReader(QVector<QString> formula)
         else if (formula[i] == "+" or formula[i] == "-") {
             if (!operators.isEmpty()) {
                 if (operators.top() == "+") {
-                     secondOperand = operands.pop().toInt();
-                     firstOperand = operands.pop().toInt();
-                     operands.push(QString::number(firstOperand + secondOperand));
-                     operators.pop();
+                    secondOperand = operands.pop().toInt();
+                    firstOperand = operands.pop().toInt();
+                    operands.push(QString::number(firstOperand + secondOperand));
+                    operators.pop();
 
                 }
                 else if (operators.top()  == "-") {
@@ -124,12 +140,12 @@ int GameModel::FormulaReader(QVector<QString> formula)
             qDebug() << operands.count();
 
 
-             secondOperand = operands.pop().toInt();
-             firstOperand = operands.pop().toInt();
+            secondOperand = operands.pop().toInt();
+            firstOperand = operands.pop().toInt();
 
-             operands.push(QString::number(firstOperand + secondOperand));
-             qDebug() << QString::number(firstOperand + secondOperand);
-             operators.pop();
+            operands.push(QString::number(firstOperand + secondOperand));
+            qDebug() << QString::number(firstOperand + secondOperand);
+            operators.pop();
 
         }
         else if (operators.top()  == "-") {
