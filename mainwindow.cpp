@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(&game, SIGNAL(GameOverSig()), this, SLOT(gameOver()));
     QObject::connect(&game, SIGNAL(ContinueLevelSig(int, int)), this, SLOT(nextMove(int, int)));
     QObject::connect(&game, SIGNAL(CreateBubbleAtSig(int, int)), this, SLOT(dealWithNewBubble(int, int)));
-    QObject::connect(&game, SIGNAL(RemoveBubblesAtSig(QVector<QPair<int,int> >)), this, SLOT(removeBubbles(QVector<QPair<int,int>>)));
+    QObject::connect(&game, SIGNAL(RemoveBubblesAtSig(QVector<QPair<int,int> >, QVector<MathNode>)), this, SLOT(removeBubbles(QVector<QPair<int,int>>, QVector<MathNode>)));
 
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
@@ -729,7 +729,7 @@ void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column, mn));
 }
 
-void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove)
+void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<MathNode> ballsToAdd)
 {
     //qDebug() << "remvoing bubbles";
     for(int i = 0; i <ballsToRemove.size(); i++)

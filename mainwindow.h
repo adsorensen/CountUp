@@ -90,7 +90,7 @@ public slots:
     void gameOver();
     void nextMove(int movesRemaining, int currentNum);
     void dealWithNewBubble(int, int);
-    void removeBubbles(QVector<QPair<int, int>>);
+    void removeBubbles(QVector<QPair<int, int>>,  QVector<MathNode>);
 
 private:
     Ui::MainWindow *ui;

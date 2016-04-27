@@ -272,8 +272,9 @@ void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
     }
 }
 
-void GameModel::PopulateGrid()
+QVector<MathNode> GameModel::PopulateGrid()
 {
+    QVector<MathNode> ret;
     //Goes through grid and smartly populates it with MathNodes
     for (int x = 0; x < grid.size(); x++) {
         for (int y = 0; y < grid[x].size(); y++) {
@@ -339,7 +340,7 @@ void GameModel::PopulateGrid()
                         //emit CreateBubbleAtSig(x,y);
                     }
                 }
-
+                ret.append(grid[x][y]);
             }
         }
     }
@@ -486,9 +487,9 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         qDebug() << "current number = " << currentNum;
         movesRemaining--;
         RemoveNode(cellList);
-        PopulateGrid();
+        QVector<MathNode> newNodes = PopulateGrid();
 
-        emit RemoveBubblesAtSig(cellList);
+        emit RemoveBubblesAtSig(cellList, newNodes);
         if (movesRemaining == 0) {
             emit GameOverSig();
         }
