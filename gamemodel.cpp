@@ -75,6 +75,7 @@ int GameModel::FormulaReader(QVector<QString> formula)
 
     for (int i = 0; i < formula.length(); i++) {
         if (formula[i].toInt() != 0) {
+            qDebug() << formula[i].toInt();
             if (!operators.isEmpty()) {
                 if (operators.top() == "*") {
                     operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
@@ -82,13 +83,14 @@ int GameModel::FormulaReader(QVector<QString> formula)
                 } else if (operators.top() == "/") {
                     operands.push(QString::number(operands.pop().toInt() / formula[i].toInt()));
                     operators.pop();
+                } else {
+                    operands.push(formula[i]);
                 }
             } else {
                 operands.push(formula[i]);
             }
         }
         else if (formula[i] == "+" or formula[i] == "-") {
-                                            qDebug() << "else if";
             if (!operators.isEmpty()) {
                 if (operators.top() == "+") {
                      secondOperand = operands.pop().toInt();
@@ -103,19 +105,30 @@ int GameModel::FormulaReader(QVector<QString> formula)
 
                     operands.push(QString::number(firstOperand- secondOperand));
                     operators.pop();
+                } else {
+                    operators.push(formula[i]);
                 }
+            } else {
+                operators.push(formula[i]);
             }
         }
         else
             operators.push(formula[i]);
     }
 
+
     if (!operators.isEmpty()) {
+        qDebug() << "operators was not empty";
         if (operators.top() == "+") {
+            qDebug() << operators.count();
+            qDebug() << operands.count();
+
+
              secondOperand = operands.pop().toInt();
              firstOperand = operands.pop().toInt();
 
              operands.push(QString::number(firstOperand + secondOperand));
+             qDebug() << QString::number(firstOperand + secondOperand);
              operators.pop();
 
         }
@@ -220,6 +233,7 @@ void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
                             MathNode temp = grid[x][y];
                             grid[x][y] = grid[x][curNode];
                             grid[x][curNode] = temp;
+                            curNode--;
                         }
                     }
                 }
@@ -433,21 +447,12 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
 
     if (FormulaCheck(boolList)) {
         //valid formula
-        qDebug() << "here1";
         int result = FormulaReader(formula);
-        qDebug() << "here2";
         currentNum += result;
         movesRemaining--;
-
-        //remove nodes here
-        while (cellList.length() > 0) {
-            grid[cellList[0].first][cellList[0].second].value = "0";
-        }
-
-        PopulateGrid();
+        RemoveNode(cellList);
 
         emit RemoveBubblesAtSig(cellList);
-
         if (movesRemaining == 0) {
             emit GameOverSig();
         }
