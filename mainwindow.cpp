@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(&game, SIGNAL(GameOverSig()), this, SLOT(gameOver()));
     QObject::connect(&game, SIGNAL(ContinueLevelSig(int, int)), this, SLOT(nextMove(int, int)));
     QObject::connect(&game, SIGNAL(CreateBubbleAtSig(int, int)), this, SLOT(dealWithNewBubble(int, int)));
-    QObject::connect(&game, SIGNAL(RemoveBubblesAtSig(QVector<QPair<int,int> >, QVector<MathNode>)), this, SLOT(removeBubbles(QVector<QPair<int,int>>, QVector<MathNode>)));
+    QObject::connect(&game, SIGNAL(RemoveBubblesAtSig(QVector<QPair<int,int> >, QVector<QPair<int, int>>)), this, SLOT(removeBubbles(QVector<QPair<int,int>>, QVector<QPair<int, int>>)));
 
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
@@ -367,11 +367,6 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     o.column = pos.x;
     o.row = pos.y;
 
-
-    MathNode myNode;
-    myNode.value = QString::number(qrand()%10);
-    o.color = generateColor(myNode);
-    o.numberValue = myNode.value;
     return o;
 }
 
@@ -405,11 +400,6 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
     o.type = BallObject;
     o.column = pos.x;
     o.row = pos.y;
-
-    MathNode myNode;
-    myNode.value = QString::number(qrand()%10);
-    o.color = generateColor(myNode);
-    o.numberValue = myNode.value;
 
     return o;
 }
@@ -539,7 +529,7 @@ QColor MainWindow::generateColor(MathNode currentNode)
 }
 
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
-{     
+{
     QPair<int, int> rowAndCol;
     if ((currentRow == 0 && currentColumn == 0) && ((previousRow == -1 &&  previousColumn == -1)))
     {
@@ -577,7 +567,7 @@ void MainWindow::removeBallAt(float32 column, float32 row)
 void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 {
     int index = getIndex((int)column, (int)row);
-    //qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
+    qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
 
     b2Body *body = _objects.at(index).body;
     //qDebug() << "removing ball at address " << body;
@@ -729,7 +719,7 @@ void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column, mn));
 }
 
-void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<MathNode> ballsToAdd)
+void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<QPair<int, int>> ballsToAdd)
 {
     //qDebug() << "remvoing bubbles";
     for(int i = 0; i <ballsToRemove.size(); i++)

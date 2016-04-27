@@ -40,7 +40,7 @@ public:
     void ShuffleGrid();
     void BombGrid(int);
     void RemoveNode(QVector<QPair<int, int> >);
-    QVector<MathNode> PopulateGrid();
+    QVector<QPair<int, int>> PopulateGrid();
     void ClearGrid();
     void CheckWin();
     QString GenerateMathNode(bool);
@@ -54,7 +54,7 @@ signals:
     void GameOverSig();
     void ContinueLevelSig(int, int);
     void CreateBubbleAtSig(int, int);
-    void RemoveBubblesAtSig(QVector<QPair<int, int> >, QVector<MathNode>);
+    void RemoveBubblesAtSig(QVector<QPair<int, int> >, QVector<QPair<int, int> >);
 };
 
 #endif // GAMEMODEL_H
