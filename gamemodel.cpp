@@ -32,16 +32,16 @@ GameModel::GameModel()
         }
     }
 
-    //    //f/*or(int i = 0; i < grid.size(); i++)
-    //    {
-    //        QVector<MathNode> temp = grid.at(i);
+//    //f/*or(int i = 0; i < grid.size(); i++)
+//    {
+//        QVector<MathNode> temp = grid.at(i);
 
-    //        for(int j = 0; j < temp.size(); j++)
-    //        {
-    //            qDebug() << temp.at(j).value;
-    //            //qDebug() << index;
-    //        }
-    //    }*/
+//        for(int j = 0; j < temp.size(); j++)
+//        {
+//            qDebug() << temp.at(j).value;
+//            //qDebug() << index;
+//        }
+//    }*/
 
     for (int i = 0; i < 25; i++) {
         levelMap[i] = new Level(i,i,i,i,i,i,i,i);
@@ -91,10 +91,11 @@ int GameModel::FormulaReader(QVector<QString> formula)
 
     for (int i = 0; i < formula.length(); i++) {
         if (formula[i].toInt() != 0) {
-            qDebug() << formula[i].toInt();
+            //qDebug() << formula[i].toInt();
             if (!operators.isEmpty()) {
                 if (operators.top() == "*") {
                     operands.push(QString::number(operands.pop().toInt() * formula[i].toInt()));
+
                     operators.pop();
                 } else if (operators.top() == "/") {
                     operands.push(QString::number(operands.pop().toInt() / formula[i].toInt()));
@@ -109,10 +110,10 @@ int GameModel::FormulaReader(QVector<QString> formula)
         else if (formula[i] == "+" or formula[i] == "-") {
             if (!operators.isEmpty()) {
                 if (operators.top() == "+") {
-                    secondOperand = operands.pop().toInt();
-                    firstOperand = operands.pop().toInt();
-                    operands.push(QString::number(firstOperand + secondOperand));
-                    operators.pop();
+                     secondOperand = operands.pop().toInt();
+                     firstOperand = operands.pop().toInt();
+                     operands.push(QString::number(firstOperand + secondOperand));
+                     operators.pop();
 
                 }
                 else if (operators.top()  == "-") {
@@ -134,25 +135,26 @@ int GameModel::FormulaReader(QVector<QString> formula)
 
 
     if (!operators.isEmpty()) {
-        qDebug() << "operators was not empty";
+       // qDebug() << "operators was not empty";
         if (operators.top() == "+") {
-            qDebug() << operators.count();
-            qDebug() << operands.count();
 
 
-            secondOperand = operands.pop().toInt();
-            firstOperand = operands.pop().toInt();
 
-            operands.push(QString::number(firstOperand + secondOperand));
-            qDebug() << QString::number(firstOperand + secondOperand);
-            operators.pop();
+             secondOperand = operands.pop().toInt();
+             firstOperand = operands.pop().toInt();
+
+             operands.push(QString::number(firstOperand + secondOperand));
+             //qDebug() << QString::number(firstOperand + secondOperand);
+             operators.pop();
 
         }
         else if (operators.top()  == "-") {
+
             secondOperand = operands.pop().toInt();
             firstOperand = operands.pop().toInt();
 
             operands.push(QString::number(firstOperand- secondOperand));
+            //qDebug() << QString::number(firstOperand + secondOperand);
             operators.pop();
         }
     }
@@ -229,6 +231,17 @@ void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
     }
 
     for (int x = 0; x < grid.size(); x++) {
+
+//        for (int z = 0; z < grid[x].size(); z++)
+//        {
+//            qDebug() << "The current " << x << " in the column are: " << grid[x][z].value;
+//        }
+
+//        for (int z = 0; z < grid[x].size(); z++)
+//        {
+//            qDebug() << "The current y " << x << " in the column are: " << grid[z][x].value;
+//        }
+
         int emptyCount = 0;
         for (int y = 0; y < grid[x].size(); y++) {
             if (grid[x][y].value == "0") {
@@ -240,17 +253,19 @@ void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
                 //Going through y column bottom up
                 if (grid[x][y].value == "0") {
                     int curNode = y;
-                    while (curNode >= 0) {
-                        //Find non-empty MathNode to swap with
-                        if (grid[x][curNode].value == "0") {
-                            curNode--;
-                        } else {
-                            //Swap the MathNode with the empty one
-                            MathNode temp = grid[x][y];
-                            grid[x][y] = grid[x][curNode];
-                            grid[x][curNode] = temp;
-                            curNode--;
-                        }
+                    //Swap the MathNode with the empty one
+                    for (int i = y; i >= 0; i--)
+                    {
+                         if (grid[x][i].value != "0")
+                         {
+                              MathNode temp = grid[x][i];
+                              grid[x][i] = grid[x][curNode];
+                              grid[x][curNode] = temp;
+                              curNode = i;
+
+
+                         }
+
                     }
                 }
             }
@@ -341,9 +356,11 @@ void GameModel::ClearGrid() {
 
 void GameModel::CheckWin() {
     if (currentNum == targetNum) {
+        qDebug() << "emit levecompelted";
         emit LevelCompletedSig();
     }
     else {
+        qDebug() << "emit next move";
         emit ContinueLevelSig(movesRemaining, currentNum);
     }
 }
@@ -465,17 +482,27 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         //valid formula
         int result = FormulaReader(formula);
         currentNum += result;
+
+        qDebug() << "result = " << result;
+        qDebug() << "current number = " << currentNum;
         movesRemaining--;
         RemoveNode(cellList);
 
         emit RemoveBubblesAtSig(cellList);
         if (movesRemaining == 0) {
+            qDebug() << "emit game over";
             emit GameOverSig();
         }
         //TODO: Check win-state and proceed appropriately
         CheckWin();
     } else {
         //invalid formula
+        qDebug() << "emit invalid formula";
         emit InvalidFormulaSig();
     }
+}
+
+void GameModel::getUsername(QString username)
+{
+
 }

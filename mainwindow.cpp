@@ -84,6 +84,7 @@ MainWindow::~MainWindow()
     delete World;
 }
 
+//COPY THIS OVER
 //Sets value of the cell according to model
 void MainWindow::fillGrid()
 {
@@ -93,13 +94,24 @@ void MainWindow::fillGrid()
     //qDebug() << game.grid.size();
     for(int i = 0; i < game.grid.size(); i++)
     {
-        QVector<MathNode> column = game.grid.at(i);
+        //QVector<MathNode> column = game.grid.at(i);
 
-        for(int j = 0; j < column.size(); j++)
+//        for(int j = 0; j < column.size(); j++)
+//        {
+//            int dx = offsetX + j*70;
+//            int dy = offsetY + i*70;
+//            MathNode mn = column.at(j);
+//            _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
+//            index++;
+
+//        }
+
+        for(int j = 0; j < game.grid[i].size(); j++)
         {
-            int dx = offsetX + j*70;
-            int dy = offsetY + i*70;
-            MathNode mn = column.at(j);
+            int dy = offsetY + i * 70;
+            int dx = offsetX + j * 70;
+
+            MathNode mn = game.grid[i][j];
             _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
             index++;
 
@@ -142,7 +154,6 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index, Math
     o.numberValue = mn.value;
     return o;
 }
-
 
 void MainWindow::createBalls()
 {
@@ -522,7 +533,7 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
     QPair<int, int> rowAndCol;
     if ((currentRow == 0 && currentColumn == 0) && ((previousRow == -1 &&  previousColumn == -1)))
     {
-       ;
+        ;
     }
     else
     {
@@ -674,13 +685,14 @@ void MainWindow::gameOver()
 
 void MainWindow::nextMove(int movesRemaining, int currentNum)
 {
+    qDebug() << "in next move";
 }
 
 void MainWindow::dealWithNewBubble(int column, int row)
 {
     int index = getIndex(column, row);
 
-    MathNode mn = game.grid[column][row];
+    MathNode mn = game.grid[row][column];
 
     spawnBallAt(column, index, mn);
 }
@@ -695,9 +707,18 @@ void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
 
 void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove)
 {
+    qDebug() << "remvoing bubbles";
     for(int i = 0; i <ballsToRemove.size(); i++)
     {
         QPair<int, int> coord = ballsToRemove.at(i);
-        //removeBallAt(coord.first, coord.second, 100);
+        removeBallAt(coord.second, coord.first, 100);
+    }
+}
+
+void MainWindow::on_bombButton_5_pressed()
+{
+    for(int i = 0; i < game.grid.size(); i++)
+    {
+       // QVector<
     }
 }

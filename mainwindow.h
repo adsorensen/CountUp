@@ -79,9 +79,11 @@ private slots:
     void on_tableWidget_cellClicked(int row, int column);
     void on_tableWidget_cellEntered(int row, int column);
     bool eventFilter(QObject *obj, QEvent *event);
+    void on_entry();
     void on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
     void on_bombButton_pressed();
     void on_shuffleButton_pressed();
+    void on_bombButton_5_pressed();
 
 public slots:
     void dealWithInvalidFormula();

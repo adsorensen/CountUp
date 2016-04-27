@@ -1,18 +1,3 @@
-/**
-* Representation of the database backend
-*
-* CS3505, April 2016.
-* Team: It's Lit (fire, fire, fire)
-*
-* @author Adam Sorensen
-*         Connor Douglas
-*         Johnny Le
-*         Michelle Nguyen
-*         Steven Sun
-*         Trung Le
-*         Yu Song
-*         Zhi Wong
-*/
 
 #include "network.h"
 #include <usr/include/cppconn/driver.h>
@@ -32,37 +17,37 @@ QVector<QString> Network::getPlayerInfo(QString username)
     QVector<QString> playerInfo;
 
     try{
-        sql::Driver *driver;
-        sql::Connection *con;
-        sql::Statement *stmt;
-        sql::ResultSet *res;
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
 
-        driver = get_driver_instance();
+    driver = get_driver_instance();
 
-        con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
 
-        std::string name = fromQString(username);
+    std::string name = fromQString(username);
 
 
-        stmt = con->createStatement();
-        std::string execute = "SELECT * FROM `cs5530db108`.`MathCrunchUsers` WHERE `Username` = '" + name + "';";
+    stmt = con->createStatement();
+    std::string execute = "SELECT * FROM `cs5530db108`.`MathCrunchUsers` WHERE `Username` = '" + name + "';";
 
-        int col = 1;
+    int col = 1;
 
-        res = stmt->executeQuery(execute);
-        while (res->next())
-        {
-            qDebug() << "\t... MySQL replies: ";
-            std::string temp = res->getString(col);
-            QString ex = toQString(temp);
-            qDebug() << ex;
-            playerInfo.append(ex);
-            col++;
+      res = stmt->executeQuery(execute);
+      while (res->next())
+      {
+        qDebug() << "\t... MySQL replies: ";
+        std::string temp = res->getString(col);
+        QString ex = toQString(temp);
+        qDebug() << ex;
+        playerInfo.append(ex);
+        col++;
 
-        }
-        delete res;
-        delete stmt;
-        delete con;
+      }
+      delete res;
+      delete stmt;
+      delete con;
     }
     catch(sql::SQLException &e)
     {
@@ -79,37 +64,37 @@ QVector<QString> Network::getPlayerLevel(QString username)
     QVector<QString> playerInfo;
 
     try{
-        sql::Driver *driver;
-        sql::Connection *con;
-        sql::Statement *stmt;
-        sql::ResultSet *res;
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
 
-        driver = get_driver_instance();
+    driver = get_driver_instance();
 
-        con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
 
-        std::string name = fromQString(username);
+    std::string name = fromQString(username);
 
 
-        stmt = con->createStatement();
-        std::string execute = "SELECT * FROM `cs5530db108`.`MathCrunchLevel` WHERE `Username` = '" + name + "';";
+    stmt = con->createStatement();
+    std::string execute = "SELECT * FROM `cs5530db108`.`MathCrunchLevel` WHERE `Username` = '" + name + "';";
 
-        int col = 1;
+    int col = 1;
 
-        res = stmt->executeQuery(execute);
-        while (res->next())
-        {
-            qDebug() << "\t... MySQL replies: ";
-            std::string temp = res->getString(col);
-            QString ex = toQString(temp);
-            qDebug() << ex;
-            playerInfo.append(ex);
-            col++;
+      res = stmt->executeQuery(execute);
+      while (res->next())
+      {
+        qDebug() << "\t... MySQL replies: ";
+        std::string temp = res->getString(col);
+        QString ex = toQString(temp);
+        qDebug() << ex;
+        playerInfo.append(ex);
+        col++;
 
-        }
-        delete res;
-        delete stmt;
-        delete con;
+      }
+      delete res;
+      delete stmt;
+      delete con;
     }
     catch(sql::SQLException &e)
     {
@@ -125,41 +110,41 @@ int Network::registerUser(QString username, QString password, bool admin, QStrin
     int flag = 0;
 
     try{
-        sql::Driver *driver;
-        sql::Connection *con;
-        sql::Statement *stmt;
-        sql::ResultSet *res;
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
 
-        driver = get_driver_instance();
+    driver = get_driver_instance();
 
-        con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
 
-        std::string nameS = fromQString(username);
-        std::string pwS = fromQString(password);
-        std::string adminS = "";
-        if (admin)
-        {
-            adminS = "true";
-        }
-        else
-        {
-            adminS = "false";
-        }
+    std::string nameS = fromQString(username);
+    std::string pwS = fromQString(password);
+    std::string adminS = "";
+    if (admin)
+    {
+        adminS = "true";
+    }
+    else
+    {
+        adminS = "false";
+    }
 
-        std::string currentlevelS = "1";
-        std::string avgscoreS = "0";
-        std::string userclassS = fromQString(userclass);
+    std::string currentlevelS = "1";
+    std::string avgscoreS = "0";
+    std::string userclassS = fromQString(userclass);
 
-        stmt = con->createStatement();
+    stmt = con->createStatement();
 
-        std::string execute = "INSERT INTO `cs5530db108`.`MathCrunchUsers` (`Username`, `Password`, `AdminStatus`, `CurrentLevel`, `AverageScore`, `UserClass`) VALUES ('" + nameS + "','" + pwS + "','" + adminS + "','" + currentlevelS + "','" + avgscoreS +"','" + userclassS +"');";
+    std::string execute = "INSERT INTO `cs5530db108`.`MathCrunchUsers` (`Username`, `Password`, `AdminStatus`, `CurrentLevel`, `AverageScore`, `UserClass`) VALUES ('" + nameS + "','" + pwS + "','" + adminS + "','" + currentlevelS + "','" + avgscoreS +"','" + userclassS +"');";
 
-        success = stmt->execute(execute);
-        flag = 1;
+    success = stmt->execute(execute);
+    flag = 1;
 
-        //delete res;
-        delete stmt;
-        delete con;
+    //delete res;
+    delete stmt;
+    delete con;
     }
     catch(sql::SQLException &e)
     {
@@ -174,27 +159,27 @@ bool Network::removeUser(QString username, QString userclass)
     bool success = false;
 
     try{
-        sql::Driver *driver;
-        sql::Connection *con;
-        sql::Statement *stmt;
-        sql::ResultSet *res;
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
 
-        driver = get_driver_instance();
+    driver = get_driver_instance();
 
-        con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
 
-        std::string nameS = fromQString(username);
-        std::string userclassS = fromQString(userclass);
+    std::string nameS = fromQString(username);
+    std::string userclassS = fromQString(userclass);
 
-        stmt = con->createStatement();
-        std::string execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "' 'UserClass' = '" + userclassS + "';";
+    stmt = con->createStatement();
+    std::string execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "' 'UserClass' = '" + userclassS + "';";
 
-        success = stmt->execute(execute);
+    success = stmt->execute(execute);
 
 
-        delete res;
-        delete stmt;
-        delete con;
+    delete res;
+    delete stmt;
+    delete con;
     }
     catch(sql::SQLException &e)
     {
@@ -210,63 +195,65 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
     bool success1 = false;
     int sum;
     int count = 0;
+    int averageScore;
 
     try{
-        sql::Driver *driver;
-        sql::Connection *con;
-        sql::Statement *stmt;
-        sql::ResultSet *res;
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
 
-        driver = get_driver_instance();
+    driver = get_driver_instance();
 
-        con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
 
-        std::string nameS = fromQString(username);
-        std::string levelS = fromQString(level);
-        std::string difficultyS = fromQString(difficulty);
-        std::string highscoreS = fromQString(highscore);
-        std::string currentlevelS = fromQString(currentlevel);
+    std::string nameS = fromQString(username);
+    std::string levelS = fromQString(level);
+    std::string difficultyS = fromQString(difficulty);
+    std::string highscoreS = fromQString(highscore);
+    std::string currentlevelS = fromQString(currentlevel);
 
-        stmt = con->createStatement();
-        std::string execute = "SELECT CurrentLevel FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "';";
+    stmt = con->createStatement();
+    std::string execute = "SELECT CurrentLevel FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "';";
 
-        res = stmt->executeQuery(execute);
-        while (res->next())
-        {
-            int temp = res->getInt(1);
-            if (level.QString::toInt() > temp) {
-                stmt = con->createStatement();
-                std::string execute1 = "INSERT INTO `cs5530db108`.`MathCrunchLevel` (`Username`, `Level`, `Difficulty`, `HighScore`) VALUES ('" + nameS + "'," + levelS + "," + difficultyS + ", " + highscoreS + "');";
+    res = stmt->executeQuery(execute);
+    while (res->next())
+    {
+      int temp = res->getInt(1);
+      if (level.QString::toInt() > temp) {
+          stmt = con->createStatement();
+          std::string execute1 = "INSERT INTO `cs5530db108`.`MathCrunchLevel` (`Username`, `Level`, `Difficulty`, `HighScore`) VALUES ('" + nameS + "'," + levelS + "," + difficultyS + ", " + highscoreS + "');";
 
-                success1 = stmt->execute(execute1);
-            }
-            else {
-                stmt = con->createStatement();
-                std::string execute2 = "UPDATE `cs5530db108`.`MathCrunchLevel` SET HighScore = " + highscoreS + " WHERE 'Username' = '" + nameS + "' AND 'Difficulty' = " + difficultyS + " AND 'Level' = " + currentlevelS + " AND 'HighScore' < " + highscoreS + ";";
+          success1 = stmt->execute(execute1);
+      }
+      else {
+          stmt = con->createStatement();
+          std::string execute2 = "UPDATE `cs5530db108`.`MathCrunchLevel` SET HighScore = " + highscoreS + " WHERE 'Username' = '" + nameS + "' AND 'Difficulty' = " + difficultyS + " AND 'Level' = " + currentlevelS + " AND 'HighScore' < " + highscoreS + ";";
 
-                success1 = stmt->execute(execute2);
-            }
-        }
+          success1 = stmt->execute(execute2);
+      }
 
-        stmt = con->createStatement();
-        execute = "SELECT HighScore FROM `cs5530db108`.`MathCrunchLevel` WHERE 'Username' = '" + nameS + "';";
-        res = stmt->executeQuery(execute);
+    }
 
-        while (res->next())
-        {
-            int temp = res->getInt(1);
-            sum += temp;
-            count++;
-        }
+    stmt = con->createStatement();
+    execute = "SELECT HighScore FROM `cs5530db108`.`MathCrunchLevel` WHERE 'Username' = '" + nameS + "';";
+    res = stmt->executeQuery(execute);
 
-        //averageScore = (total / count);
+    while (res->next())
+    {
+      int temp = res->getInt(1);
+      sum += temp;
+      count++;
+    }
 
-        //execute = "UPDATE `cs5530db108`.`MathCrunchUser` SET AverageScore = " + averageScore + " WHERE 'Username' = '" + nameS + "';";
-        res = stmt->executeQuery(execute);
+    //averageScore = (total / count);
 
-        delete res;
-        delete stmt;
-        delete con;
+    //execute = "UPDATE `cs5530db108`.`MathCrunchUser` SET AverageScore = " + averageScore + " WHERE 'Username' = '" + nameS + "';";
+    res = stmt->executeQuery(execute);
+
+    delete res;
+    delete stmt;
+    delete con;
     }
     catch(sql::SQLException &e)
     {
@@ -343,4 +330,3 @@ std::string Network::fromQString(QString const &s)
 {
     return std::string(s.toUtf8().data());
 }
-

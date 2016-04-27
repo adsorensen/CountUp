@@ -35,6 +35,7 @@ public:
     explicit Login(QWidget *parent = 0);
     ~Login();
      Levelscreen levelselector;
+     QString currentUser;
 
 private slots:
     void on_loginbutton_pressed();
@@ -43,6 +44,7 @@ private slots:
 signals:
     void validLogin();
     void invalidLogin();
+    void sendUsername(QString);
 
 private:
     Ui::Login *ui;
