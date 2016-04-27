@@ -40,7 +40,7 @@ QVector<QString> Network::getPlayerInfo(QString username)
         qDebug() << "\t... MySQL replies: ";
         std::string temp = res->getString(col);
         QString ex = toQString(temp);
-        qDebug() << ex;
+        //qDebug() << ex;
         playerInfo.append(ex);
         col++;
 
@@ -324,6 +324,44 @@ int Network::checkUserLogin(QString username, QString password)
     }
 
     return success;
+}
+
+//Method will check to see if the login name is an admin. Returns true if they are
+//an admin (teacher) and false otherwise
+bool Network::checkAdmin(QString name)
+{
+    bool success = false;
+    std::string name2 = fromQString(name);
+    std::string query = "SELECT * from `cs5530db108`.`MathCrunchUsers` WHERE Username = '" + name2 + "' AND AdminStatus = 'true';";
+    try
+    {
+        sql::Driver *driver;
+        sql::Connection *con;
+        sql::Statement *stmt;
+        sql::ResultSet *res;
+
+        driver = get_driver_instance();
+
+        con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(query);
+\
+        if (res->next())
+        {
+            success = true;
+        }
+        delete res;
+        delete con;
+        delete stmt;
+        return success;
+    }
+    catch(sql::SQLException &e)
+    {
+        qDebug() << "ERROR " << e.what();
+        return false;
+    }
 }
 
 //helper methods

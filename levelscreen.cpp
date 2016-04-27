@@ -25,6 +25,7 @@
 #include <QMouseEvent>
 #include <QtGui>
 #include <QAbstractItemView>
+#include <QObject>
 
 Levelscreen::Levelscreen(QWidget *parent) :
     QMainWindow(parent),
@@ -40,10 +41,13 @@ Levelscreen::Levelscreen(QWidget *parent) :
 
     this->setStyleSheet("Levelscreen {border-image: url(:/background/Resources/loginbg.png); };");
     ui->warning->hide();
+    ui->adminButton->hide();
 
     int x = (screenGeometry.width() - this->width()) / 2;
     int y = (screenGeometry.height() - this->height()) / 2;
     this->move(x, y);
+    //qDebug() << "created " << currentUser;
+    //QObject::connect(&game, SIGNAL(InvalidFormulaSig()), this, SLOT(dealWithInvalidFormula()));
 }
 
 Levelscreen::~Levelscreen()
@@ -51,8 +55,14 @@ Levelscreen::~Levelscreen()
     delete ui;
 }
 
+void Levelscreen::showAdminButton()
+{
+    ui->adminButton->show();
+}
+
 void Levelscreen::on_playButton_pressed()
 {
+    qDebug() << "created " << currentUser;
     bool a, b, c, d, e, difficulty = false;
     a = ui->easyButton->isChecked();
     b = ui->mediumButton->isChecked();

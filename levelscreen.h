@@ -18,6 +18,9 @@ public:
     MainWindow w;
     QString currentUser;
 
+    void showAdminButton();
+
+
 signals:
     void game_started(int);
 

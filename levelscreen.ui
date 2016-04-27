@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>330</width>
-    <height>278</height>
+    <width>331</width>
+    <height>318</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -231,13 +231,26 @@
      <string>Must select difficulty</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="adminButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>240</y>
+      <width>121</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>View class stats</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>330</width>
+     <width>331</width>
      <height>21</height>
     </rect>
    </property>
