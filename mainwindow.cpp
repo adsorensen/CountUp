@@ -583,6 +583,25 @@ void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
     delay(delayVal);
 }
 
+void MainWindow::removeBallAt(int index, int delayVal)
+{
+
+    b2Body *body = _objects.at(index).body;
+    //qDebug() << "removing ball at address " << body;
+
+    updateIndex(index);
+
+    World->DestroyBody(body);
+
+    //qDebug() << "Here";
+
+    int row = index % 8;
+
+    spawnBallAt(row, index);
+
+    delay(delayVal);
+}
+
 void MainWindow::spawnBallAt(float32 column, int index)
 {
     //qDebug() << "COLUMN " << column;
@@ -721,12 +740,25 @@ void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
 
 void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<QPair<int, int>> ballsToAdd)
 {
+    QVector<int> ballsToRemove2;
+
     //qDebug() << "remvoing bubbles";
     for(int i = 0; i <ballsToRemove.size(); i++)
     {
         QPair<int, int> coord = ballsToRemove.at(i);
-        removeBallAt(coord.second, coord.first, 100);
+
+        int index = getIndex((int)coord.second, (int)coord.first);
+
+        ballsToRemove2.append(index);
     }
+
+    qSort(ballsToRemove2);
+
+    for(int i = 0; i < ballsToRemove2.size(); i++)
+    {
+        removeBallAt(ballsToRemove2.at(i), 100);
+    }
+
 }
 
 void MainWindow::on_bombButton_5_pressed()

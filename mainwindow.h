@@ -107,6 +107,7 @@ private:
     QColor generateColor(MathNode);
     void removeBallAt(float32 column, float32 row);
     void removeBallAt(float32 column, float32 row, int delayVal);
+    void removeBallAt(int index, int delayVal);
     void spawnBallAt(float32 column, int index);
     void spawnBallAt(float32 column, int index, MathNode mn);
     int getIndex(int column, int row);
