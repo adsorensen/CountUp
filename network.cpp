@@ -7,43 +7,7 @@
 #include <usr/include/mysql_connection.h>
 #include <QDebug>
 
-Network::Network()
-{
-//    try{
-//    sql::Driver *driver;
-//    sql::Connection *con;
-//    sql::Statement *stmt;
-//    sql::ResultSet *res;
-
-//    driver = get_driver_instance();
-
-
-//    qDebug() << "trying";
-//    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
-//    qDebug() << "trying2";
-//    qDebug() << "trying3";
-//    stmt = con->createStatement();
-//    //stmt->execute("DROP TABLE IF EXISTS test");
-//    std::string execute = "SELECT * FROM `cs5530db108`.`RegisteredUser` WHERE `LoginName` = 'tswizzle';";
-
-//      res = stmt->executeQuery(execute);
-//      while (res->next())
-//      {
-//        qDebug() << "\t... MySQL replies: ";
-//        std::string temp = res->getString(2);
-//        QString ex = toQString(temp);
-//        qDebug() << ex;
-
-
-//      }
-//      delete res;
-//      delete stmt;
-//      delete con;
-//    }
-//    catch(sql::SQLException &e)
-//    {
-//        qDebug() << "error";
-//    }
+Network::Network() {
 }
 
 //returns username, password, admin status, currentlevel, averagescore, userclass in that order
@@ -190,7 +154,7 @@ int Network::registerUser(QString username, QString password, bool admin, QStrin
     return flag;
 }
 
-bool Network::removeUser(QString username)
+bool Network::removeUser(QString username, QString userclass)
 {
     bool success = false;
 
@@ -205,9 +169,10 @@ bool Network::removeUser(QString username)
     con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
 
     std::string nameS = fromQString(username);
+    std::string userclassS = fromQString(userclass);
 
     stmt = con->createStatement();
-    std::string execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "';";
+    std::string execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "' 'UserClass' = '" + userclassS + "';";
 
     success = stmt->execute(execute);
 

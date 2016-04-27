@@ -251,6 +251,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 //                //removeBallAt(coord.first, coord.second, 100);
 //            }
             qDebug() <<"onmove";
+            qDebug() << game.currentNum;
+
 
             for(int i = 0; i < coordinates.size(); i++)
             {
@@ -676,7 +678,6 @@ void MainWindow::gameOver()
 
 void MainWindow::nextMove(int movesRemaining, int currentNum)
 {
-
 }
 
 void MainWindow::dealWithNewBubble(int column, int row)
