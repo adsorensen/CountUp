@@ -7,5 +7,9 @@
         <file>Resources/bomb.png</file>
         <file>Resources/shuffle.png</file>
         <file>Resources/ball1.png</file>
+        <file>Resources/modBomb.png</file>
+        <file>Resources/div2Bomb.png</file>
+        <file>Resources/mul2Bomb.png</file>
+        <file>Resources/mul4Bomb.png</file>
     </qresource>
 </RCC>

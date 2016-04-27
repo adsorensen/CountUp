@@ -119,32 +119,6 @@ border-color: rgb(0, 0, 0);</string>
     <property name="title">
      <string/>
     </property>
-    <widget class="QPushButton" name="bombButton">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>170</y>
-       <width>71</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgba(154, 114, 114, 96);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/icons/Resources/bomb.png</normaloff>:/icons/Resources/bomb.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>50</width>
-       <height>50</height>
-      </size>
-     </property>
-    </widget>
     <widget class="QLabel" name="formulaLabel">
      <property name="geometry">
       <rect>
@@ -240,7 +214,7 @@ border-color: rgb(0, 0, 0);</string>
     <widget class="QPushButton" name="shuffleButton">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>80</x>
        <y>170</y>
        <width>71</width>
        <height>61</height>
@@ -355,7 +329,7 @@ border-color: rgb(0, 0, 0);</string>
       <string>25</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="bombButton_2">
+    <widget class="QPushButton" name="modBomb">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -372,7 +346,7 @@ border-color: rgb(0, 0, 0);</string>
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/icons/Resources/bomb.png</normaloff>:/icons/Resources/bomb.png</iconset>
+       <normaloff>:/icons/Resources/modBomb.png</normaloff>:/icons/Resources/modBomb.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -381,7 +355,7 @@ border-color: rgb(0, 0, 0);</string>
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="bombButton_3">
+    <widget class="QPushButton" name="div2Bomb">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -398,7 +372,7 @@ border-color: rgb(0, 0, 0);</string>
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/icons/Resources/bomb.png</normaloff>:/icons/Resources/bomb.png</iconset>
+       <normaloff>:/icons/Resources/div2Bomb.png</normaloff>:/icons/Resources/div2Bomb.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -407,7 +381,7 @@ border-color: rgb(0, 0, 0);</string>
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="bombButton_4">
+    <widget class="QPushButton" name="mul2Bomb">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -424,7 +398,7 @@ border-color: rgb(0, 0, 0);</string>
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/icons/Resources/bomb.png</normaloff>:/icons/Resources/bomb.png</iconset>
+       <normaloff>:/icons/Resources/mul2Bomb.png</normaloff>:/icons/Resources/mul2Bomb.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -433,7 +407,7 @@ border-color: rgb(0, 0, 0);</string>
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="bombButton_5">
+    <widget class="QPushButton" name="mul4Bomb">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -450,7 +424,7 @@ border-color: rgb(0, 0, 0);</string>
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/icons/Resources/bomb.png</normaloff>:/icons/Resources/bomb.png</iconset>
+       <normaloff>:/icons/Resources/mul4Bomb.png</normaloff>:/icons/Resources/mul4Bomb.png</iconset>
      </property>
      <property name="iconSize">
       <size>
