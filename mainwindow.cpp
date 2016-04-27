@@ -111,9 +111,18 @@ void MainWindow::fillGrid()
             int dy = offsetY + i * 70;
             int dx = offsetX + j * 70;
 
-            MathNode mn = game.grid[i][j];
+            MathNode mn = game.grid[j][i];
             _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
-            index++;
+            //index++;
+        }
+
+        for(int i = 0; i < _objects.size(); i++)
+        {
+            qDebug() << "index: " << _objects.at(i).index << " value : " << _objects.at(i).numberValue;
+        }
+
+        for(int i = 0; i < game.grid.size(); i++)
+        {
 
         }
     }
@@ -128,6 +137,7 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index, Math
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
+    o.index = index;
 
     // shape
     b2CircleShape shape;
@@ -260,22 +270,22 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
             //                //removeBallAt(coord.first, coord.second, 100);
             //            }
-            qDebug() <<"onmove";
-            qDebug() << game.currentNum;
-            qDebug() << coordinates.size();
+            //qDebug() <<"onmove";
+            //qDebug() << game.currentNum;
+            //qDebug() << coordinates.size();
 
             for(int i = 0; i < coordinates.size(); i++)
             {
                 MathNode mn = game.grid.at(coordinates.at(i).first).at(coordinates.at(i).second);
                 qDebug() << "x:" <<coordinates.at(i).first << " y" << coordinates.at(i).second << coordinates.at(i) << "value: " << mn.value;
             }
-            qDebug() << "here1";
+            //qDebug() << "here1";
             if(coordinates.size() > 0)
             {
                 game.OnMove(coordinates);
                 coordinates.clear();
             }
-            qDebug() << "here2";
+            //qDebug() << "here2";
 
             qDebug() << "current num" << game.currentNum;
         }
@@ -537,8 +547,8 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
     }
     else
     {
-        rowAndCol.first = currentRow;
-        rowAndCol.second = currentColumn;
+        rowAndCol.first = currentColumn;
+        rowAndCol.second = currentRow;
         qDebug() << "add expression" << currentColumn << currentRow;
         coordinates.append(rowAndCol);
     }
@@ -560,7 +570,7 @@ void MainWindow::removeBallAt(float32 column, float32 row)
 
     World->DestroyBody(body);
 
-    spawnBallAt(column, index);
+    spawnBallAt(row, index);
 
 }
 
@@ -578,7 +588,7 @@ void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 
     //qDebug() << "Here";
 
-    spawnBallAt(column, index);
+    spawnBallAt(row, index);
 
     delay(delayVal);
 }
@@ -596,7 +606,7 @@ void MainWindow::spawnBallAt(float32 column, int index)
 
 int MainWindow::getIndex(int column, int row)
 {
-    int index = row * 8 + column;
+    int index = column * 8 + row;
     return index;
 }
 
@@ -685,29 +695,43 @@ void MainWindow::gameOver()
 
 void MainWindow::nextMove(int movesRemaining, int currentNum)
 {
-    qDebug() << "in next move";
+    //qDebug() << "in next move";
 }
 
 void MainWindow::dealWithNewBubble(int column, int row)
 {
     int index = getIndex(column, row);
 
-    MathNode mn = game.grid[row][column];
 
-    spawnBallAt(column, index, mn);
+    MathNode mn = game.grid[column][row];
+
+    spawnBallAt(row, index, mn);
+
+//    for(int j = 0; j < game.grid[i].size(); j++)
+//    {
+//        int dy = offsetY + i * 70;
+//        int dx = offsetX + j * 70;
+
+//        MathNode mn = game.grid[i][j];
+//        _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
+//        index++;
+//    }
+
+
+
 }
 
 void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
 {
     _objects.removeAt(column);
-    qDebug() <<"removebub";
+    //qDebug() <<"removebub";
 
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column, mn));
 }
 
 void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove)
 {
-    qDebug() << "remvoing bubbles";
+    //qDebug() << "remvoing bubbles";
     for(int i = 0; i <ballsToRemove.size(); i++)
     {
         QPair<int, int> coord = ballsToRemove.at(i);
