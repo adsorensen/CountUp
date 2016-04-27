@@ -242,27 +242,32 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         QPair<int, int> coord;
         if (event->type() == QEvent::MouseButtonRelease)
         {
-//            foreach(coord, coordinates)
-//            {
-//                qDebug() << "first: " << coord.first << " secoasdfasdfasnd: " << coord.second;
+            //            foreach(coord, coordinates)
+            //            {
+            //                qDebug() << "first: " << coord.first << " secoasdfasdfasnd: " << coord.second;
 
-//                game.OnMove(coordinates);
+            //                game.OnMove(coordinates);
 
-//                //removeBallAt(coord.first, coord.second, 100);
-//            }
+            //                //removeBallAt(coord.first, coord.second, 100);
+            //            }
             qDebug() <<"onmove";
             qDebug() << game.currentNum;
-
+            qDebug() << coordinates.size();
 
             for(int i = 0; i < coordinates.size(); i++)
             {
                 MathNode mn = game.grid.at(coordinates.at(i).first).at(coordinates.at(i).second);
                 qDebug() << "x:" <<coordinates.at(i).first << " y" << coordinates.at(i).second << coordinates.at(i) << "value: " << mn.value;
             }
+            qDebug() << "here1";
+            if(coordinates.size() > 0)
+            {
+                game.OnMove(coordinates);
+                coordinates.clear();
+            }
+            qDebug() << "here2";
 
-            game.OnMove(coordinates);
-
-            coordinates.clear();
+            qDebug() << "current num" << game.currentNum;
         }
         // qDebug() << "End expression";
     }
@@ -425,40 +430,40 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
 //Start simulator
 void MainWindow::start() {
     //if(!_timerId) {
-       _timerId = startTimer(1000/60); // 60fps
-       //}
-       gameStarted = true;
+    _timerId = startTimer(1000/60); // 60fps
+    //}
+    gameStarted = true;
 
 
-       foreach(Object o, _objects)
-       {
-           World->DestroyBody(o.body);
-       }
+    foreach(Object o, _objects)
+    {
+        World->DestroyBody(o.body);
+    }
 
-       while(!_objects.isEmpty())
-       {
-           _objects.removeFirst();
-       }
+    while(!_objects.isEmpty())
+    {
+        _objects.removeFirst();
+    }
 
-       //Create world
-       b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
-       World = new b2World(gravity);
+    //Create world
+    b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
+    World = new b2World(gravity);
 
-       createWalls();
-
-
-       game.LevelStart(level, difficulty);
-
-       //:LevelStart(int lNum, int diffNum)
-
-       ui->dynTargetLabel->setText(QString::number(game.targetNum));
-       ui->dynDifficultyLabel->setText(game.difficultyString);
-       ui->dynLevelLabel_2->setText(QString::number(game.levelNum));
-
-       fillGrid();
+    createWalls();
 
 
-       begin = true;
+    game.LevelStart(level, difficulty);
+
+    //:LevelStart(int lNum, int diffNum)
+
+    ui->dynTargetLabel->setText(QString::number(game.targetNum));
+    ui->dynDifficultyLabel->setText(game.difficultyString);
+    ui->dynLevelLabel_2->setText(QString::number(game.levelNum));
+
+    fillGrid();
+
+
+    begin = true;
 
 }
 
@@ -519,22 +524,19 @@ QColor MainWindow::generateColor(MathNode currentNode)
 }
 
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
-{
-    //if(gameStarted)
-    //{
-        if (begin == false)
-        {
-            qDebug() << "add expression" << currentColumn << currentRow;
-
-            QPair<int, int> rowAndCol;
-            rowAndCol.first = currentRow;
-            rowAndCol.second = currentColumn;
-            coordinates.append(rowAndCol);
-            emit current_positions(coordinates);
-        }
-        begin = false;
-    //}
-
+{     
+    QPair<int, int> rowAndCol;
+    if ((currentRow == 0 && currentColumn == 0) && ((previousRow == -1 &&  previousColumn == -1)))
+    {
+       ;
+    }
+    else
+    {
+        rowAndCol.first = currentRow;
+        rowAndCol.second = currentColumn;
+        qDebug() << "add expression" << currentColumn << currentRow;
+        coordinates.append(rowAndCol);
+    }
 }
 
 void MainWindow::on_bombButton_pressed()
@@ -604,7 +606,7 @@ void MainWindow::updateIndex(int index)
     while(current >= 8)
     {
 
-       // qDebug() << "Object Previous to be Moved " << _objects.at(previous).index;
+        // qDebug() << "Object Previous to be Moved " << _objects.at(previous).index;
 
         Object temp = _objects.at(previous);
 
@@ -705,5 +707,3 @@ void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove)
         //removeBallAt(coord.first, coord.second, 100);
     }
 }
-
-
