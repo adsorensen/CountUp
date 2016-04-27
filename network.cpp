@@ -325,7 +325,6 @@ int Network::checkUserLogin(QString username, QString password)
 
         if (res->next())
         {
-            qDebug() << "success";
             success = 1;
         }
         else
