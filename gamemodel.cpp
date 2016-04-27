@@ -252,6 +252,7 @@ void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
             for (int y = grid[x].size()-1; y >= 0; y--) {
                 //Going through y column bottom up
                 if (grid[x][y].value == "0") {
+                    qDebug() << "Inner loop";
                     int curNode = y;
                     //Swap the MathNode with the empty one
                     for (int i = y; i >= 0; i--)
@@ -262,8 +263,6 @@ void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
                               grid[x][i] = grid[x][curNode];
                               grid[x][curNode] = temp;
                               curNode = i;
-
-
                          }
 
                     }
@@ -487,10 +486,10 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         qDebug() << "current number = " << currentNum;
         movesRemaining--;
         RemoveNode(cellList);
+        PopulateGrid();
 
         emit RemoveBubblesAtSig(cellList);
         if (movesRemaining == 0) {
-            qDebug() << "emit game over";
             emit GameOverSig();
         }
         //TODO: Check win-state and proceed appropriately
