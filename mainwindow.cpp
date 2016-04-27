@@ -396,7 +396,8 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
 //Draw ball model
 void MainWindow::drawEllipse(QPainter *p, const Object& o)
 {
-    // This gets called too many times????
+    QFont font;
+    font.setPixelSize(20);
 
     // Fills nodes
     QPen pen(Qt::black, 2);
@@ -415,8 +416,8 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
 
     p->setBrush(brush);
 
-
-    p->drawText(QPointF(x - 4, y + 4), o.numberValue);
+    p->setFont(font);
+    p->drawText(QPointF(x - 5, y + 5), o.numberValue);
 }
 
 //Start simulator
@@ -483,7 +484,7 @@ QColor MainWindow::generateColor(MathNode currentNode)
     }
     if (currentNode.value.endsWith("4"))
     {
-        return Qt::white;
+        return Qt::red;
     }
     if (currentNode.value.endsWith("5"))
     {
@@ -511,7 +512,7 @@ QColor MainWindow::generateColor(MathNode currentNode)
     }
     else
     {
-        return Qt::red;
+        return Qt::white;
     }
 }
 

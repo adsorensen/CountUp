@@ -90,7 +90,7 @@ void Login::on_loginbutton_pressed()
             else if (flag2 == 2)
             {
                 ui->warning->show();
-                ui->warning->setText("Wrong password");
+                ui->warning->setText("Wrong password!");
             }
             else if (flag2 == 3)
             {
