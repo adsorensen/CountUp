@@ -93,6 +93,8 @@ private slots:
 
     void on_shuffleButton_pressed();
 
+public slots:
+
     void dealWithInvalidFormula();
 
     void dealWithCompletedLevel();
@@ -100,6 +102,10 @@ private slots:
     void gameOver();
 
     void nextMove(int movesRemaining, int currentNum);
+
+    void dealWithNewBubble(int, int);
+    void removeBubbles(QVector<QPair<int, int>>);
+
 
 private:
     Ui::MainWindow *ui;
@@ -118,11 +124,13 @@ private:
     void removeBallAt(float32 column, float32 row);
     void removeBallAt(float32 column, float32 row, int delayVal);
     void spawnBallAt(float32 column, int index);
+    void spawnBallAt(float32 column, int index, MathNode mn);
     int getIndex(int column, int row);
     float32 radius = 34.4f;
     void updateIndex(int index);
     void delay(int millisecondsToWait);
     void checkIntegrity();
+
 
 signals:
     void current_positions(QVector<QPair<int, int>>);

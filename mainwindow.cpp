@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     // Centers application on start up
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     ui->setupUi(this);
@@ -60,11 +61,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connect slots and signals
     QObject::connect(ui->shuffleButton, SIGNAL(clicked(bool)), this, SLOT(on_entry()));
-    QObject::connect(&game, SIGNAL(InvalidFormulaSig), this, SLOT(dealWithInvalidFormula()));
-    QObject::connect(&game, SIGNAL(LevelCompletedSig), this, SLOT(dealWithCompletedLevel()));
-    QObject::connect(&game, SIGNAL(GameOverSig), this, SLOT(gameOver()));
-    QObject::connect(&game, SIGNAL(ContinueLevelSig), this, SLOT(nextMove(int, int)));
-    //QObject::connect(game, SIGNAL(CreateBubbleAtSig(int, int)), this, createBa);
+    QObject::connect(&game, SIGNAL(InvalidFormulaSig()), this, SLOT(dealWithInvalidFormula()));
+    QObject::connect(&game, SIGNAL(LevelCompletedSig()), this, SLOT(dealWithCompletedLevel()));
+    QObject::connect(&game, SIGNAL(GameOverSig()), this, SLOT(gameOver()));
+    QObject::connect(&game, SIGNAL(ContinueLevelSig(int, int)), this, SLOT(nextMove(int, int)));
+    QObject::connect(&game, SIGNAL(CreateBubbleAtSig(int, int)), this, SLOT(dealWithNewBubble(int, int)));
+    QObject::connect(&game, SIGNAL(RemoveBubblesAtSig(QVector<QPair<int,int> >)), this, SLOT(removeBubbles(QVector<QPair<int,int>>)));
 
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
@@ -248,9 +250,17 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 //                //removeBallAt(coord.first, coord.second, 100);
 //            }
+            qDebug() <<"onmove";
+
+            for(int i = 0; i < coordinates.size(); i++)
+            {
+                MathNode mn = game.grid.at(coordinates.at(i).first).at(coordinates.at(i).second);
+                qDebug() << "x:" <<coordinates.at(i).first << " y" << coordinates.at(i).second << coordinates.at(i) << "value: " << mn.value;
+            }
+
             game.OnMove(coordinates);
 
-            //coordinates.clear();
+            coordinates.clear();
         }
         // qDebug() << "End expression";
     }
@@ -416,6 +426,7 @@ void MainWindow::start() {
        //}
        gameStarted = true;
 
+
        foreach(Object o, _objects)
        {
            World->DestroyBody(o.body);
@@ -432,17 +443,20 @@ void MainWindow::start() {
 
        createWalls();
 
-   //    qDebug() << "difficulty " << difficulty;
-   //    qDebug() << "level " << level;
+
        game.LevelStart(level, difficulty);
+
        //:LevelStart(int lNum, int diffNum)
 
        ui->dynTargetLabel->setText(QString::number(game.targetNum));
        ui->dynDifficultyLabel->setText(game.difficultyString);
        ui->dynLevelLabel_2->setText(QString::number(game.levelNum));
+
        fillGrid();
 
+
        begin = true;
+
 }
 
 void MainWindow::timerEvent(QTimerEvent *event) {
@@ -510,8 +524,8 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
             qDebug() << "add expression" << currentColumn << currentRow;
 
             QPair<int, int> rowAndCol;
-            rowAndCol.first = currentColumn;
-            rowAndCol.second = currentRow;
+            rowAndCol.first = currentRow;
+            rowAndCol.second = currentColumn;
             coordinates.append(rowAndCol);
             emit current_positions(coordinates);
         }
@@ -563,6 +577,7 @@ void MainWindow::spawnBallAt(float32 column, int index)
 {
     //qDebug() << "COLUMN " << column;
     //incorrect index
+    qDebug() << "removing";
 
     _objects.removeAt(column);
 
@@ -662,3 +677,31 @@ void MainWindow::nextMove(int movesRemaining, int currentNum)
 {
 
 }
+
+void MainWindow::dealWithNewBubble(int column, int row)
+{
+    int index = getIndex(column, row);
+
+    MathNode mn = game.grid[column][row];
+
+    spawnBallAt(column, index, mn);
+}
+
+void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
+{
+    _objects.removeAt(column);
+    qDebug() <<"removebub";
+
+    _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column, mn));
+}
+
+void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove)
+{
+    for(int i = 0; i <ballsToRemove.size(); i++)
+    {
+        QPair<int, int> coord = ballsToRemove.at(i);
+        //removeBallAt(coord.first, coord.second, 100);
+    }
+}
+
+
