@@ -327,7 +327,7 @@ void GameModel::ClearGrid() {
 
 void GameModel::CheckWin() {
     if (currentNum == targetNum) {
-        network.updateHighscore(username, QString::number(levelNum), QString::number(difficulty), QString(movesRemaining) );
+        network.updateHighscore(name, QString::number(levelNum), QString::number(difficulty), QString(movesRemaining) );
         emit LevelCompletedSig();
     }
     else {
@@ -472,5 +472,5 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
 
 void GameModel::getUsername(QString username)
 {
-
+    name = username;
 }

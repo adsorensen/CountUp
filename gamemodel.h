@@ -28,7 +28,7 @@ public:
     int div2BombCounter;
     int movesRemaining;
     int difficulty;
-    QString username;
+    QString name;
     Network network;
     QString difficultyString;
 
