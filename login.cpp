@@ -48,6 +48,8 @@ void Login::on_loginbutton_pressed()
 
         QString name = ui->lineEdit->text(), password = ui->lineEdit_2->text();
 
+        emit sendUsername(name);
+
         //qDebug() << name << "   " << password;
 
 
@@ -146,5 +148,11 @@ void Login::on_newaccountbutton_pressed()
         ui->loginbutton->setGeometry(150,290,90,26);
         ui->warning->setGeometry(130, 260, 131, 21);
     }
+
+    QString name = ui->lineEdit->text();
+    emit sendUsername(name);
+
+
+
 }
 

@@ -16,6 +16,7 @@ public:
     explicit Levelscreen(QWidget *parent = 0);
     ~Levelscreen();
     MainWindow w;
+    QString currentUser;
 
 signals:
     void game_started(int);
