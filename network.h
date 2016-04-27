@@ -21,7 +21,7 @@ public:
 
     int registerUser(QString username, QString password, bool admin, QString userclass);
     bool removeUser(QString username, QString userclass);
-    bool updateHighscore(QString username, QString level, QString difficulty, QString highscore, QString currentlevel);
+    bool updateHighscore(QString username, QString level, QString difficulty, QString highscore);
     int checkUserLogin(QString username, QString password);
 
 };

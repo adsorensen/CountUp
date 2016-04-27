@@ -325,6 +325,7 @@ void GameModel::ClearGrid() {
 
 void GameModel::CheckWin() {
     if (currentNum == targetNum) {
+        network.updateHighscore(username, QString::number(levelNum), QString::number(difficulty), QString(movesRemaining) );
         emit LevelCompletedSig();
     }
     else {

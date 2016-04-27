@@ -9,6 +9,7 @@
 #include <QStack>
 #include "level.h"
 #include <QObject>
+#include "network.h"
 
 
 class GameModel : public QObject
@@ -27,6 +28,8 @@ public:
     int div2BombCounter;
     int movesRemaining;
     int difficulty;
+    QString username;
+    Network network;
     QString difficultyString;
 
     QVector<QVector<MathNode> > grid;
