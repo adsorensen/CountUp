@@ -457,7 +457,8 @@ void MainWindow::start() {
 
     ui->dynTargetLabel->setText(QString::number(game.targetNum));
     ui->dynDifficultyLabel->setText(game.difficultyString);
-    ui->dynLevelLabel_2->setText(QString::number(game.levelNum));
+    ui->dynLevelLabel->setText(QString::number(game.levelNum));
+    ui->dynRemMovesLabel->setText(QString::number(game.movesRemaining));
 
     fillGrid();
 
@@ -660,31 +661,8 @@ void MainWindow::updateIndex(int index)
 
 void MainWindow::on_shuffleButton_pressed()
 {
-    foreach(Object o, _objects)
-    {
-        World->DestroyBody(o.body);
-    }
-
-    while(!_objects.isEmpty())
-    {
-        _objects.removeFirst();
-    }
-
-    int offsetX = 95.0f;
-    int offsetY = 90.0f;
-    int dropheight = 10.0f;
-    for (int i=7; i>-1; i--)
-    {
-        for (int j=7; j>-1; j--)
-        {
-            int dx = offsetX + j*70;
-            int dy = offsetY + i*70;
-            _objects.prepend(createBall(b2Vec2(dx, dropheight), radius));
-
-            delay(50);
-        }
-        dropheight = dropheight - 70.0f;
-    }
+    game.ShuffleGrid();
+    ui->dynRemMovesLabel->setText(QString::number(game.movesRemaining));
 }
 
 void MainWindow::delay(int millisecondsToWait)
@@ -714,6 +692,7 @@ void MainWindow::gameOver()
 void MainWindow::nextMove(int movesRemaining, int currentNum)
 {
     ui->dynTotalLabel->setText(QString::number(currentNum));
+    ui->dynRemMovesLabel->setText(QString::number(movesRemaining));
 }
 
 void MainWindow::dealWithNewBubble(int column, int row)
@@ -734,9 +713,6 @@ void MainWindow::dealWithNewBubble(int column, int row)
 //        _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
 //        index++;
 //    }
-
-
-
 }
 
 void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)

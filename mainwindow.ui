@@ -519,7 +519,7 @@ color: lightGray;
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="dynLevelLabel">
+   <widget class="QPushButton" name="levelBox">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -616,7 +616,7 @@ color: lightGray;
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="dynLevelLabel_2">
+   <widget class="QLabel" name="dynLevelLabel">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -646,11 +646,11 @@ color: lightGray;
    <zorder>toolBox</zorder>
    <zorder>graphicsView</zorder>
    <zorder>difficultyBox</zorder>
-   <zorder>dynLevelLabel</zorder>
+   <zorder>levelBox</zorder>
    <zorder>difficultyLabel</zorder>
    <zorder>levelLabel</zorder>
    <zorder>dynDifficultyLabel</zorder>
-   <zorder>dynLevelLabel_2</zorder>
+   <zorder>dynLevelLabel</zorder>
    <zorder>tableWidget</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
