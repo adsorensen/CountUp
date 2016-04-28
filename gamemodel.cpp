@@ -43,9 +43,7 @@ GameModel::GameModel()
 //        }
 //    }*/
 
-    for (int i = 0; i < 25; i++) {
-        levelMap[i] = new Level(i,i,i,i,i,i,i,i);
-    }
+    mapLevels();
 }
 
 
@@ -362,6 +360,7 @@ void GameModel::ClearGrid() {
 void GameModel::CheckWin() {
     if (currentNum == targetNum) {
         qDebug() << "emit levecompelted";
+        network.updateHighscore(name, QString::number(levelNum), QString::number(difficulty), QString::number(movesRemaining));
         emit LevelCompletedSig();
     }
     else {
@@ -509,5 +508,34 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
 
 void GameModel::getUsername(QString username)
 {
-
+    name = username;
 }
+
+void GameModel::mapLevels() {
+    levelMap[0] = new Level(0, 12, 3, 0, 1, 1, 0, 0);
+    levelMap[1] = new Level(1, 25, 5, 0, 1, 1, 0, 0);
+    levelMap[2] = new Level(2, 32, 6, 0, 1, 1, 0, 0);
+    levelMap[3] = new Level(3, 46, 7, 0, 1, 1, 0, 0);
+    levelMap[4] = new Level(4, 94, 10, 0, 0, 0, 0, 1);
+    levelMap[5] = new Level(5, 124, 10, 0, 1, 1, 1, 0);
+    levelMap[6] = new Level(6, 257, 20, 0, 2, 2, 1, 0);
+    levelMap[7] = new Level(7, 432, 20, 0, 0, 2, 1, 0);
+    levelMap[8] = new Level(8, 166, 10, 0, 2, 0, 1, 0);
+    levelMap[9] = new Level(9, 512, 25, 1, 1, 1, 1, 0);
+    levelMap[10] = new Level(10, 111, 4, 1, 1, 1, 1, 1);
+    levelMap[11] = new Level(11, 529, 12, 1, 2, 2, 1, 1);
+    levelMap[12] = new Level(12, 1023, 25, 3, 3, 1, 3, 1);
+    levelMap[13] = new Level(13, 105, 3, 1, 0, 0, 1, 1);
+    levelMap[14] = new Level(14, 2019, 25, 2, 0, 0, 0, 2);
+    levelMap[15] = new Level(15, 1504, 15, 1, 1, 1, 1, 1);
+    levelMap[16] = new Level(16, 57, 3, 0, 0, 0, 0, 0);
+    levelMap[17] = new Level(17, 782, 10, 1, 0, 0, 0, 1);
+    levelMap[18] = new Level(18, 7820, 25, 2, 2, 2, 2, 0);
+    levelMap[19] = new Level(19, 322, 10, 0, 0, 2, 2, 0);
+    levelMap[20] = new Level(20, 627, 10, 1, 0, 0, 0, 0);
+    levelMap[21] = new Level(21, 102, 5, 0, 0, 1, 1, 0);
+    levelMap[22] = new Level(22, 8891, 20, 2, 2, 2, 2, 2);
+    levelMap[23] = new Level(23, 15029, 30, 2, 0, 0, 0, 5);
+    levelMap[24] = new Level(24, 40000, 40, 1, 1, 1, 1, 1);
+}
+

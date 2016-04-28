@@ -44,6 +44,7 @@ public:
     void ClearGrid();
     void CheckWin();
     QString GenerateMathNode(bool);
+    void mapLevels();
 public slots:
     void LevelStart(int, int);
     void OnMove(QVector<QPair<int,int> >);
