@@ -252,7 +252,7 @@ void GameModel::RemoveNode(QVector<QPair<int, int> > removedNodes)
             for (int y = grid[x].size()-1; y >= 0; y--) {
                 //Going through y column bottom up
                 if (grid[x][y].value == "0") {
-                    qDebug() << "Inner loop";
+                    //qDebug() << "Inner loop";
                     int curNode = y;
                     //Swap the MathNode with the empty one
                     for (int i = y; i >= 0; i--)
@@ -361,11 +361,11 @@ void GameModel::ClearGrid() {
 
 void GameModel::CheckWin() {
     if (currentNum == targetNum) {
-        qDebug() << "emit levecompelted";
+        //qDebug() << "emit levecompelted";
         emit LevelCompletedSig();
     }
     else {
-        qDebug() << "emit next move";
+        //qDebug() << "emit next move";
         emit ContinueLevelSig(movesRemaining, currentNum);
     }
 }
@@ -488,8 +488,10 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         int result = FormulaReader(formula);
         currentNum += result;
 
-        qDebug() << "result = " << result;
-        qDebug() << "current number = " << currentNum;
+        emit sendResult(result);
+
+        //qDebug() << "result = " << result;
+        //qDebug() << "current number = " << currentNum;
         movesRemaining--;
         RemoveNode(cellList);
         QVector<QPair<int, int>> newNodes = PopulateGrid();
@@ -502,7 +504,7 @@ void GameModel::OnMove(QVector<QPair<int, int> > cellList)
         CheckWin();
     } else {
         //invalid formula
-        qDebug() << "emit invalid formula";
+        //qDebug() << "emit invalid formula";
         emit InvalidFormulaSig();
     }
 }
