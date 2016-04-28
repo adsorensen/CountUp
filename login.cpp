@@ -22,7 +22,6 @@
 #include <QDesktopWidget>
 #include <QRect>
 #include <QApplication>
-#include <QDebug>
 #include <QMouseEvent>
 #include <QtGui>
 #include <QAbstractItemView>
@@ -46,7 +45,6 @@ Login::Login(QWidget *parent) :
     ui->teacher->hide();
     ui->classBox->hide();
     newUser = false;
-
 }
 
 Login::~Login()
@@ -61,68 +59,81 @@ void Login::on_loginbutton_pressed()
     int flag, flag2;
     if(ui->lineEdit->text() != "" && ui->lineEdit_2->text() != "")
     {
-
         QString name = ui->lineEdit->text(), password = ui->lineEdit_2->text();
 
         emit sendUsername(name);
 
-        //qDebug() << name << "   " << password;
-
-
         if(newUser)
         {
-            //check to see if the login name exists
-            //add new user to the database
             bool isAdmin = ui->teacher->isChecked();
             QString classText = ui->classBox->text();
-            //emit createUser(name, password, isAdmin, classText);
             flag = myNetwork.registerUser(name, password, isAdmin, classText);
+            //successfully created user
             if(flag == 1)
             {
-                //success
                 this->hide();
+                //checks for admin privledges
+                if(myNetwork.checkAdmin(name))
+                {
+                    levelselector.showAdminButton();
+                }
+                levelselector.currentUser = name;
                 levelselector.show();
             }
+            //Error to show that the login already exists
             else if (flag == 2)
             {
                 ui->warning->show();
                 ui->warning->setText("Login already exists");
             }
+            //Error with the database
             else
             {
                 ui->warning->setText("Something went wrong");
                 ui->warning->show();
             }
         }
+        //validate old user
         else
         {
             //emit validateLogin(name, password);
             flag2 = myNetwork.checkUserLogin(name, password);
-
+            //success
             if(flag2 == 1)
             {
-                qDebug() << flag2;
                 this->hide();
+                //check for admin privledges
+                if (myNetwork.checkAdmin(name))
+                {
+                    levelselector.showAdminButton();
+                }
+                //QVector<QString> playerInfo = myNetwork.getPlayerInfo(name);
+                //QVector<QString> playerInfo = myNetwork.getPlayerLevel(name);
+                //qDebug() << "level info" << playerInfo.at(0);
+                getUserLevel(name);
+                //getUserInfo(name);
+                levelselector.currentUser = name;
                 levelselector.show();
             }
+            //error code to say wrong password
             else if (flag2 == 2)
             {
                 ui->warning->show();
                 ui->warning->setText("Wrong password!");
             }
+            //error for login doesn't exist
             else if (flag2 == 3)
             {
                 ui->warning->show();
                 ui->warning->setText("Login doesn't exist");
             }
+            //error connecting to the database
             else
             {
                 ui->warning->show();
                 ui->warning->setText("Something went wrong");
             }
         }
-
-
     }
     else
     {
@@ -131,7 +142,24 @@ void Login::on_loginbutton_pressed()
     }
 }
 
-//create new user
+//gets user information
+QVector<QString> Login::getUserInfo(QString name)
+{
+    QVector<QString> playerInfo = myNetwork.getPlayerInfo(name);
+    qDebug() << playerInfo.at(0);
+    return playerInfo;
+}
+
+ QVector<QString> Login::getUserLevel(QString name)
+{
+    QVector<QString> playerLevel = myNetwork.getPlayerLevel(name);
+    int level = playerLevel.at(0).toInt();
+    int diff = playerLevel.at(1).toInt();
+    levelselector.hideButtons(level, diff);
+    return playerLevel;
+}
+
+//create new user or switch back to login
 void Login::on_newaccountbutton_pressed()
 {
     if (newUser)
@@ -167,8 +195,5 @@ void Login::on_newaccountbutton_pressed()
 
     QString name = ui->lineEdit->text();
     emit sendUsername(name);
-
-
-
 }
 
