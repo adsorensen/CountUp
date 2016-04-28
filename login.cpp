@@ -65,11 +65,8 @@ void Login::on_loginbutton_pressed()
 
         if(newUser)
         {
-            //check to see if the login name exists
-            //add new user to the database
             bool isAdmin = ui->teacher->isChecked();
             QString classText = ui->classBox->text();
-            //emit createUser(name, password, isAdmin, classText);
             flag = myNetwork.registerUser(name, password, isAdmin, classText);
             //successfully created user
             if(flag == 1)
@@ -110,6 +107,11 @@ void Login::on_loginbutton_pressed()
                 {
                     levelselector.showAdminButton();
                 }
+                //QVector<QString> playerInfo = myNetwork.getPlayerInfo(name);
+                //QVector<QString> playerInfo = myNetwork.getPlayerLevel(name);
+                //qDebug() << "level info" << playerInfo.at(0);
+                getUserLevel(name);
+                //getUserInfo(name);
                 levelselector.currentUser = name;
                 levelselector.show();
             }
@@ -138,6 +140,23 @@ void Login::on_loginbutton_pressed()
         ui->warning->setText("Must fill in all fields");
         ui->warning->show();
     }
+}
+
+//gets user information
+QVector<QString> Login::getUserInfo(QString name)
+{
+    QVector<QString> playerInfo = myNetwork.getPlayerInfo(name);
+    qDebug() << playerInfo.at(0);
+    return playerInfo;
+}
+
+ QVector<QString> Login::getUserLevel(QString name)
+{
+    QVector<QString> playerLevel = myNetwork.getPlayerLevel(name);
+    int level = playerLevel.at(0).toInt();
+    int diff = playerLevel.at(1).toInt();
+    levelselector.hideButtons(level, diff);
+    return playerLevel;
 }
 
 //create new user or switch back to login

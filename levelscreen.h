@@ -17,8 +17,11 @@ public:
     ~Levelscreen();
     MainWindow w;
     QString currentUser;
+    int level;
+
 
     void showAdminButton();
+    void hideButtons(int, int);
 
 
 signals:
@@ -26,6 +29,26 @@ signals:
 
 private slots:
     void on_playButton_pressed();
+
+    void on_easyButton_clicked();
+
+    void on_mediumButton_clicked();
+
+    void on_hardButton_clicked();
+
+    void on_veryhardButton_clicked();
+
+    void on_extremeButton_clicked();
+
+    void on_extremeButton_pressed();
+
+    void on_easyButton_pressed();
+
+    void on_mediumButton_pressed();
+
+    void on_hardButton_pressed();
+
+    void on_veryhardButton_pressed();
 
 private:
     Ui::Levelscreen *ui;

@@ -37,6 +37,9 @@ public:
      Levelscreen levelselector;
      QString currentUser;
 
+     QVector<QString> getUserLevel(QString name);
+     QVector<QString> getUserInfo(QString name);
+
 private slots:
     void on_loginbutton_pressed();
     void on_newaccountbutton_pressed();
