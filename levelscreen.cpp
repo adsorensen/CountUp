@@ -26,6 +26,11 @@
 #include <QtGui>
 #include <QAbstractItemView>
 #include <QObject>
+#include <QList>
+#include <QFile>
+#include <QCoreApplication>
+#include <QTextStream>
+#include <QVector>
 
 Levelscreen::Levelscreen(QWidget *parent) :
     QMainWindow(parent),
@@ -460,4 +465,103 @@ void Levelscreen::on_extremeButton_pressed()
 void Levelscreen::on_menu_pressed()
 {
     this->show();
+}
+
+
+void Levelscreen::on_adminButton_clicked()
+{
+    QString temp = "";
+    try{
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
+
+    driver = get_driver_instance();
+
+    con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
+
+    stmt = con->createStatement();
+\
+    std::string currUser = currentUser.toStdString();
+    std::string execute1 = "SELECT Username FROM cs5530db108.MathCrunchUsers WHERE UserClass IN (SELECT UserClass FROM cs5530db108.MathCrunchUsers WHERE Username =\'"+ currUser +"\')";
+    std::string execute2 = "SELECT CurrentLevel FROM cs5530db108.MathCrunchUsers WHERE UserClass IN (SELECT UserClass FROM cs5530db108.MathCrunchUsers WHERE Username =\'"+ currUser +"\')";
+    std::string execute3 = "SELECT AverageScore FROM cs5530db108.MathCrunchUsers WHERE UserClass IN (SELECT UserClass FROM cs5530db108.MathCrunchUsers WHERE Username =\'"+ currUser +"\')";
+
+    QVector<QString> usernameList;
+    QVector<QString> levelList;
+    QVector<QString> avgscoreList;
+
+    int m = 1;
+    res = stmt->executeQuery(execute1);
+    while(res->next()){
+        qDebug() << "\t... MySQL replies1: " << m;
+        std::string temp1 = res->getString(m);
+        QString ex = toQString(temp1);
+        qDebug() << ex;
+        usernameList.append(ex);
+        //m++;
+    }
+
+    res = stmt->executeQuery(execute2);
+    while(res->next()){
+        qDebug() << "\t... MySQL replies2: ";
+        std::string temp2 = res->getString(m);
+        QString ex = toQString(temp2);
+        qDebug() << ex;
+        levelList.append(ex);
+    }
+
+    res = stmt->executeQuery(execute3);
+    while(res->next()){
+        qDebug() << "\t... MySQL replies3: ";
+        std::string temp3 = res->getString(m);
+        QString ex = toQString(temp3);
+        qDebug() << ex;
+        avgscoreList.append(ex);
+    }
+
+
+
+    QString s1 = "<!DOCTYPE html><html lang='en'><head><title>Bootstrap Theme The Band</title><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'><script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script><script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>";
+    QString s2 = "<style>.panel-heading {color: #fff !important;background-color: #f4511e !important;padding: 25px;border-bottom: 1px solid transparent;border-top-left-radius: 0px;border-top-right-radius: 0px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;}.panel {border: 1px solid #f4511e; border-radius:0 !important;transition: box-shadow 0.5s;}.panel-footer {background-color: white !important;}.panel-footer h3 {font-size: 32px;}.panel-footer h4 {color: #aaa;font-size: 14px;}.panel-footer .btn {margin: 15px 0;background-color: #f4511e;color: #fff;}@media screen and (max-width: 768px) {.col-sm-4 {text-align: center;margin: 25px 0;}}</style></head>";
+    QString s3 = "<div class='bg-1'><div class='container'><h3 class='text-center'> Hello!</h3><p class='text-center'>Here is your group menbers and their high scores.<br> Enjoy!</p><br></div></div><div class='container'><br><br><div class='panel-group' id='accordion'>";
+    QString s4 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapse";
+    QString s5 = "'>";
+    QString s6 = "</a></h4></div><div id='collapse";
+    QString s7 = "' class='panel-collapse collapse in'><div class='panel-body'>";
+    QString s8 = "</div></div></div>";
+
+
+
+    QFile file("/home/zhiw/Desktop/out.html");
+    file.open(QIODevice::WriteOnly| QIODevice::Text);
+    QTextStream out(&file);
+
+    if(!usernameList.empty()){
+        out << s1 << s2 << s3;
+        for(int i = 0; i < usernameList.size(); i++){
+            out << s4 << i << s5 << usernameList.at(i) << s6 << i << s7 << "Level: " << (levelList.at(i).toInt() - 1)%5 + 1  << "    Difficulty: " << (levelList.at(i).toInt() - 1)/5 + 1 << "    Average Score: " << avgscoreList.at(i) << s8;
+        }
+    }
+
+    file.close();
+
+    //delete res;
+    delete stmt;
+    delete con;
+    }
+    catch(sql::SQLException &e)
+    {
+        qDebug() << "error" << e.what();
+
+    }
+
+
+}
+
+//helper methods
+QString Levelscreen::toQString(std::string const &s)
+{
+    return QString::fromUtf8(s.c_str());
 }

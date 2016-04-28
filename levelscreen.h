@@ -20,6 +20,8 @@ public:
     int level;
     void showAdminButton();
     void hideButtons(int, int);
+    QString toQString(std::string const &s);
+
 
 
 signals:
@@ -49,6 +51,8 @@ private slots:
     void on_veryhardButton_pressed();
 
     void on_menu_pressed();
+
+    void on_adminButton_clicked();
 
 private:
     Ui::Levelscreen *ui;
