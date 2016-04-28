@@ -111,7 +111,7 @@ void Levelscreen::hideButtons(int lvl, int diff)
     case 4: ui->Level5Button->hide();
         level += 4;
         break;
-    case 5: level += 5;
+    case 0: level += 5;
         break;
     default: break;
     }

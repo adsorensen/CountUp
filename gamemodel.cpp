@@ -32,17 +32,6 @@ GameModel::GameModel()
         }
     }
 
-//    //f/*or(int i = 0; i < grid.size(); i++)
-//    {
-//        QVector<MathNode> temp = grid.at(i);
-
-//        for(int j = 0; j < temp.size(); j++)
-//        {
-//            qDebug() << temp.at(j).value;
-//            //qDebug() << index;
-//        }
-//    }*/
-
     mapLevels();
 }
 
@@ -514,11 +503,11 @@ void GameModel::getUsername(QString username)
 }
 
 void GameModel::mapLevels() {
-    levelMap[1] = new Level(1, 12, 3, 0, 1, 1, 0, 0);
-    levelMap[2] = new Level(2, 25, 5, 0, 1, 1, 0, 0);
-    levelMap[3] = new Level(3, 32, 6, 0, 1, 1, 0, 0);
-    levelMap[4] = new Level(4, 46, 7, 0, 1, 1, 0, 0);
-    levelMap[5] = new Level(5, 94, 10, 0, 0, 0, 0, 1);
+    levelMap[1] = new Level(1, 12, 4, 0, 1, 1, 0, 0);
+    levelMap[2] = new Level(2, 25, 6, 0, 1, 1, 0, 0);
+    levelMap[3] = new Level(3, 32, 7, 0, 1, 1, 0, 0);
+    levelMap[4] = new Level(4, 46, 8, 0, 1, 1, 0, 0);
+    levelMap[5] = new Level(5, 94, 12, 0, 0, 0, 0, 1);
     levelMap[6] = new Level(6, 124, 10, 0, 1, 1, 1, 0);
     levelMap[7] = new Level(7, 257, 20, 0, 2, 2, 1, 0);
     levelMap[8] = new Level(8, 432, 20, 0, 0, 2, 1, 0);

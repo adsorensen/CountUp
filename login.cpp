@@ -151,10 +151,17 @@ QVector<QString> Login::getUserInfo(QString name)
 //gets user level
  QVector<QString> Login::getUserLevel(QString name)
 {
-    QVector<QString> playerLevel = myNetwork.getPlayerLevel(name);
-    int level = playerLevel.at(0).toInt();
-    int diff = playerLevel.at(1).toInt();
+     qDebug() << "getuserlevel1";
+
+    QVector<QString> playerLevel = myNetwork.getPlayerInfo(name);
+    int level = (playerLevel.at(0).toInt() % 5);
+    int diff = ((playerLevel.at(0).toInt() - 1) / 5) + 1;
+    qDebug() << level << diff;
+
     levelselector.hideButtons(level, diff);
+
+    qDebug() << "getuserlevel2";
+
     return playerLevel;
 }
 
