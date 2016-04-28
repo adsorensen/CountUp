@@ -66,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(&game, SIGNAL(ContinueLevelSig(int, int)), this, SLOT(nextMove(int, int)));
     QObject::connect(&game, SIGNAL(CreateBubbleAtSig(int, int)), this, SLOT(dealWithNewBubble(int, int)));
     QObject::connect(&game, SIGNAL(RemoveBubblesAtSig(QVector<QPair<int,int> >, QVector<QPair<int, int>>)), this, SLOT(removeBubbles(QVector<QPair<int,int>>, QVector<QPair<int, int>>)));
+    QObject::connect(&game, SIGNAL(sendResult(int)), this, SLOT(displayFormulaResult(int)));
 
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
@@ -96,15 +97,6 @@ void MainWindow::fillGrid()
     {
         //QVector<MathNode> column = game.grid.at(i);
 
-//        for(int j = 0; j < column.size(); j++)
-//        {
-//            int dx = offsetX + j*70;
-//            int dy = offsetY + i*70;
-//            MathNode mn = column.at(j);
-//            _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
-//            index++;
-
-//        }
 
         for(int j = 0; j < game.grid[i].size(); j++)
         {
@@ -113,17 +105,22 @@ void MainWindow::fillGrid()
 
             MathNode mn = game.grid[j][i];
             _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
-            //index++;
+            index++;
         }
 
-        for(int i = 0; i < _objects.size(); i++)
-        {
-            qDebug() << "index: " << _objects.at(i).index << " value : " << _objects.at(i).numberValue;
-        }
+//        for(int i = 0; i < _objects.size(); i++)
+//        {
+//            qDebug() << "index: " << _objects.at(i).index << " value : " << _objects.at(i).numberValue;
+//        }
 
-        for(int i = 0; i < game.grid.size(); i++)
-        {
 
+    }
+    for(int i = 0; i < game.grid.size(); i++)
+    {
+        for(int j = 0; j < game.grid.at(i).size(); j++)
+        {
+            MathNode mn = game.grid[i][j];
+            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
         }
     }
 }
@@ -262,33 +259,30 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         QPair<int, int> coord;
         if (event->type() == QEvent::MouseButtonRelease)
         {
-            //            foreach(coord, coordinates)
-            //            {
-            //                qDebug() << "first: " << coord.first << " secoasdfasdfasnd: " << coord.second;
-
-            //                game.OnMove(coordinates);
-
-            //                //removeBallAt(coord.first, coord.second, 100);
-            //            }
-            //qDebug() <<"onmove";
-            //qDebug() << game.currentNum;
-            //qDebug() << coordinates.size();
 
             for(int i = 0; i < coordinates.size(); i++)
             {
                 MathNode mn = game.grid.at(coordinates.at(i).first).at(coordinates.at(i).second);
-                qDebug() << "x:" <<coordinates.at(i).first << " y" << coordinates.at(i).second << coordinates.at(i) << "value: " << mn.value;
+                qDebug() << "x:" <<coordinates.at(i).first << " y" << coordinates.at(i).second << "value: " << mn.value;
             }
             //qDebug() << "here1";
             if(coordinates.size() > 0)
             {
+                qDebug() << "here";
                 game.OnMove(coordinates);
                 coordinates.clear();
             }
-            //qDebug() << "here2";
+            qDebug() << "here2";
 
-            qDebug() << "current num" << game.currentNum;
+            //qDebug() << "current num" << game.currentNum;
         }
+
+        if (event->type() == QEvent::MouseButtonPress)
+        {
+            ui->dynFormulaLabel_2->setText("");
+
+        }
+
         // qDebug() << "End expression";
     }
     return QMainWindow::eventFilter(obj, event);
@@ -541,6 +535,10 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
         rowAndCol.second = currentRow;
         qDebug() << "add expression" << currentColumn << currentRow;
         coordinates.append(rowAndCol);
+        MathNode mn = game.grid[currentColumn][currentRow];
+        QString text = ui->dynFormulaLabel_2->text();
+        text += mn.value;
+        ui->dynFormulaLabel_2->setText(text);
     }
 }
 
@@ -567,7 +565,7 @@ void MainWindow::removeBallAt(float32 column, float32 row)
 void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 {
     int index = getIndex((int)column, (int)row);
-    qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
+    //qDebug() << "removing ball at column: " <<column << " row: " << row << " index: " << index <<"\n";
 
     b2Body *body = _objects.at(index).body;
     //qDebug() << "removing ball at address " << body;
@@ -597,7 +595,7 @@ void MainWindow::removeBallAt(int index, int delayVal)
 
     int row = index % 8;
 
-    spawnBallAt(row, index);
+    //spawnBallAt(row, index);
 
     delay(delayVal);
 }
@@ -606,12 +604,23 @@ void MainWindow::spawnBallAt(float32 column, int index)
 {
     //qDebug() << "COLUMN " << column;
     //incorrect index
-    qDebug() << "removing";
+   // qDebug() << "removing";
 
     _objects.removeAt(column);
 
+
+
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column));
 }
+
+void MainWindow::spawnBallAt(float32 column, float32 row)
+{
+    MathNode mn = game.grid[row][column];
+    qDebug() << "mn value " << mn.value;
+    _objects.removeAt(column);
+    _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column,mn));
+}
+
 
 int MainWindow::getIndex(int column, int row)
 {
@@ -689,7 +698,7 @@ void MainWindow::delay(int millisecondsToWait)
 
 void MainWindow::dealWithInvalidFormula()
 {
-
+    qDebug() << "invalid";
 }
 
 void MainWindow::dealWithCompletedLevel()
@@ -704,7 +713,7 @@ void MainWindow::gameOver()
 
 void MainWindow::nextMove(int movesRemaining, int currentNum)
 {
-    //qDebug() << "in next move";
+    ui->dynTotalLabel->setText(QString::number(currentNum));
 }
 
 void MainWindow::dealWithNewBubble(int column, int row)
@@ -741,6 +750,7 @@ void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
 void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<QPair<int, int>> ballsToAdd)
 {
     QVector<int> ballsToRemove2;
+    QVector<int> ballsToAdd2;
 
     //qDebug() << "remvoing bubbles";
     for(int i = 0; i <ballsToRemove.size(); i++)
@@ -752,6 +762,16 @@ void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<Q
         ballsToRemove2.append(index);
     }
 
+    for(int i = 0; i <ballsToAdd.size(); i++)
+    {
+        QPair<int, int> coord = ballsToAdd.at(i);
+
+        int index = getIndex((int)coord.second, (int)coord.first);
+
+        ballsToAdd2.append(index);
+    }
+
+    qSort(ballsToAdd2);
     qSort(ballsToRemove2);
 
     for(int i = 0; i < ballsToRemove2.size(); i++)
@@ -759,12 +779,40 @@ void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<Q
         removeBallAt(ballsToRemove2.at(i), 100);
     }
 
-}
 
-void MainWindow::on_bombButton_5_pressed()
-{
+    qDebug() << " NEW NODES ";
+    int dropheight = 10.0f;
+    for(int i = ballsToAdd.size()-1; i >= 0; i--)
+    {
+        int offsetX = 95.0f;
+        int offsetY = 90.0f;
+        int dy = offsetY + ballsToAdd.at(i).second * 70;
+        int dx = offsetX + ballsToAdd.at(i).first * 70;
+
+        int index = getIndex((int)ballsToAdd.at(i).second, (int)ballsToAdd.at(i).first);
+        QPair<int, int> coord = ballsToAdd.at(i);
+
+        MathNode mn = game.grid[ballsToAdd.at(i).first][ballsToAdd.at(i).second];
+
+        qDebug() << "COLUMN: " << coord.first << " ROW: " << coord.second << " VALUE: " << mn.value;
+
+        _objects.append(createBall(b2Vec2(dx, dropheight), radius, index, mn));
+        dropheight = dropheight - 70.0f;
+    }
+
+    qDebug() << "\n CURRENT GRID";
+
     for(int i = 0; i < game.grid.size(); i++)
     {
-       // QVector<
+        for(int j = 0; j < game.grid.at(i).size(); j++)
+        {
+            MathNode mn = game.grid[i][j];
+            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
+        }
     }
+}
+
+void MainWindow::displayFormulaResult(int toDisplay)
+{
+    ui->dynAnswerLabel->setText(QString::number(toDisplay));
 }

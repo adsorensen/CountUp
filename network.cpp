@@ -1,4 +1,3 @@
-
 #include "network.h"
 #include <usr/include/cppconn/driver.h>
 #include <usr/include/cppconn/exception.h>
@@ -13,7 +12,7 @@ Network::Network() {
 //returns username, password, admin status, currentlevel, averagescore, userclass in that order
 QVector<QString> Network::getPlayerInfo(QString username)
 {
-
+    std::string temp;
     QVector<QString> playerInfo;
 
     try{
@@ -21,6 +20,7 @@ QVector<QString> Network::getPlayerInfo(QString username)
     sql::Connection *con;
     sql::Statement *stmt;
     sql::ResultSet *res;
+    int count = 1;
 
     driver = get_driver_instance();
 
@@ -32,19 +32,22 @@ QVector<QString> Network::getPlayerInfo(QString username)
     stmt = con->createStatement();
     std::string execute = "SELECT * FROM `cs5530db108`.`MathCrunchUsers` WHERE `Username` = '" + name + "';";
 
-    int col = 1;
-
       res = stmt->executeQuery(execute);
-      while (res->next())
+      if (res->next())
       {
-        qDebug() << "\t... MySQL replies: ";
-        std::string temp = res->getString(col);
-        QString ex = toQString(temp);
-        //qDebug() << ex;
-        playerInfo.append(ex);
-        col++;
 
+        temp = res->getString(4);
+        QString ex = toQString(temp);
+
+        playerInfo.append(ex);
+
+        temp = res->getString(5);
+        ex = toQString(temp);
+
+        playerInfo.append(ex);
+        count++;
       }
+
       delete res;
       delete stmt;
       delete con;
@@ -79,26 +82,28 @@ QVector<QString> Network::getPlayerLevel(QString username)
     stmt = con->createStatement();
     std::string execute = "SELECT * FROM `cs5530db108`.`MathCrunchLevel` WHERE `Username` = '" + name + "';";
 
-    int col = 1;
 
       res = stmt->executeQuery(execute);
-      while (res->next())
+      if (res->next())
       {
-        qDebug() << "\t... MySQL replies: ";
-        std::string temp = res->getString(col);
+        std::string temp = res->getString(2);
         QString ex = toQString(temp);
-        qDebug() << ex;
-        playerInfo.append(ex);
-        col++;
 
+        playerInfo.append(ex);
+        temp = res->getString(3);
+        ex = toQString(temp);
+
+        playerInfo.append(ex);
       }
+
+
       delete res;
       delete stmt;
       delete con;
     }
     catch(sql::SQLException &e)
     {
-        qDebug() << "error";
+        qDebug() << "error with getting player level";
     }
     return playerInfo;
 }
@@ -134,12 +139,15 @@ int Network::registerUser(QString username, QString password, bool admin, QStrin
     std::string currentlevelS = "1";
     std::string avgscoreS = "0";
     std::string userclassS = fromQString(userclass);
+    std::string diff = "1";
+    int level = 1;
 
     stmt = con->createStatement();
 
     std::string execute = "INSERT INTO `cs5530db108`.`MathCrunchUsers` (`Username`, `Password`, `AdminStatus`, `CurrentLevel`, `AverageScore`, `UserClass`) VALUES ('" + nameS + "','" + pwS + "','" + adminS + "','" + currentlevelS + "','" + avgscoreS +"','" + userclassS +"');";
-
+    std::string execute2 = "INSERT INTO `cs5530db108`.`MathCrunchLevel` (`Username`, `Level`, `Difficulty`) VALUES ('" + nameS + "','" + currentlevelS + "','" + diff + "');";
     success = stmt->execute(execute);
+    stmt->execute(execute2);
     flag = 1;
 
     //delete res;
@@ -196,7 +204,7 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
     int sum;
     int count = 0;
     int averageScore;
-
+    qDebug() << "BAD";
     try{
     sql::Driver *driver;
     sql::Connection *con;

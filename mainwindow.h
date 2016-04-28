@@ -65,6 +65,7 @@ class MainWindow : public QMainWindow
     QVector<QPair<int, int>> coordinates;
     bool begin;
     bool gameStarted;
+    QVector<QPair<int, int>> ballstoadd;
 
 public:
     GameModel game;
@@ -82,7 +83,6 @@ private slots:
     void on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
     void on_bombButton_pressed();
     void on_shuffleButton_pressed();
-    void on_bombButton_5_pressed();
 
 public slots:
     void dealWithInvalidFormula();
@@ -91,6 +91,7 @@ public slots:
     void nextMove(int movesRemaining, int currentNum);
     void dealWithNewBubble(int, int);
     void removeBubbles(QVector<QPair<int, int>>,  QVector<QPair<int, int>> );
+    void displayFormulaResult(int);
 
 private:
     Ui::MainWindow *ui;
@@ -110,6 +111,7 @@ private:
     void removeBallAt(int index, int delayVal);
     void spawnBallAt(float32 column, int index);
     void spawnBallAt(float32 column, int index, MathNode mn);
+    void spawnBallAt(float32 column, float32 row);
     int getIndex(int column, int row);
     float32 radius = 34.4f;
     void updateIndex(int index);
