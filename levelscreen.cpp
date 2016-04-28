@@ -55,6 +55,7 @@ Levelscreen::~Levelscreen()
     delete ui;
 }
 
+//Once login verifies that the user is an admin, this will show the admin button
 void Levelscreen::showAdminButton()
 {
     ui->adminButton->show();
@@ -116,6 +117,7 @@ void Levelscreen::hideButtons(int lvl, int diff)
     }
 }
 
+//Checks whether the user has checked a difficulty and a level
 void Levelscreen::on_playButton_pressed()
 {
     qDebug() << "created " << currentUser;
@@ -243,7 +245,8 @@ void Levelscreen::on_extremeButton_clicked()
 }
 
 
-
+//Will unhide and hide level buttons when the user
+//selects the easy button
 void Levelscreen::on_easyButton_pressed()
 {
     int temp = level % 5;
@@ -283,7 +286,8 @@ void Levelscreen::on_easyButton_pressed()
     }
 
 }
-
+//Will unhide and hide level buttons when the user
+//selects the medium button
 void Levelscreen::on_mediumButton_pressed()
 {
     int temp = level % 5;
@@ -325,6 +329,8 @@ void Levelscreen::on_mediumButton_pressed()
 
 }
 
+//Will unhide and hide level buttons when the user
+//selects the hard button
 void Levelscreen::on_hardButton_pressed()
 {
     int temp = level % 5;
@@ -364,6 +370,8 @@ void Levelscreen::on_hardButton_pressed()
     }
 }
 
+//Will unhide and hide level buttons when the user
+//selects the very hard button
 void Levelscreen::on_veryhardButton_pressed()
 {
     int temp = level % 5;
@@ -403,6 +411,8 @@ void Levelscreen::on_veryhardButton_pressed()
     }
 }
 
+//Will unhide and hide level buttons when the user
+//selects the extreme button
 void Levelscreen::on_extremeButton_pressed()
 {
     int temp = level % 5;

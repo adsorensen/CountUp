@@ -31,10 +31,8 @@ public:
     QString name;
     Network network;
     QString difficultyString;
-
     QVector<QVector<MathNode> > grid;
     QMap<int, Level*> levelMap;
-
     int FormulaReader(QVector<QString>);
     bool FormulaCheck(QVector<bool>);
     void ShuffleGrid();
