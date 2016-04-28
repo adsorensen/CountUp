@@ -180,7 +180,7 @@ bool Network::removeUser(QString username, QString userclass)
     std::string userclassS = fromQString(userclass);
 
     stmt = con->createStatement();
-    std::string execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "' 'UserClass' = '" + userclassS + "';";
+    std::string execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE Username = '" + nameS + "' UserClass = '" + userclassS + "';";
 
     success = stmt->execute(execute);
 
@@ -204,7 +204,6 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
     int sum;
     int count = 0;
     int averageScore;
-    qDebug() << "BAD";
     try{
     sql::Driver *driver;
     sql::Connection *con;
@@ -222,38 +221,48 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
     std::string currentLevelS = fromQString(QString::number(username.toInt() * level.toInt()));
 
     stmt = con->createStatement();
-    std::string execute = "SELECT CurrentLevel FROM `cs5530db108`.`MathCrunchUsers` WHERE 'Username' = '" + nameS + "';";
+    std::string execute = "SELECT * FROM `cs5530db108`.`MathCrunchUsers` WHERE Username = '" + nameS + "';";
+
+    qDebug() << "0";
 
     res = stmt->executeQuery(execute);
+
+    qDebug() << "1";
     while (res->next())
     {
-      int temp = res->getInt(1);
-      if (level.QString::toInt() > temp) {
+        qDebug() << "2";
+      int temp = res->getInt("CurrentLevel");
+      qDebug() << "3";
+      if ((level.QString::toInt() * difficulty.QString::toInt()) > temp) {
+
           stmt = con->createStatement();
           std::string execute1 = "INSERT INTO `cs5530db108`.`MathCrunchLevel` (`Username`, `Level`, `Difficulty`, `HighScore`) VALUES ('" + nameS + "'," + levelS + "," + difficultyS + ", " + highscoreS + "');";
-
           success1 = stmt->execute(execute1);
 
-          execute1 = "UPDATE `cs5530db108`.`MathCrunchUsers` SET 'CurrentLevel' = " + currentLevelS + " WHERE 'Username' = '" + nameS + "';";
-
+          execute1 = "UPDATE `cs5530db108`.`MathCrunchUsers` SET CurrentLevel = " + currentLevelS + " WHERE Username = '" + nameS + "';";
           success1 = stmt->execute(execute1);
       }
       else {
-          stmt = con->createStatement();
-          std::string execute2 = "UPDATE `cs5530db108`.`MathCrunchLevel` SET HighScore = " + highscoreS + " WHERE 'Username' = '" + nameS + "' AND 'Difficulty' = " + difficultyS + " AND 'Level' = " + levelS + " AND 'HighScore' < " + highscoreS + ";";
+          qDebug() << "0.2";
 
+          stmt = con->createStatement();
+          std::string execute2 = "UPDATE `cs5530db108`.`MathCrunchLevel` SET HighScore = " + highscoreS + " WHERE Username = '" + nameS + "' AND Difficulty = " + difficultyS + " AND Level = " + levelS + " AND HighScore < " + highscoreS + ";";
           success1 = stmt->execute(execute2);
+
+          qDebug() << "3";
+
       }
 
     }
 
     stmt = con->createStatement();
-    execute = "SELECT HighScore FROM `cs5530db108`.`MathCrunchLevel` WHERE 'Username' = '" + nameS + "';";
+    execute = "SELECT * FROM `cs5530db108`.`MathCrunchLevel` WHERE Username = '" + nameS + "';";
+        qDebug() << "4";
     res = stmt->executeQuery(execute);
 
     while (res->next())
     {
-      int temp = res->getInt(1);
+      int temp = res->getInt("HighScore");
       sum += temp;
       count++;
     }
@@ -262,8 +271,10 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
     std::string averageScoreS = fromQString(QString::number(averageScore));
 
 
-    execute = "UPDATE `cs5530db108`.`MathCrunchUser` SET 'AverageScore' = " + averageScoreS + " WHERE 'Username' = '" + nameS + "';";
+    execute = "UPDATE `cs5530db108`.`MathCrunchUser` SET AverageScore = " + averageScoreS + " WHERE Username = '" + nameS + "';";
     res = stmt->executeQuery(execute);
+
+        qDebug() << "5";
 
     delete res;
     delete stmt;
