@@ -122,6 +122,9 @@ border-color: rgb(0, 0, 0);</string>
     <property name="title">
      <string/>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <widget class="QLabel" name="formulaLabel">
      <property name="geometry">
       <rect>
@@ -482,6 +485,104 @@ border-color: rgb(0, 0, 0);</string>
       <string>0</string>
      </property>
     </widget>
+    <widget class="QLabel" name="timesTwoCounter">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>400</y>
+       <width>21</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(154, 114, 114, 96);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="timesFourCounter">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>400</y>
+       <width>21</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(154, 114, 114, 96);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="divideByTwoCounter">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>320</y>
+       <width>21</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(154, 114, 114, 96);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="modCounter">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>320</y>
+       <width>21</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(154, 114, 114, 96);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <zorder>formulaLabel</zorder>
+    <zorder>dynFormulaLabel</zorder>
+    <zorder>dynTargetLabel</zorder>
+    <zorder>targetLabel</zorder>
+    <zorder>shuffleButton</zorder>
+    <zorder>TotalLabel</zorder>
+    <zorder>dynTotalLabel</zorder>
+    <zorder>answerLabel</zorder>
+    <zorder>dynAnswerLabel</zorder>
+    <zorder>modBomb</zorder>
+    <zorder>div2Bomb</zorder>
+    <zorder>mul2Bomb</zorder>
+    <zorder>mul4Bomb</zorder>
+    <zorder>remMoves</zorder>
+    <zorder>dynRemMovesLabel</zorder>
+    <zorder>congratsBox</zorder>
+    <zorder>congratsWidget</zorder>
+    <zorder>timesTwoCounter</zorder>
+    <zorder>timesFourCounter</zorder>
+    <zorder>divideByTwoCounter</zorder>
+    <zorder>modCounter</zorder>
+    <zorder>modCounter</zorder>
    </widget>
    <widget class="QGraphicsView" name="graphicsView">
     <property name="enabled">
@@ -725,6 +826,37 @@ color: lightGray;
       </size>
      </property>
     </widget>
+    <zorder>gameOverView</zorder>
+    <zorder>retryButton</zorder>
+    <zorder>menuButton</zorder>
+    <zorder>exitButton</zorder>
+    <zorder>congratsBox</zorder>
+   </widget>
+   <widget class="QGroupBox" name="congratsBox">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>150</y>
+      <width>541</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QGraphicsView" name="congratsWidget">
+     <property name="geometry">
+      <rect>
+       <x>-40</x>
+       <y>0</y>
+       <width>591</width>
+       <height>341</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/background/Resources/levelComplete.png);</string>
+     </property>
+    </widget>
    </widget>
    <zorder>toolBox</zorder>
    <zorder>graphicsView</zorder>
@@ -736,6 +868,7 @@ color: lightGray;
    <zorder>dynLevelLabel</zorder>
    <zorder>tableWidget</zorder>
    <zorder>gameOverBox</zorder>
+   <zorder>congratsBox</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

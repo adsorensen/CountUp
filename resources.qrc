@@ -3,6 +3,12 @@
         <file>Resources/bg.png</file>
         <file>Resources/loginbg.png</file>
         <file>Resources/gameOver.png</file>
+        <file>Resources/mediumCongrats.png</file>
+        <file>Resources/hardCongrats.png</file>
+        <file>Resources/veryHardCongrats.png</file>
+        <file>Resources/extremeCongrats.png</file>
+        <file>Resources/easyCongrats.png</file>
+        <file>Resources/levelComplete.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>Resources/shuffle.png</file>

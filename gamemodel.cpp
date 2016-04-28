@@ -182,39 +182,70 @@ void GameModel::BombGrid(int bombOp)
     //Applies operation bombOp on all operands in grid
     switch (bombOp) {
     case 1: // Multiply by 2
-        for (int i = 0; i < grid.length(); i++) {
-            for (int j = 0; j < grid[i].length(); j++) {
-                if (!grid[i][j].isOperator) {
-                    grid[i][j].value = grid[i][j].value.toInt() * 2;
+        if  (div2BombCounter > 0) {
+            qDebug() << "trying to multiply by two";
+            for (int i = 0; i < grid.length(); i++) {
+                for (int j = 0; j < grid[i].length(); j++) {
+                    if (!grid[i][j].isOperator) {
+                        grid[i][j].value = QString::number(grid[i][j].value.toInt() * 2);
+                        if (grid[i][j].value == "0") {
+                            grid[i][j].value = "1";
+                        }
+                    }
                 }
             }
+            div2BombCounter--;
         }
+        emit BombUsed(bombOp, div2BombCounter);
         break;
     case 2: //Multiply by 4
-        for (int i = 0; i < grid.length(); i++) {
-            for (int j = 0; j < grid[i].length(); j++) {
-                if (!grid[i][j].isOperator) {
-                    grid[i][j].value = grid[i][j].value.toInt() * 4;
+        if (mul4BombCounter > 0) {
+            for (int i = 0; i < grid.length(); i++) {
+                for (int j = 0; j < grid[i].length(); j++) {
+                    if (!grid[i][j].isOperator) {
+                        grid[i][j].value = QString::number(grid[i][j].value.toInt() * 4);
+                        if (grid[i][j].value == "0") {
+                            grid[i][j].value = "1";
+                        }
+                    }
                 }
             }
-        }
+            mul4BombCounter--;
+         }
+         emit BombUsed(bombOp, mul4BombCounter);
+         break;
     case 3: //Divide by 2
-        for (int i = 0; i < grid.length(); i++) {
-            for (int j = 0; j < grid[i].length(); j++) {
-                if (!grid[i][j].isOperator) {
-                    grid[i][j].value = (int)(grid[i][j].value.toInt() / 2 + 0.5);
+        if (mul2BombCounter > 0) {
+            for (int i = 0; i < grid.length(); i++) {
+                for (int j = 0; j < grid[i].length(); j++) {
+                    if (!grid[i][j].isOperator) {
+                        grid[i][j].value = QString::number((int)(grid[i][j].value.toInt() / 2 + 0.5));
+                        if (grid[i][j].value == "0") {
+                            grid[i][j].value = "1";
+                        }
+                    }
                 }
             }
+            mul2BombCounter--;
         }
+        emit BombUsed(bombOp, mul2BombCounter);
         break;
     case 4: //Modulo by 10
-        for (int i = 0; i < grid.length(); i++) {
-            for (int j = 0; j < grid[i].length(); j++) {
-                if (!grid[i][j].isOperator) {
-                    grid[i][j].value = grid[i][j].value.toInt() % 10;
+        if (mBombCounter > 0) {
+            for (int i = 0; i < grid.length(); i++) {
+                for (int j = 0; j < grid[i].length(); j++) {
+                    if (!grid[i][j].isOperator) {
+                        grid[i][j].value = QString::number(grid[i][j].value.toInt() % 10);
+                        if (grid[i][j].value == "0") {
+                            grid[i][j].value = "1";
+                        }
+                    }
                 }
             }
+            mBombCounter--;
         }
+        emit BombUsed(bombOp, mBombCounter);
+        break;
     }
 }
 
@@ -461,13 +492,21 @@ void GameModel::LevelStart(int lNum, int diffNum)
 {
     levelNum = lNum;
     difficulty = diffNum;
-    targetNum = levelMap[levelNum]->targetNum;
+    int currLevel = ((difficulty - 1) * 5) + levelNum;
+    targetNum = levelMap[currLevel]->targetNum;
     currentNum = 0;
-    mBombCounter = levelMap[levelNum]->moduloBomb;
-    mul2BombCounter = levelMap[levelNum]->multiplyTwoBomb;
-    mul4BombCounter = levelMap[levelNum]->multiplyFourBomb;
-    div2BombCounter = levelMap[levelNum]->divideTwoBomb;
-    movesRemaining = levelMap[levelNum]->movesNum;
+    mBombCounter = levelMap[currLevel]->moduloBomb;
+    mul2BombCounter = levelMap[currLevel]->multiplyTwoBomb;
+    mul4BombCounter = levelMap[currLevel]->multiplyFourBomb;
+    div2BombCounter = levelMap[currLevel]->divideTwoBomb;
+    movesRemaining = levelMap[currLevel]->movesNum;
+
+    emit BombUsed(1, mul2BombCounter);
+    emit BombUsed(2, mul4BombCounter);
+    emit BombUsed(3, div2BombCounter);
+    emit BombUsed(4, mBombCounter);
+
+
 
     PopulateGrid();
 }
@@ -514,11 +553,11 @@ void GameModel::getUsername(QString username)
 }
 
 void GameModel::mapLevels() {
-    levelMap[1] = new Level(1, 12, 3, 0, 1, 1, 0, 0);
-    levelMap[2] = new Level(2, 25, 5, 0, 1, 1, 0, 0);
-    levelMap[3] = new Level(3, 32, 6, 0, 1, 1, 0, 0);
-    levelMap[4] = new Level(4, 46, 7, 0, 1, 1, 0, 0);
-    levelMap[5] = new Level(5, 94, 10, 0, 0, 0, 0, 1);
+    levelMap[1] = new Level(1, 12, 4, 0, 1, 1, 0, 0);
+    levelMap[2] = new Level(2, 25, 6, 0, 1, 1, 0, 0);
+    levelMap[3] = new Level(3, 32, 7, 0, 1, 1, 0, 0);
+    levelMap[4] = new Level(4, 46, 8, 0, 1, 1, 0, 0);
+    levelMap[5] = new Level(5, 94, 12, 0, 0, 0, 0, 1);
     levelMap[6] = new Level(6, 124, 10, 0, 1, 1, 1, 0);
     levelMap[7] = new Level(7, 257, 20, 0, 2, 2, 1, 0);
     levelMap[8] = new Level(8, 432, 20, 0, 0, 2, 1, 0);
@@ -539,5 +578,6 @@ void GameModel::mapLevels() {
     levelMap[23] = new Level(23, 8891, 20, 2, 2, 2, 2, 2);
     levelMap[24] = new Level(24, 15029, 30, 2, 0, 0, 0, 5);
     levelMap[25] = new Level(25, 40000, 40, 1, 1, 1, 1, 1);
-}
+    //Level::Level(int lvlNum, int trgtNum, int moves, int mBomb, int mul2Bomb, int div2Bomb, int negBomb, int mul4Bomb)
 
+}

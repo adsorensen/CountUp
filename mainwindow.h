@@ -90,6 +90,14 @@ private slots:
 
     void on_menuButton_clicked();
 
+    void on_modBomb_pressed();
+
+    void on_div2Bomb_pressed();
+
+    void on_mul2Bomb_pressed();
+
+    void on_mul4Bomb_pressed();
+
 public slots:
     void dealWithInvalidFormula();
     void dealWithCompletedLevel();
@@ -98,6 +106,7 @@ public slots:
     void dealWithNewBubble(int, int);
     void removeBubbles(QVector<QPair<int, int>>,  QVector<QPair<int, int>> );
     void displayFormulaResult(int);
+    void dealWithBombOp(int, int);
 
 private:
     Ui::MainWindow *ui;
@@ -124,6 +133,7 @@ private:
     void delay(int millisecondsToWait);
     void checkIntegrity();
     void clearLabels();
+    void showCongratsScreen();
 
 signals:
     void current_positions(QVector<QPair<int, int>>);

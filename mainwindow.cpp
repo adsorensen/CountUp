@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->move(x, y);
     this->show();
     ui->gameOverBox->hide();
+    ui->congratsBox->hide();
 
     // Sets the background image
     this->setStyleSheet("MainWindow {border-image: url(:/background/Resources/bg.png); };");
@@ -68,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(&game, SIGNAL(CreateBubbleAtSig(int, int)), this, SLOT(dealWithNewBubble(int, int)));
     QObject::connect(&game, SIGNAL(RemoveBubblesAtSig(QVector<QPair<int,int> >, QVector<QPair<int, int>>)), this, SLOT(removeBubbles(QVector<QPair<int,int>>, QVector<QPair<int, int>>)));
     QObject::connect(&game, SIGNAL(sendResult(int)), this, SLOT(displayFormulaResult(int)));
+    QObject::connect(&game, SIGNAL(BombUsed(int,int)), this, SLOT(dealWithBombOp(int,int)));
 
     //Create world
     b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
@@ -453,6 +455,8 @@ void MainWindow::start() {
     createWalls();
 
 
+    qDebug() << "level " << level;
+    qDebug() << "difficulty " << difficulty;
     game.LevelStart(level, difficulty);
 
     //:LevelStart(int lNum, int diffNum)
@@ -464,6 +468,8 @@ void MainWindow::start() {
 
     fillGrid();
 
+    ui->toolBox->setEnabled(true);
+    ui->tableWidget->setEnabled(true);
 
     begin = true;
 
@@ -664,7 +670,18 @@ void MainWindow::updateIndex(int index)
 void MainWindow::on_shuffleButton_pressed()
 {
     game.ShuffleGrid();
-    ui->dynRemMovesLabel->setText(QString::number(game.movesRemaining));
+     ui->dynRemMovesLabel->setText(QString::number(game.movesRemaining));
+     foreach(Object o, _objects)
+    {
+        World->DestroyBody(o.body);
+    }
+
+    while(!_objects.isEmpty())
+    {
+        _objects.removeFirst();
+    }
+
+    fillGrid();
 }
 
 void MainWindow::delay(int millisecondsToWait)
@@ -681,9 +698,22 @@ void MainWindow::dealWithInvalidFormula()
     qDebug() << "invalid";
 }
 
+/*
+ * Handles when the user has completed a level
+ */
 void MainWindow::dealWithCompletedLevel()
-{
-
+{  
+    if (level == 5)
+    {
+        ui->congratsWidget->setStyleSheet("background-image: url(:/background/Resources/easyCongrats.png);");
+    }
+    else
+    {
+        ui->congratsWidget->setStyleSheet("background-image: url(:/background/Resources/levelComplete.png);");
+    }
+    showCongratsScreen();
+    level++;
+    start();
 }
 
 void MainWindow::gameOver()
@@ -691,6 +721,17 @@ void MainWindow::gameOver()
     ui->gameOverBox->show();
     ui->tableWidget->setEnabled(false);
     ui->toolBox->setEnabled(false);
+}
+
+void MainWindow::showCongratsScreen()
+{
+    ui->congratsBox->show();
+    ui->tableWidget->setEnabled(false);
+    ui->toolBox->setEnabled(false);
+    delay(2000);
+    ui->congratsBox->hide();
+    ui->tableWidget->setEnabled(true);
+    ui->toolBox->setEnabled(true);
 }
 
 void MainWindow::nextMove(int movesRemaining, int currentNum)
@@ -825,6 +866,7 @@ void MainWindow::on_retryButton_clicked()
 {
     ui->gameOverBox->hide();
     ui->tableWidget->setEnabled(true);
+    ui->toolBox->setEnabled(true);
     start();
 }
 
@@ -837,3 +879,167 @@ void MainWindow::on_menuButton_clicked()
     this->hide();
     emit menu_pressed();
 }
+
+void MainWindow::on_modBomb_pressed()
+{
+    game.BombGrid(4);
+        qDebug() << "modbomb pressed\n";
+    //    for(int i = 0; i < game.grid.size(); i++)
+    //    {
+    //        for(int j = 0; j < game.grid.at(i).size(); j++)
+    //        {
+    //            MathNode mn = game.grid[i][j];
+    //            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
+    //        }
+    //    }
+
+        foreach(Object o, _objects)
+       {
+           World->DestroyBody(o.body);
+       }
+
+       while(!_objects.isEmpty())
+       {
+           _objects.removeFirst();
+       }
+
+       fillGrid();
+}
+
+void MainWindow::on_div2Bomb_pressed()
+{
+    game.BombGrid(3);
+      qDebug() << "divide two pressed\n";
+  //    for(int i = 0; i < game.grid.size(); i++)
+  //    {
+  //        for(int j = 0; j < game.grid.at(i).size(); j++)
+  //        {
+  //            MathNode mn = game.grid[i][j];
+  //            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
+  //        }
+  //    }
+
+      foreach(Object o, _objects)
+     {
+         World->DestroyBody(o.body);
+     }
+
+     while(!_objects.isEmpty())
+     {
+         _objects.removeFirst();
+     }
+
+     fillGrid();
+}
+
+void MainWindow::on_mul2Bomb_pressed()
+{
+    game.BombGrid(1);
+    qDebug() << "times two pressed\n";
+//    for(int i = 0; i < game.grid.size(); i++)
+//    {
+//        for(int j = 0; j < game.grid.at(i).size(); j++)
+//        {
+//            MathNode mn = game.grid[i][j];
+//            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
+//        }
+//    }
+
+    foreach(Object o, _objects)
+   {
+       World->DestroyBody(o.body);
+   }
+
+   while(!_objects.isEmpty())
+   {
+       _objects.removeFirst();
+   }
+
+   fillGrid();
+}
+
+void MainWindow::on_mul4Bomb_pressed()
+{
+    game.BombGrid(2);
+      qDebug() << "multiply four pressed\n";
+  //    for(int i = 0; i < game.grid.size(); i++)
+  //    {
+  //        for(int j = 0; j < game.grid.at(i).size(); j++)
+  //        {
+  //            MathNode mn = game.grid[i][j];
+  //            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
+  //        }
+  //    }
+
+      foreach(Object o, _objects)
+     {
+         World->DestroyBody(o.body);
+     }
+
+     while(!_objects.isEmpty())
+     {
+         _objects.removeFirst();
+     }
+
+     fillGrid();
+}
+
+void MainWindow::dealWithBombOp(int bombOp, int counter)
+{
+    qDebug() << "bomb op";
+    switch(bombOp)
+    {
+    case 1: //Multiply 2
+        if(counter!= 0)
+        {
+            ui->timesTwoCounter->setText(QString::number(counter));
+        }
+        else
+        {
+            ui->mul2Bomb->setEnabled(false);
+            //disable button
+        }
+
+        break;
+    case 2: //multiply by 4
+        if(counter!= 0)
+        {
+            ui->timesFourCounter->setText(QString::number(counter));
+        }
+        else
+        {
+            ui->mul4Bomb->setEnabled(false);
+            //disable button
+        }
+
+        break;
+    case 3: // divde by 2
+        if(counter!= 0)
+        {
+            ui->divideByTwoCounter->setText(QString::number(counter));
+        }
+        else
+        {
+            //disable button
+            ui->div2Bomb->setEnabled(false);
+
+        }
+
+        break;
+    case 4: //mod
+        if(counter!= 0)
+        {
+            ui->modCounter->setText(QString::number(counter));
+        }
+        else
+        {
+            //disable button
+            ui->modBomb->setEnabled(false);
+
+        }
+
+        break;
+    }
+
+}
+

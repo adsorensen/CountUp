@@ -55,6 +55,7 @@ signals:
     void CreateBubbleAtSig(int, int);
     void RemoveBubblesAtSig(QVector<QPair<int, int> >, QVector<QPair<int, int> >);
     void sendResult(int);
+    void BombUsed(int, int);
 };
 
 #endif // GAMEMODEL_H

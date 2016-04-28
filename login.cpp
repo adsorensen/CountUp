@@ -201,4 +201,3 @@ void Login::on_newaccountbutton_pressed()
     QString name = ui->lineEdit->text();
     emit sendUsername(name);
 }
-
