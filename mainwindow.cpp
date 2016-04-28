@@ -46,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     int y = (screenGeometry.height() - this->height()) / 2;
     this->move(x, y);
     this->show();
+    ui->gameOverBox->hide();
 
     // Sets the background image
     this->setStyleSheet("MainWindow {border-image: url(:/background/Resources/bg.png); };");
@@ -433,6 +434,7 @@ void MainWindow::start() {
     //}
     gameStarted = true;
 
+    clearLabels();
 
     foreach(Object o, _objects)
     {
@@ -579,7 +581,7 @@ void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 
     spawnBallAt(row, index);
 
-    delay(delayVal);
+    //delay(delayVal);
 }
 
 void MainWindow::removeBallAt(int index, int delayVal)
@@ -598,7 +600,7 @@ void MainWindow::removeBallAt(int index, int delayVal)
 
     //spawnBallAt(row, index);
 
-    delay(delayVal);
+    //delay(delayVal);
 }
 
 void MainWindow::spawnBallAt(float32 column, int index)
@@ -686,7 +688,8 @@ void MainWindow::dealWithCompletedLevel()
 
 void MainWindow::gameOver()
 {
-
+    ui->gameOverBox->show();
+    ui->tableWidget->setEnabled(false);
 }
 
 void MainWindow::nextMove(int movesRemaining, int currentNum)
@@ -788,7 +791,48 @@ void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<Q
     }
 }
 
+/*
+ * Handles when the backend formula changes
+ */
 void MainWindow::displayFormulaResult(int toDisplay)
 {
     ui->dynAnswerLabel->setText(QString::number(toDisplay));
+}
+
+/*
+ * Resets dynamic labels in the UI to default values
+ */
+void MainWindow::clearLabels()
+{
+    ui->dynAnswerLabel->setText("");
+    ui->dynFormulaLabel->setText("");
+    ui->dynTotalLabel->setText("0");
+}
+
+/*
+ * Handles when exit button is clicked
+ */
+void MainWindow::on_exitButton_clicked()
+{
+    this->close();
+}
+
+/*
+ * Handles when the retry button is clicked
+ */
+void MainWindow::on_retryButton_clicked()
+{
+    ui->gameOverBox->hide();
+    ui->tableWidget->setEnabled(true);
+    start();
+}
+
+/*
+ * Handles when the menu button is clicked
+ */
+void MainWindow::on_menuButton_clicked()
+{
+    ui->gameOverBox->hide();
+    this->hide();
+    emit menu_pressed();
 }

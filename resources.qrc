@@ -2,6 +2,7 @@
     <qresource prefix="/background">
         <file>Resources/bg.png</file>
         <file>Resources/loginbg.png</file>
+        <file>Resources/gameOver.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>Resources/shuffle.png</file>

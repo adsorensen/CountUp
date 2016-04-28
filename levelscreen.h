@@ -18,8 +18,6 @@ public:
     MainWindow w;
     QString currentUser;
     int level;
-
-
     void showAdminButton();
     void hideButtons(int, int);
 
@@ -49,6 +47,8 @@ private slots:
     void on_hardButton_pressed();
 
     void on_veryhardButton_pressed();
+
+    void on_menu_pressed();
 
 private:
     Ui::Levelscreen *ui;

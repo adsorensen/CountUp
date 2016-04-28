@@ -48,6 +48,8 @@ Levelscreen::Levelscreen(QWidget *parent) :
     this->move(x, y);
     //qDebug() << "created " << currentUser;
     //QObject::connect(&game, SIGNAL(InvalidFormulaSig()), this, SLOT(dealWithInvalidFormula()));
+
+    QObject::connect(&w, SIGNAL(menu_pressed()), this, SLOT(on_menu_pressed()));
 }
 
 Levelscreen::~Levelscreen()
@@ -450,4 +452,12 @@ void Levelscreen::on_extremeButton_pressed()
         default: break;
         }
     }
+}
+
+/*
+ * Deals with when the user presses the menu button in the game over screen
+ */
+void Levelscreen::on_menu_pressed()
+{
+    this->show();
 }

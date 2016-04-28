@@ -84,6 +84,12 @@ private slots:
     void on_bombButton_pressed();
     void on_shuffleButton_pressed();
 
+    void on_exitButton_clicked();
+
+    void on_retryButton_clicked();
+
+    void on_menuButton_clicked();
+
 public slots:
     void dealWithInvalidFormula();
     void dealWithCompletedLevel();
@@ -117,9 +123,11 @@ private:
     void updateIndex(int index);
     void delay(int millisecondsToWait);
     void checkIntegrity();
+    void clearLabels();
 
 signals:
     void current_positions(QVector<QPair<int, int>>);
+    void menu_pressed();
 };
 
 #endif // MAINWINDOW_H

@@ -110,14 +110,14 @@ border-color: rgb(0, 0, 0);</string>
    <widget class="QGroupBox" name="toolBox">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>700</x>
       <y>160</y>
       <width>261</width>
       <height>441</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(206, 144, 184, 150);</string>
+     <string notr="true">background-color: rgba(206, 144, 184, 200);</string>
     </property>
     <property name="title">
      <string/>
@@ -643,6 +643,89 @@ color: lightGray;
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QGroupBox" name="gameOverBox">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>0</y>
+      <width>445</width>
+      <height>615</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QGraphicsView" name="gameOverView">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>445</width>
+       <height>615</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/background/Resources/gameOver.png);</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="retryButton">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>270</y>
+       <width>123</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="menuButton">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>340</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="exitButton">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>410</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>16</width>
+       <height>17</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
    <zorder>toolBox</zorder>
    <zorder>graphicsView</zorder>
    <zorder>difficultyBox</zorder>
@@ -652,6 +735,7 @@ color: lightGray;
    <zorder>dynDifficultyLabel</zorder>
    <zorder>dynLevelLabel</zorder>
    <zorder>tableWidget</zorder>
+   <zorder>gameOverBox</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
