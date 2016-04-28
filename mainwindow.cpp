@@ -279,7 +279,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
         if (event->type() == QEvent::MouseButtonPress)
         {
-            ui->dynFormulaLabel_2->setText("");
+            ui->dynFormulaLabel->setText("");
 
         }
 
@@ -536,9 +536,9 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
         qDebug() << "add expression" << currentColumn << currentRow;
         coordinates.append(rowAndCol);
         MathNode mn = game.grid[currentColumn][currentRow];
-        QString text = ui->dynFormulaLabel_2->text();
+        QString text = ui->dynFormulaLabel->text();
         text += mn.value;
-        ui->dynFormulaLabel_2->setText(text);
+        ui->dynFormulaLabel->setText(text);
     }
 }
 
