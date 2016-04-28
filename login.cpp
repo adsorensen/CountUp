@@ -77,6 +77,7 @@ void Login::on_loginbutton_pressed()
                 {
                     levelselector.showAdminButton();
                 }
+                getUserLevel(name);
                 levelselector.currentUser = name;
                 levelselector.show();
             }
@@ -107,9 +108,6 @@ void Login::on_loginbutton_pressed()
                 {
                     levelselector.showAdminButton();
                 }
-                //QVector<QString> playerInfo = myNetwork.getPlayerInfo(name);
-                //QVector<QString> playerInfo = myNetwork.getPlayerLevel(name);
-                //qDebug() << "level info" << playerInfo.at(0);
                 getUserLevel(name);
                 //getUserInfo(name);
                 levelselector.currentUser = name;
@@ -150,6 +148,7 @@ QVector<QString> Login::getUserInfo(QString name)
     return playerInfo;
 }
 
+//gets user level
  QVector<QString> Login::getUserLevel(QString name)
 {
     QVector<QString> playerLevel = myNetwork.getPlayerLevel(name);
@@ -192,7 +191,6 @@ void Login::on_newaccountbutton_pressed()
         ui->loginbutton->setGeometry(150,290,90,26);
         ui->warning->setGeometry(130, 260, 131, 21);
     }
-
     QString name = ui->lineEdit->text();
     emit sendUsername(name);
 }
