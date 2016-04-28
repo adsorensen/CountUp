@@ -646,8 +646,8 @@ color: lightGray;
    <widget class="QGroupBox" name="gameOverBox">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>0</y>
+      <x>305</x>
+      <y>2</y>
       <width>445</width>
       <height>615</height>
      </rect>

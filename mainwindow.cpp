@@ -690,6 +690,7 @@ void MainWindow::gameOver()
 {
     ui->gameOverBox->show();
     ui->tableWidget->setEnabled(false);
+    ui->toolBox->setEnabled(false);
 }
 
 void MainWindow::nextMove(int movesRemaining, int currentNum)
