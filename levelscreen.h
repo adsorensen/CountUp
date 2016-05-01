@@ -20,25 +20,14 @@ public:
     int level;
     void showAdminButton();
     void hideButtons(int, int);
+    void unhideHelper(int);
     QString toQString(std::string const &s);
-
-
 
 signals:
     void game_started(int);
 
 private slots:
     void on_playButton_pressed();
-
-    void on_easyButton_clicked();
-
-    void on_mediumButton_clicked();
-
-    void on_hardButton_clicked();
-
-    void on_veryhardButton_clicked();
-
-    void on_extremeButton_clicked();
 
     void on_extremeButton_pressed();
 
