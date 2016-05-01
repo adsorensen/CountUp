@@ -1,3 +1,19 @@
+/**
+* Logical backend behind the database
+*
+* CS3505, April 2016.
+* Team: It's Lit (fire, fire, fire)
+*
+* @author Adam Sorensen
+*         Connor Douglas
+*         Johnny Le
+*         Michelle Nguyen
+*         Steven Sun
+*         Trung Le
+*         Yu Song
+*         Zhi Wong
+*/
+
 #include "network.h"
 #include <usr/include/cppconn/driver.h>
 #include <usr/include/cppconn/exception.h>
@@ -6,10 +22,17 @@
 #include <usr/include/mysql_connection.h>
 #include <QDebug>
 
-Network::Network() {
+/*
+ *
+ */
+Network::Network()
+{
 }
 
 //returns currentlevel, averagescore in that order
+/*
+ *
+ */
 QVector<QString> Network::getPlayerInfo(QString username)
 {
     std::string temp;
@@ -56,12 +79,13 @@ QVector<QString> Network::getPlayerInfo(QString username)
     {
         qDebug() << "error";
     }
-
-
     return playerInfo;
 }
 
 //returns username, level, difficulty, highscore in that order
+/*
+ *
+ */
 QVector<QString> Network::getPlayerLevel(QString username)
 {
     QVector<QString> playerInfo;
@@ -108,7 +132,9 @@ QVector<QString> Network::getPlayerLevel(QString username)
     return playerInfo;
 }
 
-
+/*
+ *
+ */
 int Network::registerUser(QString username, QString password, bool admin, QString userclass)
 {
     bool success = false;
@@ -162,6 +188,9 @@ int Network::registerUser(QString username, QString password, bool admin, QStrin
     return flag;
 }
 
+/*
+ *
+ */
 bool Network::removeUser(QString username, QString userclass)
 {
     bool success = false;
@@ -198,6 +227,9 @@ bool Network::removeUser(QString username, QString userclass)
 
 }
 
+/*
+ *
+ */
 bool Network::updateHighscore(QString username, QString level, QString difficulty, QString highscore)
 {
     bool success1 = false;
@@ -298,6 +330,9 @@ bool Network::updateHighscore(QString username, QString level, QString difficult
 
 }
 
+/*
+ *
+ */
 int Network::checkUserLogin(QString username, QString password)
 {
     int success = 0;
@@ -356,6 +391,9 @@ int Network::checkUserLogin(QString username, QString password)
 
 //Method will check to see if the login name is an admin. Returns true if they are
 //an admin (teacher) and false otherwise
+/*
+ *
+ */
 bool Network::checkAdmin(QString name)
 {
     bool success = false;
@@ -393,11 +431,17 @@ bool Network::checkAdmin(QString name)
 }
 
 //helper methods
+/*
+ *
+ */
 QString Network::toQString(std::string const &s)
 {
     return QString::fromUtf8(s.c_str());
 }
 
+/*
+ *
+ */
 std::string Network::fromQString(QString const &s)
 {
     return std::string(s.toUtf8().data());

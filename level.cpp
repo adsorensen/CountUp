@@ -16,11 +16,16 @@
 
 #include "level.h"
 
+/*
+ * Default constructor
+ */
 Level::Level()
 {
-
 }
 
+/*
+ * Constructor
+ */
 Level::Level(int lvlNum, int trgtNum, int moves, int mBomb, int mul2Bomb, int div2Bomb, int negBomb, int mul4Bomb)
 {
     levelNum = lvlNum;

@@ -17,6 +17,9 @@
 
 #include "mathnode.h"
 
+/*
+ *
+ */
 MathNode::MathNode()
 {
     value = "0";
@@ -24,6 +27,9 @@ MathNode::MathNode()
     isSelected = false;
 }
 
+/*
+ *
+ */
 MathNode::MathNode(const MathNode &obj)
 {
     isSelected = obj.isSelected;

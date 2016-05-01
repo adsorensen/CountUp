@@ -26,6 +26,9 @@
 #include <QtGui>
 #include <QAbstractItemView>
 
+/*
+ *
+ */
 Login::Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)
@@ -47,6 +50,9 @@ Login::Login(QWidget *parent) :
     newUser = false;
 }
 
+/*
+ *
+ */
 Login::~Login()
 {
     delete ui;
@@ -54,6 +60,9 @@ Login::~Login()
 
 
 //validate user login here
+/*
+ *
+ */
 void Login::on_loginbutton_pressed()
 {
     int flag, flag2;
@@ -141,6 +150,9 @@ void Login::on_loginbutton_pressed()
 }
 
 //gets user information
+/*
+ *
+ */
 QVector<QString> Login::getUserInfo(QString name)
 {
     QVector<QString> playerInfo = myNetwork.getPlayerInfo(name);
@@ -149,6 +161,9 @@ QVector<QString> Login::getUserInfo(QString name)
 }
 
 //gets user level
+/*
+ *
+ */
  QVector<QString> Login::getUserLevel(QString name)
 {
      qDebug() << "getuserlevel1";
@@ -166,6 +181,9 @@ QVector<QString> Login::getUserInfo(QString name)
 }
 
 //create new user or switch back to login
+ /*
+  *
+  */
 void Login::on_newaccountbutton_pressed()
 {
     if (newUser)

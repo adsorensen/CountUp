@@ -24,7 +24,6 @@ CONFIG += c++11
 SOURCES += main.cpp\
     gamemodel.cpp \
     mathnode.cpp \
-    formula.cpp \
     login.cpp \
     levelscreen.cpp \
     mainwindow.cpp \
@@ -34,7 +33,6 @@ SOURCES += main.cpp\
 HEADERS  += \
     gamemodel.h \
     mathnode.h \
-    formula.h \
     login.h \
     levelscreen.h \
     mainwindow.h \
@@ -45,13 +43,6 @@ FORMS    += \
     login.ui \
     levelscreen.ui \
     mainwindow.ui
-
-#LIBS += -L"./../CountUp/SFMLX/lib"
-
-#LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
-
-#INCLUDEPATH += "./../CountUp/SFMLX/include"
-#DEPENDPATH += "./../CountUp/SFMLX/include"
 
 LIBS += -lGL -lGLU  -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl
 

@@ -34,6 +34,9 @@
 #include <QTimerEvent>
 
 // Setup
+/*
+ *
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -72,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(&game, SIGNAL(BombUsed(int,int)), this, SLOT(dealWithBombOp(int,int)));
 
     //Create world
-    b2Vec2 gravity(0.0f, 1000.0f); //normal earth gravity, 9.8 m/s/s straight down!
+    b2Vec2 gravity(0.0f, 1000.0f);
     World = new b2World(gravity);
     gameStarted = false;
 
@@ -82,27 +85,30 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 // Destructor
+/*
+ *
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
     delete World;
 }
 
-//COPY THIS OVER
 //Sets value of the cell according to model
+/*
+ *
+ */
 void MainWindow::fillGrid()
 {
     int index = 0;
     int offsetX = 95.0f;
     int offsetY = 90.0f;
-    //qDebug() << game.grid.size();
     for(int i = 0; i < game.grid.size(); i++)
     {
-        //QVector<MathNode> column = game.grid.at(i);
-
-
         for(int j = 0; j < game.grid[i].size(); j++)
         {
+            qDebug() << "program crashes here";
+            qDebug() << game.grid[i].size();
             int dy = offsetY + i * 70;
             int dx = offsetX + j * 70;
 
@@ -111,15 +117,10 @@ void MainWindow::fillGrid()
             index++;
         }
 
-//        for(int i = 0; i < _objects.size(); i++)
-//        {
-//            qDebug() << "index: " << _objects.at(i).index << " value : " << _objects.at(i).numberValue;
-//        }
-
-
     }
     for(int i = 0; i < game.grid.size(); i++)
     {
+        qDebug() << "here5";
         for(int j = 0; j < game.grid.at(i).size(); j++)
         {
             MathNode mn = game.grid[i][j];
@@ -128,20 +129,25 @@ void MainWindow::fillGrid()
     }
 }
 
+/*
+ *
+ */
 Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index, MathNode mn)
 {
-    Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
-
+    Object o;
+    qDebug() << "here";
     // body
     b2BodyDef bd;
     bd.type = b2_dynamicBody;
     bd.position = pos;
     o.body = World->CreateBody(&bd);
     o.index = index;
-
+    qDebug() << "here?";
     // shape
     b2CircleShape shape;
+    qDebug() << "herest";
     shape.m_radius = radius; //ADJUST BALL RADIUS HERE
+    qDebug() << "here??";
     // fixture
     // add mass
     for(int i = 0; i < 2; i++)
@@ -152,19 +158,24 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index, Math
         fd.friction = 0.6f;
         fd.restitution = 0.0f;
         o.fixture = o.body->CreateFixture(&fd);
+        qDebug() << "here???";
 
     }
-
+    qDebug() << "heree";
     o.type = BallObject;
     o.column = pos.x;
     o.row = pos.y;
 
-
+    qDebug() << "hereee";
     o.color = generateColor(mn);
     o.numberValue = mn.value;
     return o;
+    qDebug() << "hereeee";
 }
 
+/*
+ *
+ */
 void MainWindow::createBalls()
 {
     int offsetX = 95.0f;
@@ -182,6 +193,9 @@ void MainWindow::createBalls()
     }
 }
 
+/*
+ *
+ */
 void MainWindow::createWalls()
 {
     //_objects.append(createWall(60.0f, 305.0f, 560.0f, 1.0f, 0.0)); //test wall
@@ -211,7 +225,9 @@ void MainWindow::createWalls()
     walls.append(createWall(550.0f, 55.0f, 0.5f, 560.0f, 0.0));
 }
 
-
+/*
+ *
+ */
 void MainWindow::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
@@ -227,9 +243,10 @@ void MainWindow::paintEvent(QPaintEvent *)
     }
 }
 
-
-
 //Add math node to current formula
+/*
+ *
+ */
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
     //retrieve value from math node
@@ -244,6 +261,9 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 
 //Same thing here but for drag
 //Do not register diagonal nodes?
+/*
+ *
+ */
 void MainWindow::on_tableWidget_cellEntered(int row, int column)
 {
     //validate formula before removing math ball
@@ -255,6 +275,9 @@ void MainWindow::on_tableWidget_cellEntered(int row, int column)
 //Send current formula to game model to evaluate
 //If valid expression, replace math nodes with new nodes from game model
 //else return nodes to grid
+/*
+ *
+ */
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == ui->tableWidget->viewport())
@@ -292,6 +315,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 }
 
 //Draw walls for grid
+/*
+ *
+ */
 void MainWindow::drawWall(QPainter *p, const Object& o){
     float32 x = o.body->GetPosition().x;
     float32 y = o.body->GetPosition().y;
@@ -313,7 +339,11 @@ void MainWindow::drawWall(QPainter *p, const Object& o){
 }
 
 //Create walls for grid
-Object MainWindow::createWall(float32 x, float32 y, float32 w, float32 h, float32 angle) {
+/*
+ *
+ */
+Object MainWindow::createWall(float32 x, float32 y, float32 w, float32 h, float32 angle)
+{
     Object o;
     // body
     b2BodyDef bd;
@@ -335,7 +365,11 @@ Object MainWindow::createWall(float32 x, float32 y, float32 w, float32 h, float3
 }
 
 //Create ball model
-Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
+/*
+ *
+ */
+Object MainWindow::createBall(const b2Vec2& pos, float32 radius)
+{
     Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
 
     // body
@@ -367,6 +401,9 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius) {
     return o;
 }
 
+/*
+ *
+ */
 Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
 {
     Object o;    //_objects.append(createBall(b2Vec2(dx, dy), 34.4f));
@@ -401,8 +438,10 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, int index)
     return o;
 }
 
-
 //Draw ball model
+/*
+ *
+ */
 void MainWindow::drawEllipse(QPainter *p, const Object& o)
 {
     QFont font;
@@ -430,6 +469,9 @@ void MainWindow::drawEllipse(QPainter *p, const Object& o)
 }
 
 //Start simulator
+/*
+ *
+ */
 void MainWindow::start() {
     //if(!_timerId) {
     _timerId = startTimer(1000/60); // 60fps
@@ -472,9 +514,11 @@ void MainWindow::start() {
     ui->tableWidget->setEnabled(true);
 
     begin = true;
-
 }
 
+/*
+ *
+ */
 void MainWindow::timerEvent(QTimerEvent *event) {
     if(event->timerId() == _timerId) {
         World->Step(1.0f/60.0f, 8, 3);
@@ -483,6 +527,9 @@ void MainWindow::timerEvent(QTimerEvent *event) {
 }
 
 // Returns a QColor based on the input MathNode's ending value
+/*
+ *
+ */
 QColor MainWindow::generateColor(MathNode currentNode)
 {
     if (currentNode.value.endsWith("1"))
@@ -531,6 +578,9 @@ QColor MainWindow::generateColor(MathNode currentNode)
     }
 }
 
+/*
+ *
+ */
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
     QPair<int, int> rowAndCol;
@@ -551,11 +601,17 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
     }
 }
 
+/*
+ *
+ */
 void MainWindow::on_bombButton_pressed()
 {
 
 }
 
+/*
+ *
+ */
 void MainWindow::removeBallAt(float32 column, float32 row)
 {
     int index = getIndex((int)column, (int)row);
@@ -571,6 +627,9 @@ void MainWindow::removeBallAt(float32 column, float32 row)
 
 }
 
+/*
+ *
+ */
 void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
 {
     int index = getIndex((int)column, (int)row);
@@ -590,6 +649,9 @@ void MainWindow::removeBallAt(float32 column, float32 row, int delayVal)
     //delay(delayVal);
 }
 
+/*
+ *
+ */
 void MainWindow::removeBallAt(int index, int delayVal)
 {
 
@@ -609,11 +671,14 @@ void MainWindow::removeBallAt(int index, int delayVal)
     //delay(delayVal);
 }
 
+/*
+ *
+ */
 void MainWindow::spawnBallAt(float32 column, int index)
 {
     //qDebug() << "COLUMN " << column;
     //incorrect index
-   // qDebug() << "removing";
+    // qDebug() << "removing";
 
     _objects.removeAt(column);
 
@@ -622,6 +687,9 @@ void MainWindow::spawnBallAt(float32 column, int index)
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column));
 }
 
+/*
+ *
+ */
 void MainWindow::spawnBallAt(float32 column, float32 row)
 {
     MathNode mn = game.grid[row][column];
@@ -630,7 +698,9 @@ void MainWindow::spawnBallAt(float32 column, float32 row)
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column,mn));
 }
 
-
+/*
+ *
+ */
 int MainWindow::getIndex(int column, int row)
 {
     int index = column * 8 + row;
@@ -638,6 +708,9 @@ int MainWindow::getIndex(int column, int row)
 }
 
 //for trickling down
+/*
+ *
+ */
 void MainWindow::updateIndex(int index)
 {
     //current ball
@@ -664,14 +737,14 @@ void MainWindow::updateIndex(int index)
     //qDebug() << "done updating";
 }
 
-
-
-
+/*
+ *
+ */
 void MainWindow::on_shuffleButton_pressed()
 {
     game.ShuffleGrid();
-     ui->dynRemMovesLabel->setText(QString::number(game.movesRemaining));
-     foreach(Object o, _objects)
+    ui->dynRemMovesLabel->setText(QString::number(game.movesRemaining));
+    foreach(Object o, _objects)
     {
         World->DestroyBody(o.body);
     }
@@ -684,6 +757,9 @@ void MainWindow::on_shuffleButton_pressed()
     fillGrid();
 }
 
+/*
+ *
+ */
 void MainWindow::delay(int millisecondsToWait)
 {
     QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
@@ -693,6 +769,9 @@ void MainWindow::delay(int millisecondsToWait)
     }
 }
 
+/*
+ *
+ */
 void MainWindow::dealWithInvalidFormula()
 {
     qDebug() << "invalid";
@@ -707,6 +786,22 @@ void MainWindow::dealWithCompletedLevel()
     {
         ui->congratsWidget->setStyleSheet("background-image: url(:/background/Resources/easyCongrats.png);");
     }
+    if (level == 10)
+    {
+        ui->congratsWidget->setStyleSheet("background-image: url(:/background/Resources/mediumCongrats.png);");
+    }
+    if (level == 15)
+    {
+        ui->congratsWidget->setStyleSheet("background-image: url(:/background/Resources/hardCongrats.png);");
+    }
+    if (level == 20)
+    {
+        ui->congratsWidget->setStyleSheet("background-image: url(:/background/Resources/veryHardCongrats.png);");
+    }
+    if (level == 25)
+    {
+        ui->congratsWidget->setStyleSheet("background-image: url(:/background/Resources/extremeCongrats.png);");
+    }
     else
     {
         ui->congratsWidget->setStyleSheet("background-image: url(:/background/Resources/levelComplete.png);");
@@ -716,6 +811,9 @@ void MainWindow::dealWithCompletedLevel()
     start();
 }
 
+/*
+ *
+ */
 void MainWindow::gameOver()
 {
     ui->gameOverBox->show();
@@ -723,6 +821,9 @@ void MainWindow::gameOver()
     ui->toolBox->setEnabled(false);
 }
 
+/*
+ *
+ */
 void MainWindow::showCongratsScreen()
 {
     ui->congratsBox->show();
@@ -734,12 +835,18 @@ void MainWindow::showCongratsScreen()
     ui->toolBox->setEnabled(true);
 }
 
+/*
+ *
+ */
 void MainWindow::nextMove(int movesRemaining, int currentNum)
 {
     ui->dynTotalLabel->setText(QString::number(currentNum));
     ui->dynRemMovesLabel->setText(QString::number(movesRemaining));
 }
 
+/*
+ *
+ */
 void MainWindow::dealWithNewBubble(int column, int row)
 {
     int index = getIndex(column, row);
@@ -748,18 +855,11 @@ void MainWindow::dealWithNewBubble(int column, int row)
     MathNode mn = game.grid[column][row];
 
     spawnBallAt(row, index, mn);
-
-//    for(int j = 0; j < game.grid[i].size(); j++)
-//    {
-//        int dy = offsetY + i * 70;
-//        int dx = offsetX + j * 70;
-
-//        MathNode mn = game.grid[i][j];
-//        _objects.append(createBall(b2Vec2(dx, dy), radius, index, mn));
-//        index++;
-//    }
 }
 
+/*
+ *
+ */
 void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
 {
     _objects.removeAt(column);
@@ -768,6 +868,9 @@ void MainWindow::spawnBallAt(float32 column, int index, MathNode mn)
     _objects.insert(column, createBall(b2Vec2((column * 70) + 95, 10.0f ), radius, column, mn));
 }
 
+/*
+ *
+ */
 void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<QPair<int, int>> ballsToAdd)
 {
     QVector<int> ballsToRemove2;
@@ -880,110 +983,93 @@ void MainWindow::on_menuButton_clicked()
     emit menu_pressed();
 }
 
+/*
+ *
+ */
 void MainWindow::on_modBomb_pressed()
 {
     game.BombGrid(4);
-        qDebug() << "modbomb pressed\n";
-    //    for(int i = 0; i < game.grid.size(); i++)
-    //    {
-    //        for(int j = 0; j < game.grid.at(i).size(); j++)
-    //        {
-    //            MathNode mn = game.grid[i][j];
-    //            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
-    //        }
-    //    }
+    qDebug() << "modbomb pressed\n";
 
-        foreach(Object o, _objects)
-       {
-           World->DestroyBody(o.body);
-       }
+    foreach(Object o, _objects)
+    {
+        World->DestroyBody(o.body);
+    }
 
-       while(!_objects.isEmpty())
-       {
-           _objects.removeFirst();
-       }
+    while(!_objects.isEmpty())
+    {
+        _objects.removeFirst();
+    }
 
-       fillGrid();
+    fillGrid();
 }
 
+/*
+ *
+ */
 void MainWindow::on_div2Bomb_pressed()
 {
     game.BombGrid(3);
-      qDebug() << "divide two pressed\n";
-  //    for(int i = 0; i < game.grid.size(); i++)
-  //    {
-  //        for(int j = 0; j < game.grid.at(i).size(); j++)
-  //        {
-  //            MathNode mn = game.grid[i][j];
-  //            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
-  //        }
-  //    }
 
-      foreach(Object o, _objects)
-     {
-         World->DestroyBody(o.body);
-     }
+    foreach(Object o, _objects)
+    {
+        World->DestroyBody(o.body);
+    }
 
-     while(!_objects.isEmpty())
-     {
-         _objects.removeFirst();
-     }
+    while(!_objects.isEmpty())
+    {
+        _objects.removeFirst();
+    }
 
-     fillGrid();
+    fillGrid();
 }
 
+/*
+ *
+ */
 void MainWindow::on_mul2Bomb_pressed()
 {
     game.BombGrid(1);
     qDebug() << "times two pressed\n";
-//    for(int i = 0; i < game.grid.size(); i++)
-//    {
-//        for(int j = 0; j < game.grid.at(i).size(); j++)
-//        {
-//            MathNode mn = game.grid[i][j];
-//            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
-//        }
-//    }
+
 
     foreach(Object o, _objects)
-   {
-       World->DestroyBody(o.body);
-   }
+    {
+        World->DestroyBody(o.body);
+    }
 
-   while(!_objects.isEmpty())
-   {
-       _objects.removeFirst();
-   }
+    while(!_objects.isEmpty())
+    {
+        _objects.removeFirst();
+    }
 
-   fillGrid();
+    fillGrid();
 }
 
+/*
+ *
+ */
 void MainWindow::on_mul4Bomb_pressed()
 {
     game.BombGrid(2);
-      qDebug() << "multiply four pressed\n";
-  //    for(int i = 0; i < game.grid.size(); i++)
-  //    {
-  //        for(int j = 0; j < game.grid.at(i).size(); j++)
-  //        {
-  //            MathNode mn = game.grid[i][j];
-  //            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
-  //        }
-  //    }
+    qDebug() << "multiply four pressed\n";
 
-      foreach(Object o, _objects)
-     {
-         World->DestroyBody(o.body);
-     }
+    foreach(Object o, _objects)
+    {
+        World->DestroyBody(o.body);
+    }
 
-     while(!_objects.isEmpty())
-     {
-         _objects.removeFirst();
-     }
+    while(!_objects.isEmpty())
+    {
+        _objects.removeFirst();
+    }
 
-     fillGrid();
+    fillGrid();
 }
 
+/*
+ *
+ */
 void MainWindow::dealWithBombOp(int bombOp, int counter)
 {
     qDebug() << "bomb op";
@@ -999,7 +1085,6 @@ void MainWindow::dealWithBombOp(int bombOp, int counter)
             ui->mul2Bomb->setEnabled(false);
             //disable button
         }
-
         break;
     case 2: //multiply by 4
         if(counter!= 0)
@@ -1011,7 +1096,6 @@ void MainWindow::dealWithBombOp(int bombOp, int counter)
             ui->mul4Bomb->setEnabled(false);
             //disable button
         }
-
         break;
     case 3: // divde by 2
         if(counter!= 0)
@@ -1022,9 +1106,7 @@ void MainWindow::dealWithBombOp(int bombOp, int counter)
         {
             //disable button
             ui->div2Bomb->setEnabled(false);
-
         }
-
         break;
     case 4: //mod
         if(counter!= 0)
@@ -1035,11 +1117,8 @@ void MainWindow::dealWithBombOp(int bombOp, int counter)
         {
             //disable button
             ui->modBomb->setEnabled(false);
-
         }
-
         break;
     }
-
 }
 

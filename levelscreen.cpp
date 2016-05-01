@@ -32,6 +32,9 @@
 #include <QTextStream>
 #include <QVector>
 
+/*
+ *
+ */
 Levelscreen::Levelscreen(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Levelscreen)
@@ -57,12 +60,18 @@ Levelscreen::Levelscreen(QWidget *parent) :
     QObject::connect(&w, SIGNAL(menu_pressed()), this, SLOT(on_menu_pressed()));
 }
 
+/*
+ *
+ */
 Levelscreen::~Levelscreen()
 {
     delete ui;
 }
 
 //Once login verifies that the user is an admin, this will show the admin button
+/*
+ *
+ */
 void Levelscreen::showAdminButton()
 {
     ui->adminButton->show();
@@ -70,6 +79,9 @@ void Levelscreen::showAdminButton()
 
 //takes in the level and difficulty from the user and will hide the options
 //not available to them.
+/*
+ *
+ */
 void Levelscreen::hideButtons(int lvl, int diff)
 {
 
@@ -125,6 +137,9 @@ void Levelscreen::hideButtons(int lvl, int diff)
 }
 
 //Checks whether the user has checked a difficulty and a level
+/*
+ *
+ */
 void Levelscreen::on_playButton_pressed()
 {
     qDebug() << "created " << currentUser;
@@ -226,26 +241,41 @@ void Levelscreen::on_playButton_pressed()
     }
 }
 
+/*
+ *
+ */
 void Levelscreen::on_easyButton_clicked()
 {
 
 }
 
+/*
+ *
+ */
 void Levelscreen::on_mediumButton_clicked()
 {
 
 }
 
+/*
+ *
+ */
 void Levelscreen::on_hardButton_clicked()
 {
 
 }
 
+/*
+ *
+ */
 void Levelscreen::on_veryhardButton_clicked()
 {
 
 }
 
+/*
+ *
+ */
 void Levelscreen::on_extremeButton_clicked()
 {
 
@@ -254,6 +284,9 @@ void Levelscreen::on_extremeButton_clicked()
 
 //Will unhide and hide level buttons when the user
 //selects the easy button
+/*
+ *
+ */
 void Levelscreen::on_easyButton_pressed()
 {
     int temp = level % 5;
@@ -295,6 +328,9 @@ void Levelscreen::on_easyButton_pressed()
 }
 //Will unhide and hide level buttons when the user
 //selects the medium button
+/*
+ *
+ */
 void Levelscreen::on_mediumButton_pressed()
 {
     int temp = level % 5;
@@ -338,6 +374,9 @@ void Levelscreen::on_mediumButton_pressed()
 
 //Will unhide and hide level buttons when the user
 //selects the hard button
+/*
+ *
+ */
 void Levelscreen::on_hardButton_pressed()
 {
     int temp = level % 5;
@@ -379,6 +418,9 @@ void Levelscreen::on_hardButton_pressed()
 
 //Will unhide and hide level buttons when the user
 //selects the very hard button
+/*
+ *
+ */
 void Levelscreen::on_veryhardButton_pressed()
 {
     int temp = level % 5;
@@ -420,6 +462,9 @@ void Levelscreen::on_veryhardButton_pressed()
 
 //Will unhide and hide level buttons when the user
 //selects the extreme button
+/*
+ *
+ */
 void Levelscreen::on_extremeButton_pressed()
 {
     int temp = level % 5;
@@ -467,7 +512,9 @@ void Levelscreen::on_menu_pressed()
     this->show();
 }
 
-
+/*
+ *
+ */
 void Levelscreen::on_adminButton_clicked()
 {
     QString temp = "";
@@ -561,6 +608,9 @@ void Levelscreen::on_adminButton_clicked()
 }
 
 //helper methods
+/*
+ *
+ */
 QString Levelscreen::toQString(std::string const &s)
 {
     return QString::fromUtf8(s.c_str());
