@@ -27,121 +27,90 @@
 #include <QAbstractItemView>
 
 /*
- *
+ * Constructor
  */
 Login::Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)
 {
+    // General setup of UI
     ui->setupUi(this);
-    levelselector.hide();
-    QRect screenGeometry = QApplication::desktop()->screenGeometry();
-    this->setStyleSheet("Login {border-image: url(:/background/Resources/loginbg.png); };");
-    int x = (screenGeometry.width() - this->width()) / 2;
-    int y = (screenGeometry.height() - this->height()) / 2;
-    this->move(x, y);
-    this->show();
     ui->newUser->hide();
     ui->warning->hide();
     ui->classBox->setGeometry(82, 190, 231, 25);
     ui->teacher->setGeometry(150, 230, 231, 25);
     ui->teacher->hide();
     ui->classBox->hide();
+    levelselector.hide();
+
+    // Set background image of login screen
+    this->setStyleSheet("Login {border-image: url(:/background/Resources/loginbg.png); };");
+
+    // Center login screen
+    QRect screenGeometry = QApplication::desktop()->screenGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    this->move(x, y);
+    this->show();
+
+    // Set newUser to false
     newUser = false;
 }
 
 /*
- *
+ * Destructor
  */
 Login::~Login()
 {
     delete ui;
 }
 
-
-//validate user login here
 /*
- *
+ * Validates user login when loginButton is pressed
  */
 void Login::on_loginbutton_pressed()
 {
+    // Declare variables
     int flag, flag2;
-    if(ui->lineEdit->text() != "" && ui->lineEdit_2->text() != "")
-    {
-        QString name = ui->lineEdit->text(), password = ui->lineEdit_2->text();
 
+    // Enter if condition if the username and password edit textboxes are both not empty
+    if(ui->usernameEdit->text() != "" && ui->passwordEdit->text() != "")
+    {
+        // Sets text in edit boxes to QString variables
+        QString name = ui->usernameEdit->text();
+        QString password = ui->passwordEdit->text();
+
+        // Pass name to sendUsername signal and emit
         emit sendUsername(name);
 
+        // Handle if the user is new
         if(newUser)
         {
+            // Set isAdmin based on whether the teacher box is checked
             bool isAdmin = ui->teacher->isChecked();
+
+            // Set text in classBox to QString variable
             QString classText = ui->classBox->text();
+
+            // Attempt to register the user in the network and set the flag based off registerUser result
             flag = myNetwork.registerUser(name, password, isAdmin, classText);
-            //successfully created user
-            if(flag == 1)
-            {
-                this->hide();
-                //checks for admin privledges
-                if(myNetwork.checkAdmin(name))
-                {
-                    levelselector.showAdminButton();
-                }
-                getUserLevel(name);
-                levelselector.currentUser = name;
-                levelselector.show();
-            }
-            //Error to show that the login already exists
-            else if (flag == 2)
-            {
-                ui->warning->show();
-                ui->warning->setText("Login already exists");
-            }
-            //Error with the database
-            else
-            {
-                ui->warning->setText("Something went wrong");
-                ui->warning->show();
-            }
+
+            // Call checkUserHelper for a new user
+            checkUserHelper(flag, true);
         }
-        //validate old user
+
+        // Validate existing user
         else
         {
-            //emit validateLogin(name, password);
+            // Set flag2 to results of checkUserLogin from network
             flag2 = myNetwork.checkUserLogin(name, password);
-            //success
-            if(flag2 == 1)
-            {
-                this->hide();
-                //check for admin privledges
-                if (myNetwork.checkAdmin(name))
-                {
-                    levelselector.showAdminButton();
-                }
-                getUserLevel(name);
-                //getUserInfo(name);
-                levelselector.currentUser = name;
-                levelselector.show();
-            }
-            //error code to say wrong password
-            else if (flag2 == 2)
-            {
-                ui->warning->show();
-                ui->warning->setText("Wrong password!");
-            }
-            //error for login doesn't exist
-            else if (flag2 == 3)
-            {
-                ui->warning->show();
-                ui->warning->setText("Login doesn't exist");
-            }
-            //error connecting to the database
-            else
-            {
-                ui->warning->show();
-                ui->warning->setText("Something went wrong");
-            }
+
+            // Call checkUserHelper for a non new user
+            checkUserHelper(flag2, false);
         }
     }
+
+    // Throw warning if user has left fields blank
     else
     {
         ui->warning->setText("Must fill in all fields");
@@ -149,9 +118,64 @@ void Login::on_loginbutton_pressed()
     }
 }
 
-//gets user information
 /*
- *
+ * Helper method that performs different actions based on the flag returned from the network and whether the user is new or not
+ */
+void Login::checkUserHelper(int fromNetwork, bool newUser)
+{
+    // Sets text from usernameEdit to a QString variable
+    QString name = ui->usernameEdit->text();
+
+    // 1 means success in was creating login or checking login
+    if(fromNetwork == 1)
+    {
+        // Hides login screen
+        this->hide();
+
+        // If user is an admin, show the admin button
+        if(myNetwork.checkAdmin(name))
+        {
+            levelselector.showAdminButton();
+        }
+
+        // Set properties based on user name
+        getUserLevel(name);
+        levelselector.currentUser = name;
+        levelselector.show();
+    }
+    else if (fromNetwork == 2)
+    {
+        // 2 for a newUser means login already exists
+        if (newUser)
+        {
+            ui->warning->setText("Login already exists");
+        }
+
+        // 2 for existing user means the password does not match that of the user's on file
+        else
+        {
+            ui->warning->setText("Wrong password!");
+        }
+        ui->warning->show();
+    }
+    else
+    {
+        // 3 for newUser means there was an error connecting to the database
+        if (newUser)
+        {
+            ui->warning->setText("Check database connection!");
+        }
+        // 3 for an existing user means the login does not exist in the database
+        else
+        {
+            ui->warning->setText("Login doesn't exist");
+        }
+        ui->warning->show();
+    }
+}
+
+/*
+ * Retrieves information about the user with the passed in name
  */
 QVector<QString> Login::getUserInfo(QString name)
 {
@@ -160,40 +184,33 @@ QVector<QString> Login::getUserInfo(QString name)
     return playerInfo;
 }
 
-//gets user level
 /*
- *
+ * Takes in a user's name and returns the denoted user's level
  */
- QVector<QString> Login::getUserLevel(QString name)
+QVector<QString> Login::getUserLevel(QString name)
 {
-     qDebug() << "getuserlevel1";
-
     QVector<QString> playerLevel = myNetwork.getPlayerInfo(name);
     int level = (playerLevel.at(0).toInt() % 5);
     int diff = ((playerLevel.at(0).toInt() - 1) / 5) + 1;
-    qDebug() << level << diff;
-
     levelselector.hideButtons(level, diff);
-
-    qDebug() << "getuserlevel2";
-
     return playerLevel;
 }
 
-//create new user or switch back to login
- /*
-  *
+/*
+  * Handles when the newAccountButton is pressed
   */
 void Login::on_newaccountbutton_pressed()
 {
+    // Enters if condition if newUser is true
     if (newUser)
     {
+        // Sets newUser to false
         newUser = false;
+
+        // Deals with UI
         ui->newUser->hide();
         ui->loginbutton->setText("Log in");
         ui->newaccountbutton->setText("Create a new account");
-        ui->lineEdit->setPlaceholderText("User name");
-        ui->lineEdit_2->setPlaceholderText("Password");
         ui->warning->hide();
         ui->teacher->hide();
         ui->classBox->hide();
@@ -201,12 +218,17 @@ void Login::on_newaccountbutton_pressed()
         ui->loginbutton->setGeometry(150,200,90,26);
         ui->warning->setGeometry(130, 180, 131, 21);
     }
+
+    // Enters else condition if newUser is false
     else
     {
+        // Sets newUser to true
         newUser = true;
+
+        // Deals with UI
         ui->newUser->show();
-        ui->lineEdit->setPlaceholderText("New user name");
-        ui->lineEdit_2->setPlaceholderText("New user password");
+        ui->usernameEdit->setPlaceholderText("New user name");
+        ui->passwordEdit->setPlaceholderText("New user password");
         ui->loginbutton->setText("Create user");
         ui->newaccountbutton->setText("Cancel");
         ui->warning->hide();
@@ -216,6 +238,10 @@ void Login::on_newaccountbutton_pressed()
         ui->loginbutton->setGeometry(150,290,90,26);
         ui->warning->setGeometry(130, 260, 131, 21);
     }
-    QString name = ui->lineEdit->text();
+
+    // Sets text from usernameEdit to a QString variable
+    QString name = ui->usernameEdit->text();
+
+    // Passes name to sendUsername signal and emits
     emit sendUsername(name);
 }

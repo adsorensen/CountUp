@@ -36,9 +36,9 @@ public:
     ~Login();
      Levelscreen levelselector;
      QString currentUser;
-
      QVector<QString> getUserLevel(QString name);
      QVector<QString> getUserInfo(QString name);
+     void checkUserHelper(int, bool);
 
 private slots:
     void on_loginbutton_pressed();
