@@ -18,7 +18,7 @@
 #include "mathnode.h"
 
 /*
- *
+ * Default constructor
  */
 MathNode::MathNode()
 {
@@ -28,7 +28,7 @@ MathNode::MathNode()
 }
 
 /*
- *
+ * Constructor
  */
 MathNode::MathNode(const MathNode &obj)
 {
