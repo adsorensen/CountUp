@@ -207,14 +207,14 @@ void GameModel::ShuffleGrid()
 
 /*
  * Handles backend when user presses a bomb button, the passed in int refers to
- * a specific bomb where 1 is the div2Bomb, 2 represents mul4Bomb, 3 represents
- * mul2Bomb, and 4 represents the mBomb (modulus bomb)
+ * a specific bomb where 1 is the mul2Bomb, 2 represents mul4Bomb, 3 represents
+ * div2Bomb, and 4 represents the mBomb (modulus bomb)
  */
 void GameModel::BombGrid(int bombOp)
 {
     switch (bombOp)
     {
-    // Handle div2Bomb logic
+    // Handle mul2Bomb logic
     case 1:
         if  (mul2BombCounter > 0)
         {
@@ -260,7 +260,7 @@ void GameModel::BombGrid(int bombOp)
         emit BombUsed(bombOp, mul4BombCounter);
         break;
 
-    // Handle mul2Bomb logic
+    // Handle div2Bomb logic
     case 3:
         if (div2BombCounter > 0) {
             for (int i = 0; i < grid.length(); i++)

@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Number Crunch</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -561,28 +561,6 @@ border-color: rgb(0, 0, 0);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <zorder>formulaLabel</zorder>
-    <zorder>dynFormulaLabel</zorder>
-    <zorder>dynTargetLabel</zorder>
-    <zorder>targetLabel</zorder>
-    <zorder>shuffleButton</zorder>
-    <zorder>TotalLabel</zorder>
-    <zorder>dynTotalLabel</zorder>
-    <zorder>answerLabel</zorder>
-    <zorder>dynAnswerLabel</zorder>
-    <zorder>modBomb</zorder>
-    <zorder>div2Bomb</zorder>
-    <zorder>mul2Bomb</zorder>
-    <zorder>mul4Bomb</zorder>
-    <zorder>remMoves</zorder>
-    <zorder>dynRemMovesLabel</zorder>
-    <zorder>congratsBox</zorder>
-    <zorder>congratsWidget</zorder>
-    <zorder>timesTwoCounter</zorder>
-    <zorder>timesFourCounter</zorder>
-    <zorder>divideByTwoCounter</zorder>
-    <zorder>modCounter</zorder>
-    <zorder>modCounter</zorder>
    </widget>
    <widget class="QGraphicsView" name="graphicsView">
     <property name="enabled">
@@ -826,19 +804,14 @@ color: lightGray;
       </size>
      </property>
     </widget>
-    <zorder>gameOverView</zorder>
-    <zorder>retryButton</zorder>
-    <zorder>menuButton</zorder>
-    <zorder>exitButton</zorder>
-    <zorder>congratsBox</zorder>
    </widget>
    <widget class="QGroupBox" name="congratsBox">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>270</x>
       <y>150</y>
-      <width>541</width>
-      <height>341</height>
+      <width>621</width>
+      <height>365</height>
      </rect>
     </property>
     <property name="title">
@@ -847,10 +820,10 @@ color: lightGray;
     <widget class="QGraphicsView" name="congratsWidget">
      <property name="geometry">
       <rect>
-       <x>-40</x>
+       <x>10</x>
        <y>0</y>
-       <width>591</width>
-       <height>341</height>
+       <width>601</width>
+       <height>351</height>
       </rect>
      </property>
      <property name="styleSheet">

@@ -52,7 +52,6 @@ signals:
     void LevelCompletedSig();\
     void GameOverSig();
     void ContinueLevelSig(int, int);
-    void CreateBubbleAtSig(int, int);
     void RemoveBubblesAtSig(QVector<QPair<int, int> >, QVector<QPair<int, int> >);
     void sendResult(int);
     void BombUsed(int, int);

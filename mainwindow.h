@@ -63,8 +63,6 @@ class MainWindow : public QMainWindow
     QVector<Object> _objects;
     QVector<Object> walls;
     QVector<QPair<int, int>> coordinates;
-    bool begin;
-    bool gameStarted;
     QVector<QPair<int, int>> ballstoadd;
 
 public:
@@ -77,25 +75,15 @@ public:
     int level;
 
 private slots:
-    void on_tableWidget_cellClicked(int row, int column);
-    void on_tableWidget_cellEntered(int row, int column);
     bool eventFilter(QObject *obj, QEvent *event);
     void on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
-    void on_bombButton_pressed();
     void on_shuffleButton_pressed();
-
     void on_exitButton_clicked();
-
     void on_retryButton_clicked();
-
     void on_menuButton_clicked();
-
     void on_modBomb_pressed();
-
     void on_div2Bomb_pressed();
-
     void on_mul2Bomb_pressed();
-
     void on_mul4Bomb_pressed();
 
 public slots:
@@ -103,7 +91,6 @@ public slots:
     void dealWithCompletedLevel();
     void gameOver();
     void nextMove(int movesRemaining, int currentNum);
-    void dealWithNewBubble(int, int);
     void removeBubbles(QVector<QPair<int, int>>,  QVector<QPair<int, int>> );
     void displayFormulaResult(int);
     void dealWithBombOp(int, int);
@@ -114,19 +101,13 @@ private:
     void timerEvent(QTimerEvent *);
     Object createWall(float32 x, float32 y, float32 w, float32 h, float32 angle);
     Object createBall(const b2Vec2& pos, float32 radius);
-    Object createBall(const b2Vec2& pos, float32 radius, int index);
-    Object createBall(const b2Vec2& pos, float32 radius, int index, MathNode mn);
+    Object createBall(const b2Vec2& pos, float32 radius, MathNode mn);
     void drawWall(QPainter *p, const Object& o);
     void drawEllipse(QPainter *p, const Object& o);
     void createBalls();
     void createWalls();
     QColor generateColor(MathNode);
-    void removeBallAt(float32 column, float32 row);
-    void removeBallAt(float32 column, float32 row, int delayVal);
-    void removeBallAt(int index, int delayVal);
-    void spawnBallAt(float32 column, int index);
-    void spawnBallAt(float32 column, int index, MathNode mn);
-    void spawnBallAt(float32 column, float32 row);
+    void removeBallAt(int index);
     int getIndex(int column, int row);
     float32 radius = 34.4f;
     void updateIndex(int index);
