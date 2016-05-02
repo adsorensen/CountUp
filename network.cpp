@@ -248,7 +248,7 @@ bool Network::removeUser(QString username, QString mainuser)
 
         // Execute the query
         success = stmt->execute(execute);
-        success = true;
+
 
         // Delete objects
         delete res;
