@@ -22,6 +22,8 @@ public:
     void hideButtons(int, int);
     void unhideHelper(int);
     QString toQString(std::string const &s);
+    bool cancel;
+    Network myNetwork;
 
 signals:
     void game_started(int);
@@ -42,6 +44,10 @@ private slots:
     void on_menu_pressed();
 
     void on_adminButton_clicked();
+
+    void on_adminButton_2_clicked();
+
+    void on_adminButton_3_clicked();
 
 private:
     Ui::Levelscreen *ui;

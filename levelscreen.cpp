@@ -46,6 +46,11 @@ Levelscreen::Levelscreen(QWidget *parent) :
     w.difficulty = 1;
     ui->warning->hide();
     ui->adminButton->hide();
+    ui->adminButton_2->hide();
+    ui->lineEdit->hide();
+
+    ui->adminButton_3->hide();
+    cancel = false;
 
     // Sets background of the level selection screen
     this->setStyleSheet("Levelscreen {border-image: url(:/background/Resources/loginbg.png); };");
@@ -74,6 +79,7 @@ Levelscreen::~Levelscreen()
 void Levelscreen::showAdminButton()
 {
     ui->adminButton->show();
+    ui->adminButton_2->show();
 }
 
 /*
@@ -471,4 +477,46 @@ void Levelscreen::on_adminButton_clicked()
 QString Levelscreen::toQString(std::string const &s)
 {
     return QString::fromUtf8(s.c_str());
+}
+
+void Levelscreen::on_adminButton_2_clicked()
+{
+    if(!cancel)
+    {
+        ui->lineEdit->show();
+
+        ui->adminButton_2->setText("cancel");
+        ui->adminButton_3->show();
+        cancel = true;
+    }
+    else
+    {
+        ui->lineEdit->hide();
+
+        ui->adminButton_3->hide();
+        ui->adminButton_2->setText("Delete User");
+        cancel = false;
+    }
+
+
+}
+
+//deletes a user
+void Levelscreen::on_adminButton_3_clicked()
+{
+    QString name = ui->lineEdit->text();
+
+
+
+    bool flag = false;
+    if (name == "")
+    {
+        ui->warning->show();
+        ui->warning->setText("name a user");
+    }
+    else
+    {
+        flag = myNetwork.removeUser(name, currentUser);
+
+    }
 }

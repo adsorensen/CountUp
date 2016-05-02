@@ -201,7 +201,7 @@ int Network::registerUser(QString username, QString password, bool admin, QStrin
 /*
  * Returns true if the denoted user was succesfully removed from the database, false if otherwise
  */
-bool Network::removeUser(QString username, QString userclass)
+bool Network::removeUser(QString username, QString mainuser)
 {
     // Declare and initialize the success variable
     bool success = false;
@@ -217,19 +217,38 @@ bool Network::removeUser(QString username, QString userclass)
 
         // Create a connection
         con = driver->connect("georgia.eng.utah.edu","cs5530u108","6pa21pkl");
-
+        stmt = con->createStatement();
         // Set variables
         std::string nameS = fromQString(username);
-        std::string userclassS = fromQString(userclass);
+        std::string userclassS;
+        std::string mainuserS = fromQString(mainuser);
 
         // Create a statement
         stmt = con->createStatement();
+        std::string execute;
+        std::string query;
+        std::string result;
+        query = "SELECT UserClass FROM `cs5530db108`.`MathCrunchUsers` WHERE Username = '"+mainuserS+"';";
+        res = stmt->executeQuery(query);
+
+        // Enter while condition
+        while (res->next())
+        {
+            userclassS = res->getString("UserClass");
+        }
+        QString temp;
+        temp = QString::fromStdString(userclassS);
+
 
         // Create a query
-        std::string execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE Username = '" + nameS + "' UserClass = '" + userclassS + "';";
+
+
+        execute = "DELETE FROM `cs5530db108`.`MathCrunchUsers` WHERE Username = '" + nameS + "' AND UserClass = '" + userclassS + "';";
+
 
         // Execute the query
         success = stmt->execute(execute);
+        success = true;
 
         // Delete objects
         delete res;
