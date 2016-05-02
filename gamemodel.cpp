@@ -141,15 +141,15 @@ int GameModel::FormulaReader(QVector<QString> formula)
                     firstOperand = operands.pop().toInt();
                     operands.push(QString::number(firstOperand + secondOperand));
                     operators.pop();
-
+                    operators.push(formula[i]);
                 }
                 else if (operators.top()  == "-")
                 {
                     secondOperand = operands.pop().toInt();
                     firstOperand = operands.pop().toInt();
-
                     operands.push(QString::number(firstOperand- secondOperand));
                     operators.pop();
+                    operators.push(formula[i]);
                 } else
                 {
                     operators.push(formula[i]);
@@ -162,6 +162,11 @@ int GameModel::FormulaReader(QVector<QString> formula)
         else
             operators.push(formula[i]);
     }
+
+    qDebug() << operands.length();
+    qDebug() << operators.length();
+
+
     if (!operators.isEmpty())
     {
         if (operators.top() == "+")
