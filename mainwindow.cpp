@@ -107,20 +107,18 @@ void MainWindow::fillGrid()
             int dx = offsetX + j * 70;
             MathNode mn = game.grid[j][i];
             _objects.append(createBall(b2Vec2(dx, dy), radius, mn));
-            qDebug()<<"test";
         }
     }
-    qDebug()<<"test2";
 
-    /*for(int i = 0; i < game.grid.size(); i++)
+    for(int i = 0; i < game.grid.size(); i++)
     {
-        qDebug() << "here5";
         for(int j = 0; j < game.grid.at(i).size(); j++)
         {
-            MathNode mn = game.grid[i][j];
-            qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
+            MathNode mn = game.grid[j][i];
+            qDebug()  << "row: " << i << " column: " << j << " value: " << mn.value;
         }
-    }*/
+    }
+    qDebug() << "\n\n";
 }
 
 /*
@@ -171,16 +169,11 @@ Object MainWindow::createBall(const b2Vec2& pos, float32 radius, MathNode mn)
     b2BodyDef bd;
     bd.type = b2_dynamicBody;
     bd.position = pos;
-    qDebug()<< "Crashes here!!! On 53rd drawn ball";
-    qDebug() << "Body count:" << World->GetBodyCount();
     o.body = World->CreateBody(&bd);
 
     // Define the shape
-    qDebug()<< "2";
     b2CircleShape shape;
-    qDebug()<< "3";
     shape.m_radius = radius;
-    qDebug()<< "4";
     // Define the mass
     for(int i = 0; i < 2; i++)
     {
@@ -406,8 +399,7 @@ void MainWindow::start()
     // Initialize labels
     clearLabels();
 
-    qDebug() << "_objects currently has:" << _objects.count();
-    qDebug() << "world currently has:" << World->GetBodyCount();
+
 
     // Destroy bodies in the world
     foreach(Object o, _objects)
@@ -437,9 +429,7 @@ void MainWindow::start()
 
     // Fill the grid
     fillGrid();
-    qDebug()<<"initial";
-    qDebug() << "_objects currently has (should be 64):" << _objects.count();
-    qDebug() << "world currently has (76):" << World->GetBodyCount();
+
 
     // Enable widgets in the UI
     ui->toolBox->setEnabled(true);
@@ -591,6 +581,7 @@ void MainWindow::updateIndex(int index)
         current = current - 8;
         previous = previous - 8;
     }
+    //_objects.removeAt(current);
 }
 
 /*
@@ -766,22 +757,24 @@ void MainWindow::removeBubbles(QVector<QPair<int, int>> ballsToRemove, QVector<Q
 
             qDebug() << "COLUMN: " << coord.first << " ROW: " << coord.second << " VALUE: " << mn.value;
 
-            _objects.append(createBall(b2Vec2(dx, dropheight), radius, mn));
+            _objects[index] = createBall(b2Vec2(dx, dropheight), radius, mn);
             dropheight = dropheight - 70.0f;
         }
 
         qDebug() << "\n CURRENT GRID";
 
+        int ind = 0;
         for(int i = 0; i < game.grid.size(); i++)
         {
             for(int j = 0; j < game.grid.at(i).size(); j++)
             {
-                MathNode mn = game.grid[i][j];
-                qDebug()  << "column: " << i << " row: " << j << " value: " << mn.value;
+
+                MathNode mn = game.grid[j][i];
+                qDebug()  << "row: " << i << " column: " << j << " value: " << mn.value << " objects: " << _objects.at(ind).numberValue << " index " << QString::number(ind);
+                ind++;
             }
         }
-    qDebug() << "_objects currently has (should be 64):" << _objects.count() << "ISSUE(?)! NEVER GETS REMOVED FROM _OBJECT";
-    qDebug() << "world currently has (76):" << World->GetBodyCount();
+
 }
 
 /*
@@ -843,7 +836,6 @@ void MainWindow::on_modBomb_pressed()
         World->DestroyBody(o.body);
     }
 
-    qDebug() << "bodycount should be 12:" << World->GetBodyCount();
 
     if(!_objects.isEmpty())
     {
@@ -927,7 +919,6 @@ void MainWindow::on_mul4Bomb_pressed()
  */
 void MainWindow::dealWithBombOp(int bombOp, int counter)
 {
-    qDebug() << "bomb op";
     switch(bombOp)
     {
     // mul2Bomb
@@ -952,7 +943,7 @@ void MainWindow::dealWithBombOp(int bombOp, int counter)
         else
         {
             ui->mul4Bomb->setEnabled(false);
-            //disable button
+            //disable buttonappend
         }
         break;
 
@@ -983,4 +974,5 @@ void MainWindow::dealWithBombOp(int bombOp, int counter)
         break;
     }
 }
+
 
